@@ -31,7 +31,10 @@
 #
 # =============================================================== #
 
-# --> Comments added by HOWTO author.
+
+export GOPATH=$HOME/gopath
+export PATH=$PATH:$GOPATH:$GOPATH/bin
+
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
