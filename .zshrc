@@ -81,7 +81,36 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# To avoid mispelling errors
+alias cd..="cd .."
 alias la="ls -lahF"
 alias ll="ls -lhF"
+
+# GIT ALIASES
+alias g="git"
+
+# Updir aliases
+alias ..="cd .."
+alias ...="cd ../.."
+
+
+# Youtube aliases
+alias yt='cd $HOME/Downloads; youtube-dl --verbose'
+alias yt3='cd $HOME/Downloads; youtube-dl --verbose --extract-audio --audio-format mp3'
+
+# Allows to go up n levels
+# use 'up 6' to go up 6 levels
+function up {
+    if [[ "$#" < 1 ]] ; then
+        cd ..
+    else
+        CDSTR=""
+        for i in {1..(} ; do
+            CDSTR="../$CDSTR"
+        done
+        cd $CDSTR
+    fi
+}
