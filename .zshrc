@@ -8,7 +8,18 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="bullet-train"
-DEFAULT_USER="joan"
+
+BULLETTRAIN_PROMPT_CHAR=">"
+BULLETTRAIN_TIME_BG=green
+
+BULLETTRAIN_CONTEXT_SHOW=true
+BULLETTRAIN_CONTEXT_BG=yellow
+BULLETTRAIN_CONTEXT_FG=black
+BULLETTRAIN_CONTEXT_DEFAULT_USER=joan
+
+BULLETTRAIN_GIT_BG=cyan
+
+BULLETTRAIN_EXEC_TIME_SHOW=true
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
