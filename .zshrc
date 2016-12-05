@@ -8,6 +8,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
+DEFAULT_USER="joan"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +52,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git git-extras)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,6 +97,8 @@ alias g="git"
 alias ..="cd .."
 alias ...="cd ../.."
 
+# Apt aliases
+alias aptu="sudo apt update && sudo apt upgrade -y"
 
 # Youtube aliases
 alias yt='cd $HOME/Downloads; youtube-dl --verbose'
