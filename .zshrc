@@ -17,7 +17,7 @@ BULLETTRAIN_CONTEXT_BG=yellow
 BULLETTRAIN_CONTEXT_FG=black
 BULLETTRAIN_CONTEXT_DEFAULT_USER=joan
 
-BULLETTRAIN_DIR_FG="magenta"
+BULLETTRAIN_DIR_FG="black"
 
 BULLETTRAIN_GIT_BG=cyan
 BULLETTRAIN_GIT_EXTENDED=false
@@ -131,3 +131,7 @@ function up {
         cd $CDSTR
     fi
 }
+
+# Best part of the file
+fortune | cowsay
+
