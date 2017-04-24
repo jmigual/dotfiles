@@ -97,18 +97,44 @@ alias zshconfig="vim ~/.zshrc"
 
 # To avoid mispelling errors
 alias cd..="cd .."
+
 alias la="ls -lahF"
 alias ll="ls -lhF"
 
+# Create parent directories on demand
+alias mkdir="mkdir -pv"
+
+# Command shortcuts to save time
+alias h="history"
+alias j="jobs"
+
+# New set of commands
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+
+# Set vim as default
+alias vi=vim
+alias svi='sudo vi'
+alias vis='vim "+set si"'
+alias edit='vim'
+
+# Improved ping
+alias fastping='ping -c 100 -s.2'
+
 # GIT ALIASES
 alias g="git"
+alias ga="git add"
+alias gca="git commit -am"
 
 # Updir aliases
 alias ..="cd .."
 alias ...="cd ../.."
 
 # Apt aliases
-alias aptu="sudo apt update && sudo apt upgrade -y"
+alias apt="sudo apt"
+alias update="sudo apt update && sudo apt upgrade -y"
 
 # Youtube aliases
 alias yt='cd $HOME/Downloads; youtube-dl --verbose'
