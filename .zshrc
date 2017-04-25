@@ -94,8 +94,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Go configuration
 export GOROOT=/usr/local/go/bin
-export GOPATH=$HOME/Projects/gopath/bin
-export PATH=$PATH:$GOROOT:$GOPATH
+export GOPATH=$HOME/Projects/gopath
+export PATH=$PATH:$GOROOT:$GOPATH/bin
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
