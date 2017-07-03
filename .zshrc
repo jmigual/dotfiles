@@ -21,6 +21,22 @@ BULLETTRAIN_GIT_EXTENDED=false
 
 BULLETTRAIN_EXEC_TIME_ELAPSED=5
 
+BULLETTRAIN_PROMPT_ORDER=(
+    time
+    status
+    custom
+    context
+    dir
+    perl
+    ruby
+    virtualenv
+    aws
+    go
+    elixir
+    git
+    hg
+    cmd_exec_time
+)
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -153,7 +169,7 @@ function up {
         cd ..
     else
         CDSTR=""
-        for i in {1..(} ; do
+        for i in {1..$1} ; do
             CDSTR="../$CDSTR"
         done
         cd $CDSTR
@@ -163,3 +179,5 @@ function up {
 # Best part of the file
 fortune | cowsay
 
+
+eval $(thefuck --alias)
