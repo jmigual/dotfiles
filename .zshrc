@@ -79,7 +79,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras)
+plugins=(git git-extras yarn npm node)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,6 +122,7 @@ alias cd..="cd .."
 
 alias la="ls -lahF"
 alias ll="ls -lhF"
+alias lah="ls -lah"
 
 # Create parent directories on demand
 alias mkdir="mkdir -pv"
@@ -167,6 +168,7 @@ function up {
         for i in {1..$1} ; do
             CDSTR="../$CDSTR"
         done
+	echo $CDSTR
         cd $CDSTR
     fi
 }
