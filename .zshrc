@@ -145,11 +145,6 @@ alias edit='vim'
 # Improved ping
 alias fastping='ping -c 100 -s.2'
 
-# GIT ALIASES
-alias g="git"
-alias ga="git add"
-alias gca="git commit -am"
-
 # Updir aliases
 alias ..="cd .."
 alias ...="cd ../.."
