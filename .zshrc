@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/games
+export PATH=$PATH:/usr/games:$HOME/.local/bin
 
 # Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -28,13 +28,13 @@ BULLETTRAIN_PROMPT_ORDER=(
     context
     dir
     perl
-    ruby
+    #ruby
     virtualenv
-    aws
+    #aws
     go
-    elixir
+    #elixir
     git
-    hg
+    #hg
     cmd_exec_time
 )
 # Uncomment the following line to use case-sensitive completion.
