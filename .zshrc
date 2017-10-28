@@ -82,7 +82,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 plugins=(git git-extras yarn npm node)
 
 source $ZSH/oh-my-zsh.sh
-
+setopt no_share_history
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
