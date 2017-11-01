@@ -1,15 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/games:$HOME/.local/bin
+export PATH=$PATH:/usr/games:$HOME/.local/bin:$HOME/bin:/usr/local/bin
 
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+source ".antigen.zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bullet-train"
-
+# Bullet train configuration
 BULLETTRAIN_PROMPT_CHAR=">"
 
 BULLETTRAIN_CONTEXT_SHOW=true
@@ -70,44 +65,21 @@ BULLETTRAIN_PROMPT_ORDER=(
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+antigen use oh-my-zsh
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras yarn npm node)
+antigen bundle git
+antigen bundle git-extras
+antigen bundle pip
+antigen bundle yarn
+antigen bundle lukechilds/zsh-better-npm-completion
 
-source $ZSH/oh-my-zsh.sh
+antigen bundle zsh-users/zsh-syntax-highlighting
 
-# User configuration
+antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+antigen apply
 
 # Go configuration
 export GOPATH=$HOME/Projects/gopath
