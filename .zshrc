@@ -2,6 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/games:$HOME/.local/bin:$HOME/bin:/usr/local/bin
 
+unsetopt BG_NICE
+
 source ".antigen.zsh"
 
 # Bullet train configuration
@@ -66,7 +68,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
-setopt no_share_history
+PROJECT_PATHS=(~/Documents/Projects)
 
 antigen use oh-my-zsh
 
@@ -75,6 +77,7 @@ antigen bundle git-extras
 antigen bundle pip
 antigen bundle yarn
 antigen bundle lukechilds/zsh-better-npm-completion
+antigen bundle pj
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
