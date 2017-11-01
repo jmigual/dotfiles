@@ -66,6 +66,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
+setopt no_share_history
 
 antigen use oh-my-zsh
 
