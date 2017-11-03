@@ -4,7 +4,7 @@ export PATH=$PATH:/usr/games:$HOME/.local/bin:$HOME/bin:/usr/local/bin
 
 unsetopt BG_NICE
 
-source ".antigen.zsh"
+source ~/.antigen.zsh
 
 # Bullet train configuration
 BULLETTRAIN_PROMPT_CHAR=">"
