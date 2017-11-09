@@ -1,10 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/games:$HOME/.local/bin:$HOME/bin:/usr/local/bin
+export ZSH=~/.oh-my-zsh
 
 unsetopt BG_NICE
-
-source ~/.antigen.zsh
+unsetopt share_history
 
 # Bullet train configuration
 BULLETTRAIN_PROMPT_CHAR=">"
@@ -70,20 +70,23 @@ BULLETTRAIN_PROMPT_ORDER=(
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
-antigen use oh-my-zsh
+#antigen use oh-my-zsh
 
-antigen bundle git
-antigen bundle git-extras
-antigen bundle pip
-antigen bundle yarn
-antigen bundle lukechilds/zsh-better-npm-completion
-antigen bundle pj
+#antigen bundle git
+#antigen bundle git-extras
+#antigen bundle pip
+#antigen bundle yarn
+#antigen bundle lukechilds/zsh-better-npm-completion
+#antigen bundle pj
 
-antigen bundle zsh-users/zsh-syntax-highlighting
+#antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+#antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
-antigen apply
+#antigen apply
+plugins=(git git-extras pip yarn pj)
+ZSH_THEME="bullet-train"
+source $ZSH/oh-my-zsh.sh
 
 # Go configuration
 export GOPATH=$HOME/Projects/gopath
@@ -91,7 +94,7 @@ export PATH=$PATH:$GOPATH/bin
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To avoid mispelling errors
 alias cd..="cd .."
