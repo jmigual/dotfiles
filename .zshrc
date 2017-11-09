@@ -70,21 +70,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
-#antigen use oh-my-zsh
-
-#antigen bundle git
-#antigen bundle git-extras
-#antigen bundle pip
-#antigen bundle yarn
-#antigen bundle lukechilds/zsh-better-npm-completion
-#antigen bundle pj
-
-#antigen bundle zsh-users/zsh-syntax-highlighting
-
-#antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
-
-#antigen apply
-plugins=(git git-extras pip yarn pj)
+plugins=(git git-extras pip yarn pj zsh-syntax-highlighting)
 ZSH_THEME="bullet-train"
 source $ZSH/oh-my-zsh.sh
 
