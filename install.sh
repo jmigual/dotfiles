@@ -24,7 +24,7 @@ main() {
     printf "${BLUE}Hi! We are going to install a new shell! 😄 ${NORMAL}\n"
 
     # Install zsh
-    PACKAGES=zsh git fortune cowsay python3 python3-pip
+    PACKAGES="zsh git fortune cowsay python3 python3-pip"
     printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
     sudo apt install ${PACKAGES} -y
 
