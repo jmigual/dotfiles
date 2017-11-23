@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-main {
-    # Install zsh
-    sudo apt install zsh git fortune cowsay python3 python3-pip -y
-
+main() {
     # Use colors if the terminal supports them
     if which tput >/dev/null 2>&1; then
         ncolors=$(tput colors)
@@ -24,8 +21,16 @@ main {
         NORMAL=""
     fi
 
+    printf "${BLUE}Hi! We are going to install a new shell! 😄 ${NORMAL}\n"
+
+    # Install zsh
+    PACKAGES=zsh git fortune cowsay python3 python3-pip
+    printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
+    sudo apt install ${PACKAGES} -y
+
     # Install oh my zsh
-    ZSH =~/.oh-my-zsh
+    ZSH=~/.oh-my-zsh
+    printf "${BLUE} Installing oh-my-zsh in ${ZSH}${NORMAL}\n"
     env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH || {
         printf "Error: git clone of oh-my-zsh repo failed\n"
         exit 1
@@ -53,11 +58,11 @@ main {
     printf "${NORMAL}"
 
     # Add bullet train theme
-    printf "${BLUE}Adding ${BOLD}Bullet train${BLUE} to oh-my-zsh${NORMAL}\n"
+    printf "${BLUE}Adding ${BOLD}Bullet train${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme > ~/.oh-my-zsh/themes/
 
     # Add syntax highlighting
-    printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${BLUE} to oh-my-zsh${NORMAL}\n"
+    printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     cd ~/.oh-my-zsh/custom/plugins
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
