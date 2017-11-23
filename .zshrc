@@ -3,8 +3,6 @@
 export PATH=$PATH:/usr/games:$HOME/.local/bin:$HOME/bin:/usr/local/bin
 export ZSH=~/.oh-my-zsh
 
-unsetopt BG_NICE
-unsetopt share_history
 
 # Bullet train configuration
 BULLETTRAIN_PROMPT_CHAR=">"
@@ -73,6 +71,9 @@ PROJECT_PATHS=(~/Documents/Projects)
 plugins=(git git-extras pip yarn pj zsh-syntax-highlighting)
 ZSH_THEME="bullet-train"
 source $ZSH/oh-my-zsh.sh
+
+unsetopt BG_NICE
+unsetopt share_history
 
 # Go configuration
 export GOPATH=$HOME/Projects/gopath
