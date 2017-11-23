@@ -30,11 +30,22 @@ main() {
 
     # Install oh my zsh
     ZSH=~/.oh-my-zsh
-    printf "${BLUE} Installing oh-my-zsh in ${ZSH}${NORMAL}\n"
-    env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH || {
-        printf "Error: git clone of oh-my-zsh repo failed\n"
-        exit 1
-    }
+
+    # Check if already exists and update it to the newest version
+    if [ -d $ZSH ]; then
+        printf "${BLUE}It looks like you already have a oh-my-zsh installation\n"
+        printf "we are going to update it${NORMAL}\n"
+        cd $ZSH
+        git pull
+        cd ~
+    else 
+        # Installe oh-my-zsh
+        printf "${BLUE}Installing oh-my-zsh in ${ZSH}${NORMAL}\n"
+        env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH || {
+            printf "Error: git clone of oh-my-zsh repo failed\n"
+            exit 1
+        }
+    fi
 
     # Check if we have to change the shell
     TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
@@ -59,7 +70,8 @@ main() {
 
     # Add bullet train theme
     printf "${BLUE}Adding ${BOLD}Bullet train${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme > ~/.oh-my-zsh/themes/
+    cd ~/.oh-my-zsh/themes
+    wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
 
     # Add syntax highlighting
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
