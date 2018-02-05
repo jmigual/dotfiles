@@ -80,7 +80,7 @@ export NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 
 # Go configuration
 export GOPATH=$HOME/Projects/gopath
-export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES
+export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES_BIN
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
