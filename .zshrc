@@ -76,7 +76,7 @@ unsetopt BG_NICE
 unsetopt share_history
 
 export ANDROID_HOME=$HOME/Android/Sdk
-export NODE_MODULES=$HOME/.config/node_modules
+export NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 
 # Go configuration
 export GOPATH=$HOME/Projects/gopath
