@@ -75,9 +75,12 @@ source $ZSH/oh-my-zsh.sh
 unsetopt BG_NICE
 unsetopt share_history
 
+export ANDROID_HOME=$HOME/Android/Sdk
+export NODE_MODULES=$HOME/.config/node_modules
+
 # Go configuration
 export GOPATH=$HOME/Projects/gopath
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
