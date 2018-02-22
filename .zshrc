@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/games:$HOME/.local/bin:$HOME/bin:/usr/local/bin
+
 export ZSH=~/.oh-my-zsh
 
 
@@ -14,15 +14,13 @@ BULLETTRAIN_CONTEXT_DEFAULT_USER=joan
 
 BULLETTRAIN_GIT_EXTENDED=false
 
-BULLETTRAIN_EXEC_TIME_ELAPSED=5
-
 BULLETTRAIN_PROMPT_ORDER=(
     time
     status
     custom
     context
     dir
-    perl
+    #perl
     #ruby
     virtualenv
     #aws
@@ -32,39 +30,8 @@ BULLETTRAIN_PROMPT_ORDER=(
     #hg
     cmd_exec_time
 )
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# ZSH Plugins configuration
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
@@ -72,15 +39,35 @@ plugins=(git git-extras pip yarn pj zsh-syntax-highlighting)
 ZSH_THEME="bullet-train"
 source $ZSH/oh-my-zsh.sh
 
+# ZSH options
 unsetopt BG_NICE
 unsetopt share_history
 
+# Android, node and go path configurations
 export ANDROID_HOME=$HOME/Android/Sdk
-export NODE_MODULES_BIN=$HOME/.config/node_modules/bin
-
-# Go configuration
+NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 export GOPATH=$HOME/Projects/gopath
+
+# PATH configuration
+export PATH=$PATH:/usr/games:$HOME/bin:/usr/local/bin
 export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES_BIN
+
+
+# Check current system
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     
+	    machine=Linux
+	    export PATH=$PATH:$HOME/.local/bin
+	    ;;
+    Darwin*)    
+	    machine=Mac
+	    export PATH=$PATH:$HOME/Library/Python/3.6/bin
+	    ;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
@@ -124,8 +111,8 @@ alias apt="sudo apt"
 alias update="sudo apt update && sudo apt upgrade -y"
 
 # Youtube aliases
-alias yt='cd $HOME/Downloads; youtube-dl --verbose'
-alias yt3='cd $HOME/Downloads; youtube-dl --verbose --extract-audio --audio-format mp3'
+alias yt='cd $HOME/Downloads; youtube-dl'
+alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumnail --add-metadata --extract-audio --audio-format m4a'
 
 # Allows to go up n levels
 # use 'up 6' to go up 6 levels
@@ -142,8 +129,30 @@ function up {
     fi
 }
 
+mkcd () { mkdir -p "$@" && cd "$@"; }
+
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar xjf $1      ;;
+            *.tar.gz)   tar xzf $1      ;;
+            *.bz2)      bunzip2 $1      ;;
+            *.rar)      rar x $1        ;;
+            *.gz)       gunzip $1       ;;
+            *.tar)      tar xf $1       ;;
+            *.tbz2)     tar xjf $1      ;;
+            *.tgz)      tar xzf $1      ;;
+            *.zip)      unzip $1        ;;
+            *.Z)        uncompress $1   ;;
+            *)          echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
 # Best part of the file
 fortune | cowsay
 
+eval $(thefuck --alias) 
 
-eval $(thefuck --alias)
