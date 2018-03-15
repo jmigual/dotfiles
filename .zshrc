@@ -112,7 +112,10 @@ alias update="sudo apt update && sudo apt upgrade -y"
 
 # Youtube aliases
 alias yt='cd $HOME/Downloads; youtube-dl'
-alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumnail --add-metadata --extract-audio --audio-format m4a'
+alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
+
+# Mordor log in
+alias sshmordor='ssh -Y -l jmarceig -t -p 5059 mordor'
 
 # Allows to go up n levels
 # use 'up 6' to go up 6 levels
