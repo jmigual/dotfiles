@@ -49,8 +49,7 @@ NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 export GOPATH=$HOME/Projects/gopath
 
 # PATH configuration
-export PATH=$PATH:/usr/games:$HOME/bin:/usr/local/bin
-export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES_BIN
+export PATH=$PATH:/usr/games:$HOME/bin:/usr/local/bin:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES_BIN
 
 
 # Check current system
@@ -114,9 +113,6 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias yt='cd $HOME/Downloads; youtube-dl'
 alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
 
-# Mordor log in
-alias sshmordor='ssh -Y -l jmarceig -t -p 5059 mordor'
-
 # Allows to go up n levels
 # use 'up 6' to go up 6 levels
 function up {
@@ -157,5 +153,4 @@ extract () {
 # Best part of the file
 fortune | cowsay
 
-eval $(thefuck --alias) 
 

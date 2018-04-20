@@ -24,7 +24,7 @@ main() {
     printf "${BLUE}Hi! We are going to install a new shell! 😄 ${NORMAL}\n"
 
     # Install zsh
-    PACKAGES="zsh git fortune cowsay python3 python3-pip"
+    PACKAGES="zsh git fortune cowsay python3"
     printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
     sudo apt install ${PACKAGES} -y
 
@@ -39,7 +39,7 @@ main() {
         git pull
         cd ~
     else 
-        # Installe oh-my-zsh
+        # Install oh-my-zsh
         printf "${BLUE}Installing oh-my-zsh in ${ZSH}${NORMAL}\n"
         env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH || {
             printf "Error: git clone of oh-my-zsh repo failed\n"
@@ -88,10 +88,6 @@ main() {
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
     git clone https://jmigual@github.com/jmigual/mybashrc
     cp ~/Documents/Projects/mybashrc/.zshrc ~/
-
-    # Install the fuck
-    printf "${BLUE}Installing the fuck${NORMAL}\n"
-    sudo pip3 install thefuck
 }
 
 main
