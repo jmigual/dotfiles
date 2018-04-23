@@ -43,15 +43,6 @@ source $ZSH/oh-my-zsh.sh
 unsetopt BG_NICE
 unsetopt share_history
 
-# Android, node and go path configurations
-export ANDROID_HOME=$HOME/Android/Sdk
-NODE_MODULES_BIN=$HOME/.config/node_modules/bin
-export GOPATH=$HOME/Projects/gopath
-
-# PATH configuration
-export PATH=$PATH:/usr/games:$HOME/bin:/usr/local/bin:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES_BIN
-
-
 # Check current system
 unameOut="$(uname -s)"
 case "${unameOut}" in
@@ -152,5 +143,6 @@ extract () {
 
 # Best part of the file
 fortune | cowsay
+
 
 

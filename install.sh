@@ -80,14 +80,15 @@ main() {
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
+    PROJECTS_DIR=$HOME/Documents/Projects
     cd ~/
-    mkdir -p ~/Documents/Projects/
-    cd ~/Documents/Projects/
+    mkdir -p $PROJECTS_DIR
+    cd $PROJECTS_DIR
     
     # Clone mybashrc and copy zshrc
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
     git clone https://jmigual@github.com/jmigual/mybashrc
-    cp ~/Documents/Projects/mybashrc/.zshrc ~/
+    cp $PROJECTS_DIR/mybashrc/.zshrc $PROJECTS_DIR/mybashrc/.zshenv ~/
 }
 
 main
