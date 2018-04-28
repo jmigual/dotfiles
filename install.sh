@@ -78,6 +78,9 @@ main() {
     cd ~/.oh-my-zsh/custom/plugins
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
+    # Install pyenv
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
     PROJECTS_DIR=$HOME/Documents/Projects
