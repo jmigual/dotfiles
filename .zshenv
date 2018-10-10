@@ -1,11 +1,14 @@
 # Node, Android and go path configurations
 NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 export ANDROID_HOME=$HOME/Android/Sdk
-export GOPATH=$HOME/Documents/Projects/gopath
+
+# Go configuration
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
 
 # PATH configuration
 export PATH=$PATH:/usr/games:$HOME/bin:/usr/local/bin
-export PATH=$PATH:$GOPATH/bin:$ANDROID_HOME:$NODE_MODULES_BIN
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin:$ANDROID_HOME:$NODE_MODULES_BIN
 
 # PyEnv configuration
 export PYENV_ROOT="$HOME/.pyenv"
