@@ -10,21 +10,25 @@ BULLETTRAIN_PROMPT_CHAR=">"
 BULLETTRAIN_CONTEXT_SHOW=true
 BULLETTRAIN_CONTEXT_BG=yellow
 BULLETTRAIN_CONTEXT_FG=black
-BULLETTRAIN_CONTEXT_DEFAULT_USER=joan
+BULLETTRAIN_CONTEXT_DEFAULT_USER=jmigual
 
 BULLETTRAIN_GIT_EXTENDED=false
 
+BULLETTRAIN_CUSTOM_MSG=%T
+BULLETTRAIN_CUSTOM_FG=black
+BULLETTRAIN_CUSTOM_BG=white
+
 BULLETTRAIN_PROMPT_ORDER=(
-    time
+    #time
     status
     custom
     context
     dir
     #perl
     #ruby
-    virtualenv
+    #virtualenv
     #aws
-    go
+    #go
     #elixir
     git
     #hg
@@ -35,29 +39,13 @@ BULLETTRAIN_PROMPT_ORDER=(
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
-plugins=(git git-extras pip yarn pj zsh-syntax-highlighting)
+plugins=(git git-extras pip pj zsh-syntax-highlighting)
 ZSH_THEME="bullet-train"
 source $ZSH/oh-my-zsh.sh
 
 # ZSH options
 unsetopt BG_NICE
 unsetopt share_history
-
-# Check current system
-unameOut="$(uname -s)"
-case "${unameOut}" in
-    Linux*)     
-	    machine=Linux
-	    export PATH=$PATH:$HOME/.local/bin
-	    ;;
-    Darwin*)    
-	    machine=Mac
-	    export PATH=$PATH:$HOME/Library/Python/3.6/bin
-	    ;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    *)          machine="UNKNOWN:${unameOut}"
-esac
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"

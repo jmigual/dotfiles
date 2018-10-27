@@ -70,16 +70,16 @@ main() {
 
     # Add bullet train theme
     printf "${BLUE}Adding ${BOLD}Bullet train${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    cd ~/.oh-my-zsh/themes
+    cd $ZSH/themes
     wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
 
     # Add syntax highlighting
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    cd ~/.oh-my-zsh/custom/plugins
+    cd $ZSH/custom/plugins
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 
-    # Install pyenv
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    # Install pipenv and youtube-dl
+    pip3 install -U pipenv youtube-dl
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
