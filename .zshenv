@@ -2,6 +2,14 @@
 NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 export ANDROID_HOME=$HOME/Android/Sdk
 
+
+# Go configuration
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+
+# PATH configuration
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/snap/bin
+export PATH=$PATH:/usr/games:/usr/local/games:$GOROOT/bin
 # Check current system
 unameOut="$(uname -s)"
 case "${unameOut}" in
@@ -13,11 +21,4 @@ case "${unameOut}" in
 	    ;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
-
-# Go configuration
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/go
-
-# PATH configuration
-export PATH=$PATH:/usr/games:/usr/local/bin
-export PATH=$PATH:$GOPATH/bin:$GOROOT/bin:$ANDROID_HOME:$NODE_MODULES_BIN
+export PATH=$PATH:$GOPATH/bin:$NODE_MODULES_BIN:$ANDROID_HOME
