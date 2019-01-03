@@ -77,6 +77,7 @@ main() {
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     cd $ZSH/custom/plugins
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone https://github.com/zsh-users/zsh-autosuggestions
 
     # Install pipenv and youtube-dl
     pip3 install -U pipenv youtube-dl

@@ -39,7 +39,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
-plugins=(git git-extras pip pj zsh-syntax-highlighting)
+plugins=(git git-extras pip pj zsh-syntax-highlighting zsh-autosuggestions)
 ZSH_THEME="bullet-train"
 source $ZSH/oh-my-zsh.sh
 
