@@ -3,6 +3,7 @@
 
 export ZSH=~/.oh-my-zsh
 
+fpath+=~/.zfunc
 
 # Bullet train configuration
 BULLETTRAIN_PROMPT_CHAR=">"
@@ -92,6 +93,7 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias yt='cd $HOME/Downloads; youtube-dl'
 alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
 
+alias fd=fdfind
 # Allows to go up n levels
 # use 'up 6' to go up 6 levels
 function up {
