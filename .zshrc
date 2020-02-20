@@ -1,47 +1,22 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export ZSH=~/.oh-my-zsh
-
-fpath+=~/.zfunc
-
-# Bullet train configuration
-BULLETTRAIN_PROMPT_CHAR=">"
-
-BULLETTRAIN_CONTEXT_SHOW=true
-BULLETTRAIN_CONTEXT_BG=yellow
-BULLETTRAIN_CONTEXT_FG=black
-BULLETTRAIN_CONTEXT_DEFAULT_USER=jmigual
-
-BULLETTRAIN_GIT_EXTENDED=false
-
-BULLETTRAIN_CUSTOM_MSG=%T
-BULLETTRAIN_CUSTOM_FG=black
-BULLETTRAIN_CUSTOM_BG=white
-
-BULLETTRAIN_PROMPT_ORDER=(
-    #time
-    status
-    custom
-    context
-    dir
-    #perl
-    #ruby
-    #virtualenv
-    #aws
-    #go
-    #elixir
-    git
-    #hg
-    cmd_exec_time
-)
 
 # ZSH Plugins configuration
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
 plugins=(git git-extras pip pj zsh-syntax-highlighting zsh-autosuggestions)
-ZSH_THEME="bullet-train"
+#ZSH_THEME="bullet-train"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 source $ZSH/oh-my-zsh.sh
 
 # ZSH options
@@ -134,5 +109,5 @@ extract () {
 # Best part of the file
 fortune | cowsay
 
-
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
