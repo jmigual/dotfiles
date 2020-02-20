@@ -58,7 +58,7 @@ main() {
     
     # Clone mybashrc and copy zshrc
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
-    git clone https://jmigual@github.com/jmigual/myBashrc
+    git clone git@github.com:jmigual/myBashrc
     cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv ~/
 }
 
