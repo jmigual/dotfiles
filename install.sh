@@ -30,14 +30,15 @@ main() {
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-    ZSH_CUSTOM=".oh-my-zsh/custom"
+    printf "${BLUE}Creating ZSH_CUSTOM${NORMAL}\n"
+    ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
     mkdir -p $ZSH_CUSTOM
 
     # Add themes
     printf "${BLUE}Adding ${BOLD}Bullet train${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     curl http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -o $ZSH_CUSTOM/themes/bullet-train.zsh-theme
 
-    printf "${BLUE}Adding ${BOLD}PowerLevel10k${NORMAL}${BLUE} to oh-my-zsh${NORMAL}"
+    printf "${BLUE}Adding ${BOLD}PowerLevel10k${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
     # Add syntax highlighting
