@@ -30,9 +30,27 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 # To avoid mispelling errors
 alias cd..="cd .."
 
+alias l="ls -lFH"
 alias la="ls -lahF"
-alias ll="ls -lhF"
-alias lah="ls -lah"
+alias lr="ls -tRFh"
+alias lt="ls -ltFh"
+alias ll="ls -l"
+alias ldot="ls -ld .*"
+alias lS="ls -1FSsh"
+alias lart="ls -1Fcart"
+alias lrt="ls -1Fcrt"
+
+# Command line head / tail shortcuts
+alias H='| head'
+alias T='| tail'
+alias G='| grep'
+alias L="| less"
+alias M="| most"
+alias LL="2>&1 | less"
+alias CA="2>&1 | cat -A"
+alias NE="2> /dev/null"
+alias NUL="> /dev/null 2>&1"
+alias P="2>&1| pygmentize -l pytb"
 
 # Create parent directories on demand
 alias mkdir="mkdir -pv"
@@ -56,10 +74,6 @@ alias edit='vim'
 # Improved ping
 alias fastping='ping -c 100 -s.2'
 
-# Updir aliases
-alias ..="cd .."
-alias ...="cd ../.."
-
 # Apt aliases
 alias apt="sudo apt"
 alias update="sudo apt update && sudo apt upgrade -y"
@@ -68,7 +82,15 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias yt='cd $HOME/Downloads; youtube-dl'
 alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
 
-alias fd=fdfind
+alias fd="find . -type d -name"
+alias ff="find . -type f -name"
+alias grep="grep --color"
+alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
+
+# Updir aliases
+alias ..="cd .."
+alias ...="cd ../.."
+
 # Allows to go up n levels
 # use 'up 6' to go up 6 levels
 function up {
