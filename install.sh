@@ -25,8 +25,12 @@ main() {
 
     # Install zsh
     PACKAGES="zsh git fortune cowsay python3 curl"
-    printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
-    sudo apt install ${PACKAGES} -y
+    sudo -v
+    retVal=$?
+    if [ $retVal -ne 0 ]; then
+      printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
+      sudo apt install ${PACKAGES} -y
+    fi
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -43,7 +47,7 @@ main() {
 
     # Add syntax highlighting
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
@@ -60,7 +64,7 @@ main() {
     
     # Clone mybashrc and copy zshrc
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
-    git clone git@github.com:jmigual/myBashrc
+    git clone https://github.com/jmigual/myBashrc
     cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv ~/
 }
 
