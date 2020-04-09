@@ -22,6 +22,7 @@ source $ZSH/oh-my-zsh.sh
 # ZSH options
 unsetopt BG_NICE
 unsetopt share_history
+setopt rm_star_silent
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
@@ -41,16 +42,16 @@ alias lart="ls -1Fcart"
 alias lrt="ls -1Fcrt"
 
 # Command line head / tail shortcuts
-alias H='| head'
-alias T='| tail'
-alias G='| grep'
-alias L="| less"
-alias M="| most"
-alias LL="2>&1 | less"
-alias CA="2>&1 | cat -A"
-alias NE="2> /dev/null"
-alias NUL="> /dev/null 2>&1"
-alias P="2>&1| pygmentize -l pytb"
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g L="| less"
+alias -g M="| most"
+alias -g LL="2>&1 | less"
+alias -g CA="2>&1 | cat -A"
+alias -g NE="2> /dev/null"
+alias -g NUL="> /dev/null 2>&1"
+alias -g P="2>&1| pygmentize -l pytb"
 
 # Create parent directories on demand
 alias mkdir="mkdir -pv"
@@ -107,6 +108,11 @@ function up {
 }
 
 mkcd () { mkdir -p "$@" && cd "$@"; }
+
+tar-progress() {
+    BYTES=$(du -scb "${@:2}" | grep "total" | awk '{print $1}')
+    tar cf - "${@:2}" -P | pv -s $BYTES | pigz > $1
+}
 
 extract () {
     if [ -f $1 ] ; then
