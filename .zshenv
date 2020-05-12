@@ -10,12 +10,17 @@ export PATH=$PATH:/usr/games:/usr/local/games
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     
-	    export PATH=$PATH:$HOME/.local/bin
+	    export PATH=$HOME/.local/bin:$PATH
 	    ;;
     Darwin*)    
-	    export PATH=$PATH:$HOME/Library/Python/3.6/bin
+	    export PATH=$HOME/Library/Python/3.6/bin:$PATH
 	    ;;
     *)
 	    echo UNKOWN MACHINE!!!!
 esac
 export PATH=$PATH:$NODE_MODULES_BIN:$ANDROID_HOME
+
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
