@@ -25,9 +25,7 @@ main() {
 
     # Install zsh
     PACKAGES="zsh git fortune cowsay python3 curl"
-    sudo -v
-    retVal=$?
-    if [ $retVal -ne 0 ]; then
+    if [[ ! `sudo -v` ]]; then
       printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
       sudo apt install ${PACKAGES} -y
     fi
@@ -39,9 +37,6 @@ main() {
     mkdir -p $ZSH_CUSTOM
 
     # Add themes
-    printf "${BLUE}Adding ${BOLD}Bullet train${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    curl http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -o $ZSH_CUSTOM/themes/bullet-train.zsh-theme
-
     printf "${BLUE}Adding ${BOLD}PowerLevel10k${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
@@ -53,12 +48,11 @@ main() {
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
     # Install pipenv and youtube-dl
-    pip3 install -U pipenv youtube-dl
+    pip3 install --user -U -y poetry youtube-dl
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
     PROJECTS_DIR=$HOME/Documents/Projects
-    cd ~/
     mkdir -p $PROJECTS_DIR
     cd $PROJECTS_DIR
     
