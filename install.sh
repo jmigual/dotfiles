@@ -24,7 +24,7 @@ main() {
     printf "${BLUE}Hi! We are going to install a new shell! 😄 ${NORMAL}\n"
 
     # Install zsh
-    PACKAGES="zsh git fortune cowsay python3 curl"
+    PACKAGES="zsh git fortune python3 curl"
     if [[ ! `sudo -v` ]]; then
       printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
       sudo apt install ${PACKAGES} -y
@@ -48,7 +48,8 @@ main() {
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
     # Install pipenv and youtube-dl
-    pip3 install --user -U -y poetry youtube-dl
+    pip3 install --user --upgrade -y pipx
+    pipx install poetry youtube-dl cowsay
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
