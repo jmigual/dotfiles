@@ -30,6 +30,10 @@ main() {
       sudo apt install ${PACKAGES} -y
     fi
 
+    # Install pip
+    curl "https://bootstrap.pypa.io/get-pip.py" | python3
+    PATH="$PATH:$HOME/.local"
+
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     printf "${BLUE}Creating ZSH_CUSTOM${NORMAL}\n"
@@ -42,25 +46,25 @@ main() {
 
     # Add syntax highlighting
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-
+    
     # Install pipenv and youtube-dl
     pip3 install --user --upgrade -y pipx
     pipx install poetry youtube-dl cowsay
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
-    PROJECTS_DIR=$HOME/Documents/Projects
+    PROJECTS_DIR="$HOME/Documents/Projects"
     mkdir -p $PROJECTS_DIR
     cd $PROJECTS_DIR
     
     # Clone mybashrc and copy zshrc
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
-    git clone https://github.com/jmigual/myBashrc
-    cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv ~/
+    git clone --depth=1 https://github.com/jmigual/myBashrc
+    cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv "$HOME"
 }
 
 main
