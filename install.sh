@@ -24,7 +24,7 @@ main() {
     printf "${BLUE}Hi! We are going to install a new shell! 😄 ${NORMAL}\n"
 
     # Install zsh
-    PACKAGES="zsh git fortune cowsay python3 curl"
+    PACKAGES="zsh git fortune cowsay python3 python3-distutils python3-venv curl"
     sudo -v
     retVal=$?
     if [ $retVal -ne 0 ]; then
