@@ -25,12 +25,14 @@ main() {
 
     # Install zsh
     PACKAGES="zsh git fortune cowsay python3 python3-distutils python3-venv curl"
-    sudo -v
-    retVal=$?
-    if [ $retVal -ne 0 ]; then
+    if [[ ! `sudo -v` ]]; then
       printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
       sudo apt install ${PACKAGES} -y
     fi
+
+    # Install pip
+    curl "https://bootstrap.pypa.io/get-pip.py" | python3
+    PATH="$PATH:$HOME/.local"
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -39,33 +41,30 @@ main() {
     mkdir -p $ZSH_CUSTOM
 
     # Add themes
-    printf "${BLUE}Adding ${BOLD}Bullet train${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    curl http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -o $ZSH_CUSTOM/themes/bullet-train.zsh-theme
-
     printf "${BLUE}Adding ${BOLD}PowerLevel10k${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
     # Add syntax highlighting
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-
+    
     # Install pipenv and youtube-dl
-    pip3 install -U pipenv youtube-dl
+    pip3 install --user --upgrade -y pipx
+    pipx install poetry youtube-dl cowsay
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
-    PROJECTS_DIR=$HOME/Documents/Projects
-    cd ~/
+    PROJECTS_DIR="$HOME/Documents/Projects"
     mkdir -p $PROJECTS_DIR
     cd $PROJECTS_DIR
     
     # Clone mybashrc and copy zshrc
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
-    git clone https://github.com/jmigual/myBashrc
-    cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv ~/
+    git clone --depth=1 https://github.com/jmigual/myBashrc
+    cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv "$HOME"
 }
 
 main
