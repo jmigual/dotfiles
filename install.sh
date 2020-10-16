@@ -52,7 +52,7 @@ main() {
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
     
     # Install pipenv and youtube-dl
-    pip3 install --user --upgrade -y pipx
+    pip3 install --user --upgrade pipx
     pipx install poetry youtube-dl cowsay
 
     # Create projects folder
