@@ -53,7 +53,9 @@ main() {
     
     # Install pipenv and youtube-dl
     pip3 install --user --upgrade pipx
-    pipx install poetry youtube-dl cowsay
+    for package in poetry youtube-dl cowsay; do
+        pipx install $package
+    done
 
     # Create projects folder
     printf "${BLUE}Creating projects folder${NORMAL}\n"
