@@ -24,10 +24,10 @@ main() {
     printf "${BLUE}Hi! We are going to install a new shell! 😄 ${NORMAL}\n"
 
     # Install zsh
-    PACKAGES="zsh git fortune python3 curl"
+    PACKAGES="zsh git fortune python3 python3-venv curl"
     if [[ ! `sudo -v` ]]; then
       printf "${BLUE}Installing packages ${BOLD}${PACKAGES}${NORMAL}\n"
-      sudo apt install ${PACKAGES} -y
+      sudo apt update && sudo apt install ${PACKAGES} -y
     fi
 
     # Install pip
