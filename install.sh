@@ -32,7 +32,7 @@ main() {
 
     # Install pip
     curl "https://bootstrap.pypa.io/get-pip.py" | python3
-    PATH="$PATH:$HOME/.local"
+    PATH="$PATH:$HOME/.local/bin"
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
