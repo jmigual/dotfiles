@@ -96,7 +96,7 @@ killsocket() {
     if socketpid=$(lsof +E -taU -- "$socketpath"); then
       local timeoutpids=()
       for pid in $socketpid; do
-        timeout .5s tail --pid=$pid -f /dev/null &
+        timeout 2s tail --pid=$pid -f /dev/null &
         timeoutpids+=($!)
       done
       echo "$socketpid" | xargs kill
