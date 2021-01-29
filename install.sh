@@ -42,18 +42,18 @@ main() {
 
     # Add themes
     printf "${BLUE}Adding ${BOLD}PowerLevel10k${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+    git clone --depth=1 --branch v1.14.6 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
     # Add syntax highlighting
     printf "${BLUE}Adding ${BOLD}zsh-syntax-highlighting${NORMAL}${BLUE} to oh-my-zsh${NORMAL}\n"
-    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    git clone --depth=1 --branch 0.7.1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone --depth=1 --branch v0.6.4 https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
     chmod 755 $ZSH_CUSTOM/plugins/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
     
     # Install pipenv and youtube-dl
     pip3 install --user --upgrade pipx
-    for package in poetry youtube-dl cowsay; do
+    for package in poetry youtube-dl; do
         pipx install $package
     done
 
@@ -67,6 +67,17 @@ main() {
     printf "${BLUE}Cloning mybashrc${NORMAL}\n"
     git clone --depth=1 https://github.com/jmigual/myBashrc
     cp $PROJECTS_DIR/myBashrc/.zshrc $PROJECTS_DIR/myBashrc/.zshenv "$HOME"
+
+    # Download cowsay
+    COWSAY_VERSION=v3.7.0
+    mkdir -p $HOME/Downloads && cd $HOME/Downloads
+    wget https://github.com/cowsay-org/cowsay/archive/${COWSAY_VERSION}.tar.gz
+    tar xf ${COWSAY_VERSION}.tar.gz
+    mv cowsay-* cowsay
+    cd cowsay
+    make install prefix=$HOME/.local
+    cd $HOME
+    rm -r $HOME/Downloads/cowsay $HOME/Downloads/${COWSAY_VERSION}.tar.gz
 }
 
 main
