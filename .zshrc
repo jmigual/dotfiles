@@ -131,6 +131,22 @@ extract () {
     fi
 }
 
+# Check current system
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     
+		# Check if WSL
+		if cat /proc/version | grep -qi Microsoft; then
+			# We are in WSL, thus start gpg-relay agent
+            $HOME/.local/bin/gpg-agent-relay start
+		fi
+	    ;;
+    Darwin*)    
+	    ;;
+    *)
+esac
+
+
 # Best part of the file
 fortune -s | xargs -0 cowsay
 

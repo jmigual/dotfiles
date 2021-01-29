@@ -3,6 +3,7 @@ NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 export ANDROID_HOME=$HOME/Android/Sdk
 
 # PATH configuration
+PATH_OLD="$PATH"
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/snap/bin
 export PATH=$PATH:/usr/games:/usr/local/games
 
@@ -18,7 +19,7 @@ case "${unameOut}" in
 		# Check if WSL
 		if cat /proc/version | grep -qi Microsoft; then
 			# We are in WSL, thus start gpg-relay agent
-			bash $HOME/.local/bin/gpg-agent-relay start
+			export PATH="$PATH:$PATH_OLD"
 		else
 			gpgconf --launch gpg-agent
 			gpg-connect-agent updatestartuptty /bye
