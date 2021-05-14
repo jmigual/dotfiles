@@ -1,42 +1,43 @@
 
 - defaults:
-  link:
-    create: true
-    relink: true
-
+    link:
+        create: true
+        relink: true
+        
 - clean: [ '~' ]
 
 - create:
-  - ~/.local/bin
-  - ~/Documents/Projects
-  - ~/Downloads
-
+    - ~/.local/bin
+    - ~/Documents/Projects
+    - ~/Downloads
+    
 - shell:
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh-my-zsh]
-
+    - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh-my-zsh]
+    
 - git:
-  '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting':
-    description: 'oh my zsh syntax highlighting'
-    url: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    branch: '0.7.1'
-  '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
-    description: 'oh my zsh autosuggestions'
-    url: https://github.com/zsh-users/zsh-autosuggestions
-    branch: 'v0.6.4'
-
+    '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting':
+        description: 'oh my zsh syntax highlighting'
+        url: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        branch: '0.7.1'
+    '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
+        description: 'oh my zsh autosuggestions'
+        url: https://github.com/zsh-users/zsh-autosuggestions
+        branch: 'v0.6.4'
+        
 - link:
-  ~/.zshrc: files/zshrc
-  ~/.zshenv: files/zshenv
-  ~/.bashrc: files/bashrc
-  ~/.local/bin/gpg-agent-relay: files/gpg-agent-relay
-
+    ~/.zshrc: files/zshrc
+    ~/.zshenv: files/zshenv
+    ~/.bashrc: files/bashrc
+    ~/.local/bin/gpg-agent-relay: files/gpg-agent-relay
+    
 - shell:
-  - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-  - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
-  - [bash ./scripts/install_cowsay.sh, Installing cowsay]
+    - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
+    - [bash ./scripts/install_cowsay.sh, Installing cowsay]
 
 - pipx:
-  file: 'config/pipx_requirements.txt'
-  stdout: true
-  stderr: true
-
+    file: 'config/pipx_requirements.txt'
+    stdout: true
+    stderr: true
+                        
+                                
