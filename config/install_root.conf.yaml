@@ -1,2 +1,2 @@
 
-- apt: [zsh, git, fortune, python3, python3-venv, curl]
+- apt: [zsh, git, fortune, python3, python3-venv, curl, build-essential]
