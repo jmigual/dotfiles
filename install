@@ -20,12 +20,12 @@ git submodule update --init --recursive
 
 # Install packages if we have sudo access
 if [[ ! `sudo -v` ]]; then
-    sudo "${DOTBOT_BIN}" -d "${BASEDIR}" \
+    sudo python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
         --plugin "${PLUGINS_DIR}/apt/apt.py" \
         -c "${CONFIG_ROOT}" "${@}"
 fi
 
-"${DOTBOT_BIN}" -d "${BASEDIR}" \
+python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
     --plugin-dir "${PLUGINS_DIR}/git" \
     --plugin-dir "${PLUGINS_DIR}/pip" \
     -c "${CONFIG}" "${@}"
