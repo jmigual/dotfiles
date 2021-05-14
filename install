@@ -13,8 +13,8 @@ CONFIG="${CONFIG_DIR}/install.conf.yaml"
 CONFIG_ROOT="${CONFIG_DIR}/install_root.conf.yaml"
 
 cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
+# git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive 
 
 # Install packages if we have sudo access
 if [[ ! `sudo -v` ]]; then
