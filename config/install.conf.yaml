@@ -13,7 +13,11 @@
     - ~/Downloads
     
 - shell:
-    - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh-my-zsh]
+    - 
+        command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        description: Installing oh-my-zsh
+        stdin: true
+        stdout: true
     
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting':
