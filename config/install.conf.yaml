@@ -18,6 +18,7 @@
         description: Installing oh-my-zsh
         stdin: true
         stdout: true
+        stderr: true
     
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting':
