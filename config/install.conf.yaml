@@ -36,6 +36,11 @@
     - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
     - [bash ./scripts/install_cowsay.sh, Installing cowsay]
 
+- pip:
+    file: 'config/pip_requirements.txt'
+    stdout: true
+    stderr: true
+
 - pipx:
     file: 'config/pipx_requirements.txt'
     stdout: true
