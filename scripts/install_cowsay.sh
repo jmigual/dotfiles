@@ -4,7 +4,7 @@ set -euo pipefail
 
 # Download cowsay
 COWSAY_VERSION=v3.7.0
-wget https://github.com/cowsay-org/cowsay/archive/${COWSAY_VERSION}.tar.gz
+curl -O -L https://github.com/cowsay-org/cowsay/archive/${COWSAY_VERSION}.tar.gz
 tar xf ${COWSAY_VERSION}.tar.gz
 mv cowsay-* cowsay
 cd cowsay
