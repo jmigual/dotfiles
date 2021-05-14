@@ -41,6 +41,9 @@
     ~/.zshrc: files/zshrc
     ~/.zshenv: files/zshenv
     ~/.bashrc: files/bashrc
+    ~/.local/share/shell: files/shell
+    ~/.profile: files/profile
+    ~/.bash_profile: files/bash_profile
     ~/.local/bin/gpg-agent-relay: files/gpg-agent-relay
     ~/.gitconfig: files/gitconfig
     ~/.gitignore: files/gitignore
