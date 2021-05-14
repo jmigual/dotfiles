@@ -24,6 +24,10 @@
         description: 'oh my zsh autosuggestions'
         url: https://github.com/zsh-users/zsh-autosuggestions
         branch: 'v0.6.4'
+    '~/.oh-my-zsh/custom/themes/powerlevel10k':
+        description: 'Power level 10k theme'
+        url: https://github.com/romkatv/powerlevel10k.git
+        branch: 'v1.14.6'
         
 - link:
     ~/.zshrc: files/zshrc
@@ -38,12 +42,8 @@
 
 - pip:
     file: 'config/pip_requirements.txt'
-    stdout: true
-    stderr: true
 
 - pipx:
     file: 'config/pipx_requirements.txt'
-    stdout: true
-    stderr: true
                         
                                 
