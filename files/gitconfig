@@ -103,3 +103,8 @@
 [init]
 
 	defaultBranch = main
+    
+[user]
+	email = jmigual@users.noreply.github.com
+	name = Joan Marcè i Igual
+	signingkey = B57766F5A401F867341B636942667CA965E20F39
