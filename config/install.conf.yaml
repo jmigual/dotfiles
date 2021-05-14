@@ -8,6 +8,8 @@
 
 - create:
   - ~/.local/bin
+  - ~/Documents/Projects
+  - ~/Downloads
 
 - shell:
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh-my-zsh]
@@ -23,14 +25,15 @@
     branch: 'v0.6.4'
 
 - link:
-  ~/.zshrc: zshrc
-  ~/.zshenv: zshenv
-  ~/.bashrc: bashrc
-  ~/.local/bin/gpg-agent-relay: gpg-agent-relay
+  ~/.zshrc: files/zshrc
+  ~/.zshenv: files/zshenv
+  ~/.bashrc: files/bashrc
+  ~/.local/bin/gpg-agent-relay: files/gpg-agent-relay
 
 - shell:
   - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
+  - [bash ./scripts/install_cowsay.sh, Installing cowsay]
 
 - pipx:
   file: 'config/pipx_requirements.txt'
