@@ -2,14 +2,28 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
-
-DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+PLUGINS_DIR="${BASEDIR}/plugins"
+DOTBOT_DIR="${BASEDIR}/dotbot"
+DOTBOT_BIN="${DOTBOT_DIR}/bin/dotbot"
+
+CONFIG_DIR="${BASEDIR}/config"
+CONFIG="${CONFIG_DIR}/install.conf.yaml"
+CONFIG_ROOT="${CONFIG_DIR}/install_root.conf.yaml"
 
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+# Install packages if we have sudo access
+if [[ ! `sudo -v` ]]; then
+    sudo "${DOTBOT_BIN}" -d "${BASEDIR}" \
+        --plugin-dir "${PLUGINS_DIR}/aptget" \
+        -c "${CONFIG_ROOT}" "${@}"
+fi
+
+"${DOTBOT_BIN}" -d "${BASEDIR}" \
+    --plugin-dir "${PLUGINS_DIR}/git" \
+    --plugin-dir "${PLUGINS_DIR}/pip" \
+    -c "${CONFIG}" "${@}"
