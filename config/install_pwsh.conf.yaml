@@ -1,0 +1,30 @@
+
+- defaults:
+    link:
+        create: true
+        relink: true
+        force: true
+        
+# - clean: [ '~' ]
+
+- create:
+    - ~/.local/bin
+    - ~/Documents/Projects
+    - ~/Downloads
+        
+- link:
+    ~/Documents/PowerShell/config.omp.json: pwsh/config.omp.json
+    ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: pwsh/Microsoft.PowerShell_profile.ps1
+    ~/.gitconfig: files/gitconfig
+    ~/.gitignore: files/gitignore
+    
+- shell:
+    - winget install --id=Python.Python.3 -e
+
+- pip:
+    file: 'config/pip_requirements.txt'
+
+- pipx:
+    file: 'config/pipx_requirements.txt'
+
+

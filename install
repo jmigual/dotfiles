@@ -15,7 +15,6 @@ CONFIG_ROOT="${CONFIG_DIR}/install_root.conf.yaml"
 export PATH="${HOME}/.local/bin:${PATH}"
 
 cd "${BASEDIR}"
-# git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive 
 
 # Install packages if we have sudo access
