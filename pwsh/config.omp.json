@@ -1,56 +1,15 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "blocks": [
-    {
+  "blocks": [{
       "type": "prompt",
       "alignment": "left",
-      "segments": [
-        {
-          "type": "shell",
-          "style": "powerline",
-          "foreground": "#ffffff",
-          "background": "#0077c2",
-          "properties": {
-            "prefix": " "
-          }
-        },
-        {
-          "type": "battery",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#ffffff",
-          "background": "#f36943",
-          "properties": {
-            "battery_icon": "",
-            "discharging_icon": " ",
-            "charging_icon": " ",
-            "charged_icon": " ",
-            "color_background": true,
-            "charged_color": "#4caf50",
-            "charging_color": "#40c4ff",
-            "discharging_color": "#ff5722",
-            "postfix": " "
-          }
-        },
-        {
-          "type": "session",
-          "style": "plain",
-          "foreground": "#ffffff",
-          "background": "#c386f1",
-          "properties": {
-            "prefix": "<transparent></>",
-            "postfix": "<#c386f1,#2e9599></>",
-            "display_host": false
-          }
-        },
-        {
+      "segments": [{
           "type": "time",
-          "style": "diamond",
-          "trailing_diamond": "",
+          "style": "powerline",
           "background": "#2e9599",
           "foreground": "#111111"
         },
-        
+
         {
           "type": "path",
           "style": "powerline",
@@ -58,10 +17,14 @@
           "foreground": "#ffffff",
           "background": "#ff479c",
           "properties": {
-            "prefix": "   ",
-            "home_icon": "~",
+            "home_icon": "",
             "folder_separator_icon": " \uE0b1 ",
-            "style": "folder"
+            "mapped_locations": [
+              ["C:\\Users\\20204729\\Documents\\Projects", ""]
+            ],
+            "mapped_locations_enabled": true,
+            "style": "agnoster_short",
+            "enable_hyperlink": true
           }
         },
         {
@@ -158,49 +121,77 @@
         },
         {
           "type": "executiontime",
-          "style": "diamond",
+          "style": "powerline",
+          "powerline_symbol": "",
           "foreground": "#ffffff",
           "background": "#83769c",
-          "trailing_diamond": "",
           "properties": {
             "always_enabled": true,
-            "prefix": "<transparent></>\uFBAB "
+            "prefix": "\uFBAB "
           }
         },
         {
           "type": "exit",
-          "style": "diamond",
+          "style": "powerline",
+          "powerline_symbol": "",
           "foreground": "#ffffff",
           "background": "#2e9599",
-          "leading_diamond": "",
-          "trailing_diamond": "",
           "properties": {
             "display_exit_code": false,
             "always_enabled": false,
             "error_color": "#f1184c",
             "color_background": true,
-            "prefix": "<transparent></> "
+            "prefix": " "
           }
         }
       ]
-    },
-    {
-      "type": "newline"
     },
     {
       "type": "prompt",
-      "alignment": "left",
-      "segments": [
-        {
-          "type": "text",
-          "style": "plain",
-          "foreground": "white",
+      "alignment": "right",
+      "segments": [{
+          "type": "session",
+          "style": "diamond",
+          "leading_diamond": "",
+          "invert_powerline": true,
+          "foreground": "#ffffff",
+          "background": "#c386f1",
           "properties": {
-            "prefix": "",
-            "text": ">"
+            "display_host": true
+          }
+        },
+        {
+          "type": "battery",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "background": "#f36943",
+          "properties": {
+            "battery_icon": "",
+            "discharging_icon": " ",
+            "charging_icon": " ",
+            "charged_icon": " ",
+            "color_background": true,
+            "charged_color": "#4caf50",
+            "charging_color": "#40c4ff",
+            "discharging_color": "#ff5722",
+            "postfix": " "
           }
         }
       ]
+    },
+    {
+      "type": "prompt",
+      "newline": true,
+      "alignment": "left",
+      "segments": [{
+        "type": "text",
+        "style": "plain",
+        "foreground": "white",
+        "properties": {
+          "prefix": "❯",
+          "text": ""
+        }
+      }]
     }
   ],
   "final_space": true,
