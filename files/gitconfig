@@ -108,5 +108,7 @@
 	email = jmigual@users.noreply.github.com
 	name = Joan Marcè i Igual
 	signingkey = B57766F5A401F867341B636942667CA965E20F39
-[gpg]
-	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+
+# Uncomment for Windows
+#[gpg]
+#	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe

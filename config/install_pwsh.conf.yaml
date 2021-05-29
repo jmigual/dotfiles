@@ -15,10 +15,10 @@
 - link:
     ~/Documents/PowerShell/config.omp.json: pwsh/config.omp.json
     ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: pwsh/Microsoft.PowerShell_profile.ps1
-    ~/.gitconfig: files/gitconfig
     ~/.gitignore: files/gitignore
     
 - shell:
+    - powershell -Command Copy-Item -Force files/gitconfig $env:USERPROFILE/.gitconfig
     - winget install --id=Python.Python.3 -e
 
 - pip:
