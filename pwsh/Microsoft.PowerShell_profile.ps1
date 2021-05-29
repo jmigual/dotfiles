@@ -1,18 +1,19 @@
 Invoke-Expression (oh-my-posh --init --shell pwsh --config "$env:USERPROFILE\Documents\PowerShell\config.omp.json")
 Import-Module git-aliases -DisableNameChecking
-$DefaultUser = '20204729'
 
 # Useful shortcuts for traversing directories
-function .. { cd .. }
-function cd.. { cd .. }
-function cd... { cd ..\.. }
-function cd.... { cd ..\..\.. }
+function .. { Set-Location .. }
+function ... { Set-Location ..\.. }
+function .... { Set-Location ..\..\.. }
+function cd.. { Set-Location .. }
+function cd... { Set-Location ..\.. }
+function cd.... { Set-Location ..\..\.. }
 
 function open {
     if ($args.Count -gt 0) {
-        ii $args
+        Invoke-Item $args
     } else {
-        ii .
+        Invoke-Item .
     }
 }
 
