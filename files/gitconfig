@@ -109,6 +109,5 @@
 	name = Joan Marcè i Igual
 	signingkey = B57766F5A401F867341B636942667CA965E20F39
 
-# Uncomment for Windows
-#[gpg]
-#	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+[include]
+	path = ~/.gitconfig-local
