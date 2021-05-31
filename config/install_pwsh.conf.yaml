@@ -18,6 +18,7 @@
     ~/.gitignore: files/gitignore
     ~/.gitconfig: files/gitconfig
     ~/.gitconfig-local: files/gitconfig-windows
+    ~/.latexmkrc: files/latexmkrc
     
 - shell:
     - winget install --id=Python.Python.3 -e
