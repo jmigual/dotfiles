@@ -19,6 +19,7 @@
     ~/.gitconfig: files/gitconfig
     ~/.gitconfig-local: files/gitconfig-windows
     ~/.latexmkrc: files/latexmkrc
+    ~/.gdbinit: files/gdbinit
     
 - shell:
     - winget install --id=Python.Python.3 -e
