@@ -58,6 +58,8 @@ alias fd="find . -type d -name"
 alias ff="find . -type f -name"
 alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 
+alias doco="docker-compose"
+
 # Updir aliases
 alias ..="cd .."
 alias ...="cd ../.."
