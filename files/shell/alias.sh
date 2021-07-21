@@ -65,7 +65,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 # Command line head / tail shortcuts only in ZSH
-if  [[ $SHELL == *"zsh"* ]]; then
+if  [[ ! -z "$ZSH_NAME" ]]; then
     alias -g H='| head'
     alias -g T='| tail'
     alias -g G='| grep'
