@@ -18,7 +18,7 @@
     ~/.gitignore: files/gitignore
     ~/.gitconfig: files/gitconfig
     ~/.gitconfig-local: files/gitconfig-windows
-    ~/.latexmkrc: files/latexmkrc
+    ~/.latexmkrc: files/latexmkrc.pl
     ~/.gdbinit: files/gdbinit
     
 - shell:

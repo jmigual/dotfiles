@@ -40,14 +40,14 @@
 - link:
     ~/.zshrc: files/zshrc
     ~/.zshenv: files/zshenv
-    ~/.bashrc: files/bashrc
+    ~/.bashrc: files/bashrc.sh
     ~/.local/share/shell: files/shell
-    ~/.profile: files/profile
-    ~/.bash_profile: files/bash_profile
-    ~/.local/bin/gpg-agent-relay: files/gpg-agent-relay
+    ~/.profile: files/profile.sh
+    ~/.bash_profile: files/bash_profile.sh
+    ~/.local/bin/gpg-agent-relay: files/gpg-agent-relay.sh
     ~/.gitconfig: files/gitconfig
     ~/.gitignore: files/gitignore
-    ~/.latexmkrc: files/latexmkrc
+    ~/.latexmkrc: files/latexmkrc.pl
     ~/.gdbinit: files/gdbinit
     
 - shell:
