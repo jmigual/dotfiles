@@ -17,6 +17,7 @@ case "$(uname -s)" in
 		if cat /proc/version | grep -qi Microsoft; then
 			# We are in WSL so add the old path to access Windows applications
 			export PATH="$PATH:$PATH_OLD"
+			export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 		fi
 	    ;;
     Darwin*)    
