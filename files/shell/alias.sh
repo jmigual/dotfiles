@@ -54,8 +54,8 @@ alias update="sudo apt update && sudo apt upgrade -y"
 alias yt='cd $HOME/Downloads; youtube-dl'
 alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
 
-alias fd="find . -type d -name"
-alias ff="find . -type f -name"
+# alias fd="find . -type d -name"
+# alias ff="find . -type f -name"
 alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 
 alias doco="docker-compose"
