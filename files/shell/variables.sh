@@ -40,3 +40,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 export CUSTOM_SHELL_DIR="${HOME}/.local/share/shell"
 
+CARGO_ENV="${HOME}/.cargo/env"
+if [ -f "${CARGO_ENV}" ]; then
+    source "${CARGO_ENV}"
+fi
+
