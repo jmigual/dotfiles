@@ -56,3 +56,6 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 Import-Module "$env:USERPROFILE\scoop\apps\scoop\current\supporting\completion\Scoop-Completion.psd1" -ErrorAction SilentlyContinue
 $env:SCOOP = "$env:USERPROFILE\scoop"
+
+Import-Module PSReadLine
+Set-PSReadLineOption -PredictionSource History
