@@ -22,13 +22,16 @@
     ~/.gdbinit: files/gdbinit
     
 - shell:
-    - winget install --id=Python.Python.3 -e
     - 
         command: pwsh ./scripts/install_scoop.ps1
         description: Installing scoop
         stdin: true
         stdout: true
         stderr: true
+    - scoop install python
+    - scoop install nodejs-lts
+    - scoop install cmake
+    
 
 - pip:
     file: 'config/pip_requirements.txt'
