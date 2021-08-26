@@ -28,10 +28,8 @@
         stdin: true
         stdout: true
         stderr: true
-    - scoop install python
-    - scoop install nodejs-lts
-    - scoop install cmake
-    
+    - scoop install python nodejs-lts cmake
+
 
 - pip:
     file: 'config/pip_requirements.txt'
