@@ -1,0 +1,20 @@
+Host server-eindh
+    HostName 192.168.3.4
+    User pi
+    Port 22
+    ForwardX11 yes
+
+Host server-bord
+    HostName 192.168.1.11
+    Port 22
+    ForwardX11 yes
+
+Host bordils
+    HostName bordils.freeddns.org
+    Port 8053
+    ForwardX11 yes
+
+Host jmigual
+    HostName jmigual.freeddns.org
+    Port 8053
+    ForwardX11 yes
