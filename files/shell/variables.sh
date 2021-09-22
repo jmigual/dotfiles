@@ -10,6 +10,9 @@ export PATH="${PATH}:/usr/games:/usr/local/games"
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # Check current system
 case "$(uname -s)" in
     Linux*)     
@@ -30,13 +33,9 @@ esac
 export PATH="${PATH}:${NODE_MODULES_BIN}:${ANDROID_HOME}"
 
 DEV_KEYS="${HOME}/.config/dev_keys"
-
 if [ -f "${DEV_KEYS}" ]; then
 	source "${DEV_KEYS}"
 fi
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 export CUSTOM_SHELL_DIR="${HOME}/.local/share/shell"
 

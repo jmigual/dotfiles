@@ -14,7 +14,7 @@
     
 - shell:
     - 
-        command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
         description: Installing oh-my-zsh
         stdin: true
         stdout: true
@@ -54,6 +54,8 @@
     - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
     - [bash ./scripts/install_cowsay.sh, Installing cowsay]
+    - [curl https://sh.rustup.rs -sSf | sh, Installing cargo]
+    - [cargo install fd-find, Installing fd]
 
 - pip:
     file: 'config/pip_requirements.txt'
