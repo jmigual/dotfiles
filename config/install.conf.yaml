@@ -14,12 +14,8 @@
     - ~/Downloads
     
 - shell:
-    - 
-        command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        description: Installing oh-my-zsh
-        stdin: true
-        stdout: true
-        stderr: true
+    - [brew install gcc zsh git fortune python3 cowsay cmake rust fd ripgrep htop]
+    - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended, Installing oh-my-zsh]
     
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting':
@@ -55,9 +51,7 @@
 - shell:
     - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
-    - [bash ./scripts/install_cowsay.sh, Installing cowsay]
     - [curl https://sh.rustup.rs -sSf | sh, Installing cargo]
-    - [cargo install fd-find, Installing fd]
 
 - pip:
     file: 'config/pip_requirements.txt'

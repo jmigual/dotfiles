@@ -18,3 +18,7 @@ Host jmigual
     HostName jmigual.freeddns.org
     Port 8053
     ForwardX11 yes
+
+Host server.bordils.freeddns.org
+    HostName server.bordils.freeddns.org
+    User jmigual

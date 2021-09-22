@@ -2,6 +2,10 @@
 
 set -e
 
+# Install brew before anything else
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval $(${HOME}/.linuxbrew/bin/brew shellenv)
+
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PLUGINS_DIR="${BASEDIR}/plugins"

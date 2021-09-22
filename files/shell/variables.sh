@@ -31,6 +31,7 @@ case "$(uname -s)" in
 	    echo UNKOWN MACHINE!!!!
 esac
 export PATH="${PATH}:${NODE_MODULES_BIN}:${ANDROID_HOME}"
+eval $(${HOME}/.linuxbrew/bin/brew shellenv)
 
 DEV_KEYS="${HOME}/.config/dev_keys"
 if [ -f "${DEV_KEYS}" ]; then
