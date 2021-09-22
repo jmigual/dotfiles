@@ -30,7 +30,7 @@
         stdin: true
         stdout: true
         stderr: true
-    - scoop install python nodejs-lts cmake ripgrep fd rust
+    - scoop install git python nodejs-lts cmake rust fd ripgrep
 
 
 - pip:
