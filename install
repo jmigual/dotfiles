@@ -18,8 +18,8 @@ cd "${BASEDIR}"
 git submodule update --init --recursive 
 
 # Install packages if we have sudo access
-if [[ ! `sudo -v` ]]; then
-    sudo python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
+if [[ $EUID -eq 0 ]]; then
+    python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
         --plugin "${PLUGINS_DIR}/apt/apt.py" \
         -c "${CONFIG_ROOT}" "${@}"
 fi

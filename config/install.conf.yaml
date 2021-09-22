@@ -9,6 +9,7 @@
 
 - create:
     - ~/.local/bin
+    - ~/.ssh
     - ~/Documents/Projects
     - ~/Downloads
     
@@ -49,6 +50,7 @@
     ~/.gitignore: files/gitignore
     ~/.latexmkrc: files/latexmkrc.pl
     ~/.gdbinit: files/gdbinit
+    ~/.ssh/config: files/ssh/config
     
 - shell:
     - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting

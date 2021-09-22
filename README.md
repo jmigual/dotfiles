@@ -1,7 +1,13 @@
-# myBashrc
+# dotfiles
 
-Repo containing my personal bashrc file and zshrc.
+Repo containing my personal files and environment. If you want to use it do the following:
 
-If you want a full installation of `zsh` with `oh-my-zsh` for ubuntu just add this command
+On Windows:
 
-    bash -c "$(curl -fsSL https://github.com/jmigual/myBashrc/raw/master/install.sh)"
+    git clone https://github.com/jmigual/dotfiles
+    .\dotfiles\install.ps1
+
+On Linux/MacOS:
+    git clone https://github.com/jmigual/dotfiles
+    ./dotfiles/install
+
