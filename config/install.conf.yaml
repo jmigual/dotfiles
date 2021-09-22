@@ -15,7 +15,7 @@
     
 - shell:
     - 
-        command: brew install gcc zsh git fortune python3 cowsay cmake rust fd ripgrep htop
+        command: brew install zsh git fortune python3 cowsay gcc cmake rust fd ripgrep htop
         description: Installing useful commands
         stdin: true
         stdout: true
