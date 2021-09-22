@@ -26,13 +26,6 @@ export PATH="${HOME}/.local/bin:${PATH}"
 cd "${BASEDIR}"
 git submodule update --init --recursive 
 
-# Install packages if we have sudo access
-if [[ $EUID -eq 0 ]]; then
-    python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
-        --plugin "${PLUGINS_DIR}/apt/apt.py" \
-        -c "${CONFIG_ROOT}" "${@}"
-fi
-
 python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
     --plugin-dir "${PLUGINS_DIR}/git" \
     --plugin-dir "${PLUGINS_DIR}/pip" \
