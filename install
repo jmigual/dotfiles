@@ -3,8 +3,13 @@
 set -e
 
 # Install brew before anything else
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval $(${HOME}/.linuxbrew/bin/brew shellenv)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" | tee /tmp/brew_install.log
+
+if [ -f "${HOME}/.linuxbrew/bin/brew" ]; then
+    eval $(${HOME}/.linuxbrew/bin/brew shellenv)
+elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
