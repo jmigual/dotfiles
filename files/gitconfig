@@ -106,3 +106,5 @@
 
 [include]
 	path = ~/.gitconfig-local
+[gpg]
+	program = /bin/gpg

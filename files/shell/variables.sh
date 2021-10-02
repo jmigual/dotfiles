@@ -7,7 +7,6 @@ PATH_OLD="${PATH}"
 export PATH="${HOME}/.local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/snap/bin"
 export PATH="${PATH}:/usr/games:/usr/local/games"
 
-export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # colored GCC warnings and errors
@@ -21,6 +20,17 @@ case "$(uname -s)" in
 			# We are in WSL so add the old path to access Windows applications
 			export PATH="$PATH:$PATH_OLD"
 			export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+
+			WIN_HOME=$(cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
+			wslwinhome="$(wslpath -u "$winhome")"
+			export WIN_GNUPG_HOME="${WIN_HOME}\\AppData\\Local\\gnupg"
+			export WSL_GNUPG_HOME="$(wslpath -u "$WIN_GNUPG_HOME")"
+
+			# In my case they are the same
+			export WIN_AGENT_HOME="${WIN_GNUPG_HOME}"
+			export WSL_AGENT_HOME="${WSL_GNUPG_HOME}"
+		else
+			export GPG_TTY=$(tty)
 		fi
 	    ;;
     Darwin*)    

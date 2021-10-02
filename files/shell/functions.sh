@@ -47,7 +47,8 @@ case "$(uname -s)" in
 		# Check if WSL
 		if cat /proc/version | grep -qi Microsoft; then
 			# We are in WSL, start gpg-relay agent
-            $HOME/.local/bin/gpg-agent-relay start
+            # $HOME/.local/bin/gpg-agent-relay start
+            source "${CUSTOM_SHELL_DIR}/gpg-agent-relay2.sh"
 		fi
 	    ;;
     Darwin*)    
