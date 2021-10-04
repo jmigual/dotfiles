@@ -2,8 +2,10 @@
 
 set -e
 
-# Install brew before anything else
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" | tee /tmp/brew_install.log
+# Install brew if not installed
+if [[ ! -f "${HOME}/.linuxbrew/bin/brew" && ! -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" | tee /tmp/brew_install.log
+fi
 
 if [ -f "${HOME}/.linuxbrew/bin/brew" ]; then
     eval $(${HOME}/.linuxbrew/bin/brew shellenv)

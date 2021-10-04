@@ -10,7 +10,3 @@
 	path = plugins/pip
 	url = https://github.com/sobolevn/dotbot-pip.git
 	ignore = dirty
-[submodule "plugins/apt"]
-	path = plugins/apt
-	url = https://github.com/bryant1410/dotbot-apt
-	ignore = dirty

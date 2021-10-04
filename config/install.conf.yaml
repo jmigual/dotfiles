@@ -15,8 +15,8 @@
     
 - shell:
     - 
-        command: brew install zsh git fortune python3 cowsay gcc cmake rust fd ripgrep htop socat
-        description: Installing useful commands
+        command: brew install zsh git fortune python3 cowsay cmake fd ripgrep htop socat
+        description: Installing necessary commands
         stdin: true
         stdout: true
         stderr: true
@@ -54,13 +54,24 @@
     ~/.ssh/config: files/ssh/config
     
 - shell:
-    - chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-    - [curl "https://bootstrap.pypa.io/get-pip.py" | python3, Installing local pip]
-
-- pip:
-    file: 'config/pip_requirements.txt'
-
+    - 
+        command: chmod 755 ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+        descriptions: Adding executable permissions to extensions
+    - 
+        command: curl "https://bootstrap.pypa.io/get-pip.py" | "$(brew --prefix)/bin/python3"
+        description: Installing local pip
+        stdin: true
+        stdout: true
+        stderr: true
+    -
+        command: DISPLAY= pip install -r config/pip_requirements.txt
+        description: Installing pip packages
+        stdin: true
+        stdout: true
+        stderr: true
 - pipx:
-    file: 'config/pipx_requirements.txt'
+    file: config/pipx_requirements.txt
+    stdout: true
+    stderr: true
                         
                                 
