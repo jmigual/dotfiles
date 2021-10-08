@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = true
 
 [commit]
 	gpgsign = true
@@ -106,5 +107,3 @@
 
 [include]
 	path = ~/.gitconfig-local
-[gpg]
-	program = /bin/gpg
