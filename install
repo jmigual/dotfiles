@@ -64,4 +64,4 @@ git submodule update --init --recursive
 python3 "${DOTBOT_BIN}" -d "${BASEDIR}" \
     --plugin-dir "${PLUGINS_DIR}/git" \
     --plugin-dir "${PLUGINS_DIR}/pip" \
-    -c "${CONFIG}" "${@}"
+    -c "${CONFIG}"
