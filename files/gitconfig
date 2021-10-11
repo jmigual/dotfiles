@@ -1,6 +1,7 @@
 [core]
 	excludesfile = ~/.gitignore
-	autocrlf = false
+	autocrlf = input
+	eol = lf
 
 [commit]
 	gpgsign = true
