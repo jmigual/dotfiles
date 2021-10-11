@@ -60,3 +60,9 @@ if [ -f "${CARGO_ENV}" ]; then
     source "${CARGO_ENV}"
 fi
 
+if command -v pyenv &> /dev/null; then
+	export PYENV_ROOT="$HOME/.pyenv"
+	eval "$(pyenv init --path)"
+	eval "$(pyenv init -)"
+fi
+
