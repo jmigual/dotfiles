@@ -2,8 +2,37 @@
 
 set -e
 
+
+function die() { echo "$*" 1>&2 ; exit 1; }
+
+
+function usage () {
+    echo "Usage: ./install [-b]"
+    echo ""
+    echo "Optional arguments:"
+    echo "  -b, --no-brew           Do not intall brew"
+    exit 0;
+}
+
+
+NO_BREW=0
+
+while getopts "b-:" OPT; do
+    if [[ "$OPT" == "-" ]]; then
+        OPT="${OPTARG%%=*}"
+        OPTARG="${OPTARG#$OPT}"
+        OPTARG="${OPTARG#=}"
+    fi
+
+    case "$OPT" in
+        b | no-brew ) NO_BREW=1 ;;
+        h | help ) usage ;;
+        ? |??* ) die "Unknown option: $OPT" ;;
+    esac
+done
+
 # Install brew if not installed
-if [[ ! -f "${HOME}/.linuxbrew/bin/brew" && ! -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+if [[ ! -f "${HOME}/.linuxbrew/bin/brew" && ! -f "/home/linuxbrew/.linuxbrew/bin/brew" && ! ${NO_BREW} ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" | tee /tmp/brew_install.log
 fi
 
@@ -11,6 +40,10 @@ if [ -f "${HOME}/.linuxbrew/bin/brew" ]; then
     eval $(${HOME}/.linuxbrew/bin/brew shellenv)
 elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
+if [[ ! ${NO_BREW} ]]; then
+    brew install zsh git fortune python3 cowsay cmake fd ripgrep htop socat
 fi
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
