@@ -1,18 +1,14 @@
+[user]
+	email = jmigual@users.noreply.github.com
+	name = Joan Marcè i Igual
+	signingkey = B57766F5A401F867341B636942667CA965E20F39
+
 [core]
-	excludesfile = ~/.gitignore
 	autocrlf = input
+
+	# Always use LF as line endings
 	eol = lf
 
-[commit]
-	gpgsign = true
-
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
-[core]
 	# Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -33,6 +29,21 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+
+	# VSCode
+	editor = code --wait
+
+[init]
+	defaultBranch = main
+
+[commit]
+	gpgsign = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [color]
 	# Use colors in Git commands that are capable of colored output when
@@ -59,12 +70,32 @@
 
 
 [diff]
+	# Use better, descriptive initials (c, i, w) instead of a/b.
+	mnemonicPrefix = true
+	
 	# Detect copies as well as renames.
 	renames = copies
+
+	# Different coloring for moved lines
+	colorMoved = true
+
+	# Use VSCode as default diff tool when running `git diff-tool`
+	tool = vscode
+
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
 
 [help]
 	# Automatically correct and execute mistyped commands.
 	autocorrect = 1
+
+[fetch]
+	prune = true
+
+	# Auto-fetch submodule changes (sadly, won't auto-update)
+	recurseSubmodules = on-demand
+[pull]
+	rebase = true
 
 [push]
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
@@ -72,6 +103,18 @@
 
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+
+[tag]
+	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+	sort = version:refname
+
+[versionsort]
+	prereleaseSuffix = -pre
+	prereleaseSuffix = .pre
+	prereleaseSuffix = -beta
+	prereleaseSuffix = .beta
+	prereleaseSuffix = -rc
+	prereleaseSuffix = .rc
 
 # URL shorthands
 [url "git@github.com:"]
@@ -97,14 +140,6 @@
 
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
-
-[init]
-	defaultBranch = main
-	
-[user]
-	email = jmigual@users.noreply.github.com
-	name = Joan Marcè i Igual
-	signingkey = B57766F5A401F867341B636942667CA965E20F39
 
 [include]
 	path = ~/.gitconfig-local
