@@ -55,7 +55,7 @@
 	deleted = red bold strike
 	changed = red bold
 	untracked = cyan
-	branch = yellow black bold ul
+	branch = yellow bold ul
 
 
 [diff]
