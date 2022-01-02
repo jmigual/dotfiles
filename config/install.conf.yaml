@@ -63,6 +63,12 @@
         stdin: true
         stdout: true
         stderr: true
+    - 
+        command: curl -sSL https://install.python-poetry.org | python3 -
+        description: Installing poetry
+        stdin: true
+        stdout: true
+        stderr: true
 - pipx:
     file: config/pipx_requirements.txt
     stdout: true
