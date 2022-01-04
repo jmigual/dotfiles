@@ -60,6 +60,9 @@ alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 
 alias doco="docker-compose"
 
+# To avoid pyenv issue
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+
 # Updir aliases
 alias ..="cd .."
 alias ...="cd ../.."
