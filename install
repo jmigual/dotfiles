@@ -45,6 +45,8 @@ fi
 if [[ ${NO_BREW} == "false" ]]; then
     brew install zsh git fortune cowsay cmake fd ripgrep htop socat pyenv gcc
     CC=$(brew --prefix gcc)/bin/gcc-11 pyenv install -s 3.10.1
+    pyenv rehash
+    pyenv global 3.10.1
 fi
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
