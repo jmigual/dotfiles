@@ -19,10 +19,13 @@ case "$(uname -s)" in
 		if cat /proc/version | grep -qi Microsoft; then
 			# We are in WSL so add the old path to access Windows applications
 			export PATH="$PATH:$PATH_OLD"
-			export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+
+			# If WSLg not detected use the Xserver
+			if [[ ! -d /mnt/wslg ]]; then 
+				export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+			fi
 
 			WIN_HOME=$(cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
-			wslwinhome="$(wslpath -u "$winhome")"
 			export WIN_GNUPG_HOME="${WIN_HOME}\\AppData\\Local\\gnupg"
 			export WSL_GNUPG_HOME="$(wslpath -u "$WIN_GNUPG_HOME")"
 
