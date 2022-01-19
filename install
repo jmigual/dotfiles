@@ -36,6 +36,7 @@ if [[ ! -f "${HOME}/.linuxbrew/bin/brew" && ! -f "/home/linuxbrew/.linuxbrew/bin
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" | tee /tmp/brew_install.log
 fi
 
+# Source homebrew
 if [ -f "${HOME}/.linuxbrew/bin/brew" ]; then
     eval $(${HOME}/.linuxbrew/bin/brew shellenv)
 elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
@@ -43,10 +44,10 @@ elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
 fi
 
 if [[ ${NO_BREW} == "false" ]]; then
-    brew install zsh git fortune cowsay cmake fd ripgrep htop socat pyenv gcc
-    CC=$(brew --prefix gcc)/bin/gcc-11 pyenv install -s 3.10.1
+    brew install gcc zsh git fortune cowsay socat pyenv
+    CC=$(brew --prefix gcc)/bin/gcc-11 pyenv install -s 3.10.2
     pyenv rehash
-    pyenv global 3.10.1
+    pyenv global 3.10.2
 
     if command -v pyenv &> /dev/null; then
         export PYENV_ROOT="$HOME/.pyenv"
