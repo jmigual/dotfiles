@@ -143,5 +143,3 @@
 
 [include]
 	path = ~/.gitconfig-local
-[credential "helperselector"]
-	selected = wincred
