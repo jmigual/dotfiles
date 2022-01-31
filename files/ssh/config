@@ -1,3 +1,11 @@
+Host 192.168.3.4
+    HostName 192.168.3.4
+    User pi
+
+Host jmigual.freeddns.org
+    HostName jmigual.freeddns.org
+    User pi
+
 Host server-eindh
     HostName 192.168.3.4
     User pi

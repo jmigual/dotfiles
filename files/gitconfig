@@ -4,7 +4,7 @@
 	signingkey = B57766F5A401F867341B636942667CA965E20F39
 
 [core]
-	autocrlf = input
+	autocrlf = false
 
 	# Always use LF as line endings
 	eol = lf
