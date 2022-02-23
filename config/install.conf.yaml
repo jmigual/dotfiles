@@ -45,7 +45,6 @@
     ~/.gitignore: files/gitignore
     ~/.latexmkrc: files/latexmkrc.pl
     ~/.gdbinit: files/gdbinit
-    ~/.ssh/config: files/ssh/config
     
 - shell:
     - 
