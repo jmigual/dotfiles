@@ -33,6 +33,7 @@
 	# VSCode
 	editor = code --wait
 
+	ignorecase = false
 [init]
 	defaultBranch = main
 
