@@ -10,7 +10,6 @@ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 
 scoop install 7zip git
-scoop config SCOOP_REPO 'https://github.com/Ash258/Scoop-Core'
 scoop update
 scoop status
 scoop checkup
