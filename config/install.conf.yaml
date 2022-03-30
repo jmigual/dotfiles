@@ -45,6 +45,7 @@
     ~/.gitignore: files/gitignore
     ~/.latexmkrc: files/latexmkrc.pl
     ~/.gdbinit: files/gdbinit
+    ~/.tmux.conf: files/tmux.conf
     
 - shell:
     - 
