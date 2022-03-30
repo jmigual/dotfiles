@@ -8,6 +8,7 @@ export PATH="${HOME}/.local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/us
 export PATH="${PATH}:/usr/games:/usr/local/games"
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export LC_ALL=C.UTF-8
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
