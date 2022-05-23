@@ -10,13 +10,13 @@ function usage () {
     echo "Usage: ./install [-b]"
     echo ""
     echo "Optional arguments:"
-    echo "  -b, --no-brew           Do not intall brew"
+    echo "  -b, --brew              Install brew and the dependencies from there"
     echo "  -i, --install           Install extra packages"
     exit 0;
 }
 
 
-NO_BREW=false
+BREW=false
 INSTALL=false
 
 while getopts "b-:" OPT; do
@@ -27,7 +27,7 @@ while getopts "b-:" OPT; do
     fi
 
     case "$OPT" in
-        b | no-brew ) NO_BREW=true ;;
+        b | brew ) BREW=true ;;
         i | install ) INSTALL=true ;;
         h | help ) usage ;;
         ? |??* ) die "Unknown option: $OPT" ;;
@@ -35,7 +35,7 @@ while getopts "b-:" OPT; do
 done
 
 # Install brew if not installed
-if [[ ! -f "${HOME}/.linuxbrew/bin/brew" && ! -f "/home/linuxbrew/.linuxbrew/bin/brew" && ${NO_BREW} == "false" ]]; then
+if [[ ! -f "${HOME}/.linuxbrew/bin/brew" && ! -f "/home/linuxbrew/.linuxbrew/bin/brew" && ${BREW} == "true" ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" | tee /tmp/brew_install.log
 fi
 
@@ -46,7 +46,7 @@ elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
-if [[ ${NO_BREW} == "false" ]]; then
+if [[ ${BREW} == "true" ]]; then
     brew install gcc zsh git fortune cowsay socat pyenv
     CC=$(brew --prefix gcc)/bin/gcc-11 pyenv install -s 3.10.1
     pyenv rehash
