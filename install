@@ -7,7 +7,7 @@ function die() { echo "$*" 1>&2 ; exit 1; }
 
 
 function usage () {
-    echo "Usage: ./install [-b]"
+    echo "Usage: ./install [-b] [-i]"
     echo ""
     echo "Optional arguments:"
     echo "  -b, --brew              Install brew and the dependencies from there"
