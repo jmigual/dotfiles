@@ -11,11 +11,13 @@ function usage () {
     echo ""
     echo "Optional arguments:"
     echo "  -b, --no-brew           Do not intall brew"
+    echo "  -i, --install           Install extra packages"
     exit 0;
 }
 
 
 NO_BREW=false
+INSTALL=false
 
 while getopts "b-:" OPT; do
     if [[ "$OPT" == "-" ]]; then
@@ -26,6 +28,7 @@ while getopts "b-:" OPT; do
 
     case "$OPT" in
         b | no-brew ) NO_BREW=true ;;
+        i | install ) INSTALL=true ;;
         h | help ) usage ;;
         ? |??* ) die "Unknown option: $OPT" ;;
     esac
@@ -54,6 +57,12 @@ if [[ ${NO_BREW} == "false" ]]; then
         eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
     fi
+fi
+
+if [[ ${INSTALL} == "true" ]]; then
+    DISPLAY= pip install config/pip_requirements.txt
+    curl -sSL https://install.python-poetry.org | python3 -
+    pipx install yt-dlp 
 fi
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
