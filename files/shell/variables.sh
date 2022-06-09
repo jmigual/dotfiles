@@ -33,6 +33,8 @@ case "$(uname -s)" in
 			# In my case they are the same
 			export WIN_AGENT_HOME="${WIN_GNUPG_HOME}"
 			export WSL_AGENT_HOME="${WSL_GNUPG_HOME}"
+
+			/mnt/c/Windows/System32/wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 		else
 			export GPG_TTY=$(tty)
 		fi
