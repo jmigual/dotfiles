@@ -3,5 +3,11 @@ README.md
 {{ if ne .chezmoi.os "windows" }}
 Documents/PowerShell/
 {{ else }}
-dot_local/share/shell
+.local/share/shell
+.bashrc
+.bash_profile
+.profile
+.tmux.conf
+.zshenv
+.zshrc
 {{ end }}
