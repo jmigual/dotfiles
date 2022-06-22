@@ -1,5 +1,7 @@
 README.md
 
-{{- if ne .chezmoi.os "windows" }}
-Documents/Powershell/
-{{- end }}
+{{ if ne .chezmoi.os "windows" }}
+Documents/PowerShell/
+{{ else }}
+dot_local/share/shell
+{{ end }}
