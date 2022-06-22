@@ -142,5 +142,7 @@
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
 
-[include]
-	path = ~/.gitconfig-local
+{{- if eq .chezmoi.os "windows"}}
+[gpg]
+	program = "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"
+{{- end}}
