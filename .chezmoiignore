@@ -3,6 +3,7 @@ README.md
 {{ if ne .chezmoi.os "windows" }}
 Documents/PowerShell/
 {{ else }}
+.oh-my-zsh/
 .local/share/shell
 .bashrc
 .bash_profile
