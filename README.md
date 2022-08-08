@@ -5,13 +5,13 @@ Repo containing my personal files and environment. If you want to use it do the 
 On Windows:
 
 ```pwsh
-'$params = "-b ~/.local/bin init --apply --branch chezmoi --force jmigual"', (irm https://chezmoi.io/get.ps1) | powershell -c -
+'$params = "-b ~/.local/bin init --apply --force jmigual"', (irm https://chezmoi.io/get.ps1) | powershell -c -
 ```
 
 On Linux/Unix:
 
 ```sh
-sh -c "$(curl -fsLS chezmoi.io/get)" -- -b $HOME/.local/bin init --apply --branch chezmoi jmigual 
+sh -c "$(curl -fsLS chezmoi.io/get)" -- -b $HOME/.local/bin init --apply jmigual 
 ```
 
 Packages used by the dotfiles:
