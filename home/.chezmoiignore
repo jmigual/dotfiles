@@ -1,0 +1,13 @@
+{{ if ne .chezmoi.os "windows" }}
+Documents/PowerShell/
+{{ else }}
+.oh-my-zsh/
+.local/share/shell/
+.gnupg/
+.bashrc
+.bash_profile
+.profile
+.tmux.conf
+.zshenv
+.zshrc
+{{ end }}
