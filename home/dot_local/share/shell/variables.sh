@@ -19,7 +19,7 @@ case "$(uname -s)" in
 		# Check if WSL
 		if cat /proc/version | grep -qi Microsoft; then
 			# We are in WSL so add the old path to access Windows applications
-			export PATH="$PATH:$PATH_OLD"
+			# export PATH="$PATH:$PATH_OLD" # Disabled because it brings a lot of issues
 
 			# If WSLg not detected use the Xserver
 			if [[ ! -d /mnt/wslg ]]; then 
