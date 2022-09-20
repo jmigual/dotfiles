@@ -14,6 +14,12 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib:$HOME/.local/lib64"
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+export PATH="/home/20204729/perl5/bin${PATH:+:${PATH}}";
+export PERL5LIB="/home/20204729/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
+export PERL_LOCAL_LIB_ROOT="/home/20204729/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
+export PERL_MB_OPT="--install_base \"/home/20204729/perl5\"";
+export PERL_MM_OPT="INSTALL_BASE=/home/20204729/perl5";
+
 # Check current system
 case "$(uname -s)" in
     Linux*)     
