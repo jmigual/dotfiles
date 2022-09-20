@@ -4,7 +4,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 
 # PATH configuration
 PATH_OLD="${PATH}"
-export PATH="${HOME}/.local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/snap/bin"
+export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/snap/bin"
 export PATH="${PATH}:/usr/games:/usr/local/games"
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
