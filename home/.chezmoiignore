@@ -1,6 +1,6 @@
 {{ if ne .chezmoi.os "windows" }}
 Documents/PowerShell/
-AppData/Local/config.yaml
+AppData/
 .wslconfig
 {{ else }}
 .config/clangd/clangd.yaml
