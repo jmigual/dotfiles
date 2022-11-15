@@ -8,6 +8,7 @@ export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:/bin:/sbin:/usr/bin:/usr/sbin
 export PATH="${PATH}:/usr/games:/usr/local/games"
 
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
+export PAGER=less
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export LC_ALL=C.UTF-8
