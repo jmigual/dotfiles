@@ -83,7 +83,9 @@ if ! shopt -oq posix; then
         source /usr/share/bash-completion/bash_completion
     elif [ -f /etc/bash_completion ]; then
         source /etc/bash_completion
-    elif [ -f $HOME/.local/share/bash-completion/bash-completion ]; then
+    fi
+    # Add custom completions
+    if [ -f $HOME/.local/share/bash-completion/bash-completion ]; then
         source $HOME/.local/share/bash-completion/bash-completion
     fi
 fi
