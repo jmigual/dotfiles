@@ -14,15 +14,11 @@ fi
 # To avoid mispelling errors
 alias cd..="cd .."
 
-alias l="ls -lFH"
-alias la="ls -lahF"
-alias lr="ls -tRFh"
-alias lt="ls -ltFh"
-alias ll="ls -l"
-alias ldot="ls -ld .*"
-alias lS="ls -1FSsh"
-alias lart="ls -1Fcart"
-alias lrt="ls -1Fcrt"
+alias ls="lsd"
+alias l="ls -l"
+alias la="ls -a"
+alias lla="ls -la"
+alias lt="ls --tree"
 
 # Create parent directories on demand
 alias mkdir="mkdir -pv"

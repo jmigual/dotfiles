@@ -17,32 +17,36 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- -b $HOME/.local/bin init --apply jmigual
 Packages used by the dotfiles:
 
 - Windows:
-    - scoop:
-        - 7zip
-        - git
-        - oh-my-posh
+    - 7zip
+    - git
+    - oh-my-posh
 - Linux / Unix:
-    - brew
+    - All:
         - zsh
         - socat
         - git
         - fortune
         - cowsay
+    - WSL2:
+        - ss
 
 
 Recommended packages:
 - Windows:
-    - scoop
-        - nodejs-lts
-        - cmake
-        - fd
-        - ripgrep
+    - nodejs-lts (scoop)
+    - cmake
+    - fd (scoop)
+    - ripgrep (scoop)
+    - bat (scoop)
+    - less (scoop)
+    - lsd (scoop)
 - Linux:
-    - brew
-        - gcc
-        - cmake
-        - fd
-        - ripgrep
+    - gcc
+    - cmake
+    - fd
+    - ripgrep
+    - bat
+    - lsd
     - pipx
         - yt-dlp
 
