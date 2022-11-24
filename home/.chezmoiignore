@@ -13,4 +13,6 @@ AppData/
 .tmux.conf
 .zshenv
 .zshrc
+.fzf.bash
+.fzf.zsh
 {{ end }}
