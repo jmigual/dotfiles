@@ -11,20 +11,14 @@ export ZSH="${HOME}/.oh-my-zsh"
 HIST_STAMPS="yyyy-mm-dd"
 PROJECT_PATHS=(~/Documents/Projects)
 
-plugins=(git pip pj zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(fd fzf git pip pj ripgrep zsh-syntax-highlighting zsh-autosuggestions)
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-DISABLE_AUTO_UPDATE="true" # Disable auto update of oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
 # ZSH options
 unsetopt BG_NICE
-unsetopt share_history
 setopt rm_star_silent
-
-# ZSH only aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source "${CUSTOM_SHELL_DIR}/interactive.sh"
 
