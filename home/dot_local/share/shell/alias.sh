@@ -14,11 +14,16 @@ fi
 # To avoid mispelling errors
 alias cd..="cd .."
 
-alias ls="lsd"
+if ! command -v lsd &> /dev/null then
+    # lsd doesn't exist
+    alias lt="ls"
+else
+    alias ls="lsd"
+    alias lt="ls --tree --depth 3"
+fi
 alias l="ls -l"
 alias la="ls -a"
 alias lla="ls -la"
-alias lt="ls --tree --depth 3"
 
 # Create parent directories on demand
 alias mkdir="mkdir -pv"
