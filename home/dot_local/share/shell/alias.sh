@@ -14,7 +14,7 @@ fi
 # To avoid mispelling errors
 alias cd..="cd .."
 
-if ! command -v lsd &> /dev/null then
+if ! command -v lsd &> /dev/null; then
     # lsd doesn't exist
     alias lt="ls"
 else
