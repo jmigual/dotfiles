@@ -10,7 +10,7 @@ export PATH="${PATH}:/usr/games:/usr/local/games"
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
 export PAGER=less
 
-if locale -a | grep -Eiq "C.UTF-?8"; then
+if locale -a | grep -Eiq "^C.UTF-?8"; then
 	export LC_ALL=C.UTF-8
 fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib:$HOME/.local/lib64"
