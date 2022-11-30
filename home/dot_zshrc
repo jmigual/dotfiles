@@ -29,4 +29,4 @@ fortune -s | xargs -0 cowsay
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # FZF search
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
+[[ -f ~/.fzf.zsh && -d ~/.fzf ]] && source ~/.fzf.zsh 

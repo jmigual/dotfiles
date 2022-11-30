@@ -10,8 +10,9 @@ export PATH="${PATH}:/usr/games:/usr/local/games"
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
 export PAGER=less
 
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export LC_ALL=C.UTF-8
+if locale -a | grep -Eiq "C.UTF-?8"; then
+	export LC_ALL=C.UTF-8
+fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib:$HOME/.local/lib64"
 
 # colored GCC warnings and errors
@@ -30,6 +31,7 @@ case "$(uname -s)" in
 				export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 			fi
 
+			export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 			WIN_HOME=$(/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
 			export WIN_GNUPG_HOME="${WIN_HOME}\\AppData\\Local\\gnupg"
 			export WSL_GNUPG_HOME="$(wslpath -u "$WIN_GNUPG_HOME")"
