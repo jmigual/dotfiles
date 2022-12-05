@@ -60,6 +60,14 @@ elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
+# Check for editor
+if command -v code &> /dev/null; then
+	export VISUAL="code"
+elif command -v vim &> /dev/null; then
+	export VISUAL="vim"
+fi
+export EDITOR="${VISUAL}"
+
 DEV_KEYS="${HOME}/.config/dev_keys"
 if [ -f "${DEV_KEYS}" ]; then
 	source "${DEV_KEYS}"
