@@ -143,7 +143,7 @@
 {{- $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" }}
 {{- if glob $gitpath }}
 [http]
-	sslcainfo = {{$gitpath | replace "\\" "\\\\" | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" }}
+	sslcainfo = {{$gitpath | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" | replace "\\" "\\\\" }}
 {{- end}}
 {{- end}}
 
