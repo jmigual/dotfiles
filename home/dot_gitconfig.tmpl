@@ -139,6 +139,12 @@
 [core]
 	filemode = false
 	fsmonitor = true
+
+{{- $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" }}
+{{- if glob $gitpath }}
+[http]
+	sslcainfo = {{$gitpath | replace "\\" "\\\\" | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" }}
+{{- end}}
 {{- end}}
 
 {{- if lookPath "code" }}
