@@ -139,6 +139,7 @@
 [core]
 	filemode = false
 	fsmonitor = true
+	longpaths = true
 
 {{- $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" }}
 {{- if glob $gitpath }}
