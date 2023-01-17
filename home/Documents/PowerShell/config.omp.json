@@ -5,14 +5,14 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#2e9599",
-          "foreground": "#070707",
+          "background": "#d3d7cf",
+          "foreground": "#151515",
           "style": "powerline",
           "template": " {{ .CurrentDate | date .Format }} ",
           "type": "time"
         },
         {
-          "background": "#ff479c",
+          "background": "#3465a4",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "properties": {
@@ -29,8 +29,8 @@
           "type": "path"
         },
         {
-          "background": "#fffb38",
-          "foreground": "#193549",
+          "background": "#4e9a06",
+          "foreground": "#000000",
           "foreground_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#ff9248{{ end }}",
             "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}",
@@ -104,8 +104,8 @@
           "type": "root"
         },
         {
-          "background": "#83769c",
-          "foreground": "#ffffff",
+          "background": "#c4a000",
+          "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "always_enabled": true
