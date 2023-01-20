@@ -1,3 +1,5 @@
 {{ if contains "WSL" (get .chezmoi.kernel "osrelease") }}
 pinentry-program "/mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe"
+{{else}}
+enable-ssh-support
 {{end}}
