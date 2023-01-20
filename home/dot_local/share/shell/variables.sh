@@ -21,6 +21,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Check current system
 case "$(uname -s)" in
     Linux*)     
+		export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 		# Check if WSL
 		if cat /proc/version | grep -qi Microsoft; then
 			# We are in WSL so add the old path to access Windows applications
@@ -31,7 +32,6 @@ case "$(uname -s)" in
 				export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 			fi
 
-			export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 			WIN_HOME=$(/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
 			export WIN_GNUPG_HOME="${WIN_HOME}\\AppData\\Local\\gnupg"
 			export WSL_GNUPG_HOME="$(wslpath -u "$WIN_GNUPG_HOME")"
@@ -43,6 +43,7 @@ case "$(uname -s)" in
 			/mnt/c/Windows/System32/wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 		else
 			export GPG_TTY=$(tty)
+			gpgconf --launch gpg-agent
 		fi
 	    ;;
     Darwin*)    
