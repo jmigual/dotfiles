@@ -4,7 +4,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 
 # PATH configuration
 PATH_OLD="${PATH}"
-export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/snap/bin"
+export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin"
 export PATH="${PATH}:/usr/games:/usr/local/games"
 
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
