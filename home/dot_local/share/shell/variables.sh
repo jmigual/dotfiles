@@ -32,7 +32,7 @@ case "$(uname -s)" in
 				export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 			fi
 
-			WIN_HOME=$(/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
+			export WIN_HOME=$(/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
 			export WIN_GNUPG_HOME="${WIN_HOME}\\AppData\\Local\\gnupg"
 			export WSL_GNUPG_HOME="$(wslpath -u "$WIN_GNUPG_HOME")"
 
