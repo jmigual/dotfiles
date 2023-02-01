@@ -24,15 +24,13 @@ case "$(uname -s)" in
 		export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 		# Check if WSL
 		if cat /proc/version | grep -qi Microsoft; then
-			# We are in WSL so add the old path to access Windows applications
-			export PATH="$PATH:$PATH_OLD" # To have commands such as code or docker
-
 			# If WSLg not detected use the Xserver
 			if [[ ! -d /mnt/wslg ]]; then 
 				export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
 			fi
 
 			export WIN_HOME=$(/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
+			export WIN_HOME_WSL=$(wslpath $WIN_HOME)
 			export WIN_GNUPG_HOME="${WIN_HOME}\\AppData\\Local\\gnupg"
 			export WSL_GNUPG_HOME="$(wslpath -u "$WIN_GNUPG_HOME")"
 
@@ -40,7 +38,13 @@ case "$(uname -s)" in
 			export WIN_AGENT_HOME="${WIN_GNUPG_HOME}"
 			export WSL_AGENT_HOME="${WSL_GNUPG_HOME}"
 
-			/mnt/c/Windows/System32/wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+			# Add specific entries from Windows (such as code, docker...) to PATH
+			export PATH="${PATH}:${WIN_HOME_WSL}/AppData/Local/Programs/Microsoft VS Code/bin"
+
+			WSL=/mnt/c/Windows/System32/wsl.exe
+			if [[ -z $($WSL -d wsl-vpnkit --cd /app ps | grep wsl-vm) ]]; then
+				$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit start
+			fi
 		else
 			export GPG_TTY=$(tty)
 			gpgconf --launch gpg-agent
