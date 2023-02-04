@@ -133,7 +133,7 @@
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
 
-{{- if eq .chezmoi.os "windows"}}
+{{ if eq .chezmoi.os "windows" -}}
 [gpg]
 	program = "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"
 [core]
@@ -141,14 +141,14 @@
 	fsmonitor = true
 	longpaths = true
 
-{{- $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" }}
-{{- if glob $gitpath }}
+{{ $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" -}}
+{{ if glob $gitpath -}}
 [http]
 	sslcainfo = {{$gitpath | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" | replace "\\" "\\\\" }}
 {{- end}}
 {{- end}}
 
-{{- if lookPath "code" }}
+{{ if lookPath "code" -}}
 	# VSCode
 	editor = "code --wait"
 

@@ -42,3 +42,7 @@ set -g message-style 'fg=colour232 bg=colour1 bold'
 
 # History limit
 set -g history-limit 10000
+
+{{ if lookPath "zsh" -}}
+set-option -g default-shell "{{ lookPath "/bin/zsh" }}"
+{{- end }}
