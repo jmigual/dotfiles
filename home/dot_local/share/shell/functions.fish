@@ -49,6 +49,40 @@ function extract
     end
 end
 
+function pj --description "Jump to a project"
+    set -l argc (count $argv)
+
+    if test $argc -le 0 -o $argc -gt 1
+        echo "Usage: pj <project_name>"
+        return 1
+    end
+
+    set -l target "$HOME/Documents/Projects/$argv"
+    if test -n "$target"
+        cd "$target"
+    else
+        echo "No such project: $argv"
+        return 1
+    end
+end
+
+function __project_basenames --description "List of project basenames"
+    set -l PROJECT_PATHS "$HOME/Documents/Projects"
+    set -l project_basenames
+
+    for pp in $PROJECT_PATHS
+        set -l contains_files (ls -A "$pp" 2> /dev/null)
+        if test -n "$contains_files"
+            for project in (ls -d "$pp"/*/)
+                set -a project_basenames "$project_basenames" (basename $project)
+            end
+        end
+    end
+    echo $project_basenames
+end
+
+complete --command pj --no-files --arguments=(__project_basenames)
+
 if command -v pyenv &> /dev/null;
 	export PYENV_ROOT="$HOME/.pyenv"
 	eval "$(pyenv init -)"
