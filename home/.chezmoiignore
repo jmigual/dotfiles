@@ -4,6 +4,7 @@ AppData/
 .wslconfig
 {{ else }}
 .config/clangd/clangd.yaml
+.config/fish/config.fish
 .oh-my-zsh/
 .local/share/shell/
 .gnupg/
