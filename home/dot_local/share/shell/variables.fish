@@ -6,6 +6,16 @@ set PATH "$HOME/.local/bin" "$HOME/.cargo/bin"
 set PATH $PATH "/usr/local/bin" "/usr/local/share/bin"
 # System commands
 set PATH $PATH "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
+# Games
+set PATH $PATH "/usr/games" "/usr/local/games"
+
+set -x PAGER "less"
+
+if locale -a | grep -Eiq "^C.UTF-?8";
+	set -x LC_ALL C.UTF-8
+end
+
+set -x --path LD_LIBRARY_PATH "$LD_LIBRARY_PATH" "$HOME/.local/lib" "$HOME/.local/lib64"
 
 switch (uname -a)
     case "Linux*"
