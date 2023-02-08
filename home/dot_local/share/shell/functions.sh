@@ -41,21 +41,6 @@ extract () {
     fi
 }
 
-# Check current system
-case "$(uname -s)" in
-    Linux*)     
-		# Check if WSL
-		if cat /proc/version | grep -qi Microsoft; then
-			# We are in WSL, start gpg-relay agent
-            # $HOME/.local/bin/gpg-agent-relay start
-            source "${CUSTOM_SHELL_DIR}/gpg-agent-relay2.sh"
-		fi
-	    ;;
-    Darwin*)    
-	    ;;
-    *)
-esac
-
 if command -v pyenv &> /dev/null; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	eval "$(pyenv init --path)"

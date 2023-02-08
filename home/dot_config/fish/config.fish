@@ -10,3 +10,8 @@ source "$CUSTOM_SHELL_DIR/functions.fish"
 if status --is-interactive;
     source "$CUSTOM_SHELL_DIR/interactive.fish"
 end
+
+
+function fish_greeting
+    fortune -s | xargs -0 cowsay
+end
