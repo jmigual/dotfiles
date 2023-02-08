@@ -69,7 +69,7 @@ $condapath = "$env:USERPROFILE\.local\share\Miniconda3\Scripts\conda.exe"
 if (Test-Path "$condapath") {
 #region conda initialize
 # !! Contents within this block are managed by 'conda init' !!
-(& "$condapath" "shell.powershell" "hook") | Out-String | Invoke-Expression
+# (& "$condapath" "shell.powershell" "hook") | Out-String | Invoke-Expression
 #endregion
 }
 
