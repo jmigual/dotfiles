@@ -15,4 +15,5 @@ AppData/
 .zshrc
 .fzf.bash
 .fzf.zsh
+starship_install.sh
 {{ end }}

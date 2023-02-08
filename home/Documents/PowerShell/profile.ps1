@@ -1,8 +1,15 @@
-Invoke-Expression (oh-my-posh --init --shell pwsh --config "$env:USERPROFILE\Documents\PowerShell\config.omp.json")
+Invoke-Expression (&starship init powershell)
 Import-Module git-aliases -DisableNameChecking
 
 # Useful shortcuts for traversing directories
-function .. { Set-Location .. }
+function .. { 
+    if ($args.Count -gt 0) {
+        Set-Location ..\$args
+    }
+    else {
+        Set-Location ..
+    }
+}
 function ... { Set-Location ..\.. }
 function .... { Set-Location ..\..\.. }
 function cd.. { Set-Location .. }
