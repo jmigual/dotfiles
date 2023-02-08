@@ -399,7 +399,7 @@ if [ -z "${PLATFORM-}" ]; then
 fi
 
 if [ -z "${BIN_DIR-}" ]; then
-  BIN_DIR=/usr/local/bin
+  BIN_DIR=$HOME/.local/bin/
 fi
 
 if [ -z "${ARCH-}" ]; then
