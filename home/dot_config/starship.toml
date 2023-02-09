@@ -1,2 +1,10 @@
+format='$all$fill$time'
+
+[[battery.display]]
+threshold = 100
+
 [shell]
+disabled = false
+
+[time]
 disabled = false
