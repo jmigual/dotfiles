@@ -12,7 +12,7 @@ $shell\
 $character"""
 
 [[battery.display]]
-threshold = 100
+threshold = 60
 
 [fill]
 symbol = " "
