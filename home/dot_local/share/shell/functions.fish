@@ -1,3 +1,5 @@
+set -x PROJECTS_PATH "$HOME/Documents/Projects"
+
 function up
     if count $argv > 0
         set -f CDSTR ""
@@ -52,12 +54,16 @@ end
 function pj --description "Jump to a project"
     set -l argc (count $argv)
 
-    if test $argc -le 0 -o $argc -gt 1
+    if test $argc -gt 1
         echo "Usage: pj <project_name>"
         return 1
     end
 
-    set -l target "$HOME/Documents/Projects/$argv"
+    if test $argc -le 0
+        cd "$PROJECTS_PATH"
+    end
+
+    set -l target "$PROJECTS_PATH/$argv"
     if test -n "$target"
         cd "$target"
     else
@@ -67,10 +73,9 @@ function pj --description "Jump to a project"
 end
 
 function __project_basenames --description "List of project basenames"
-    set -l PROJECT_PATHS "$HOME/Documents/Projects"
     set -l project_basenames
 
-    for pp in $PROJECT_PATHS
+    for pp in $PROJECTS_PATH
         set -l contains_files (ls -A "$pp" 2> /dev/null)
         if test -n "$contains_files"
             for project in (ls -d "$pp"/*/)
