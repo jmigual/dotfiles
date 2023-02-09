@@ -1,10 +1,25 @@
-format='$all$fill$time'
+format="""
+$all\
+$fill\
+$time\
+$line_break\
+$jobs\
+$battery\
+$status\
+$os\
+$container\
+$shell\
+$character"""
 
 [[battery.display]]
 threshold = 100
+
+[fill]
+symbol = " "
 
 [shell]
 disabled = false
 
 [time]
+format = '[$time]($style) '
 disabled = false
