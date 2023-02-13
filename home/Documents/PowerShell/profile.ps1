@@ -1,5 +1,28 @@
 Invoke-Expression (&starship init powershell)
-Import-Module git-aliases -DisableNameChecking
+Import-Module PSReadLine
+
+# Allow plugins prediction
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+
+# Shows navigable menu of all options when hitting Tab
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
+# Autocompletion for arrow keys
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# Accept suggestions
+Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
+Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
+
+if (Get-Module -ListAvailable -Name "git-aliases") {
+    Import-Module git-aliases -DisableNameChecking
+}
+if (Get-Module -ListAvailable -Name "CompletionPredictor") {
+    Import-Module CompletionPredictor
+}
+
+
 
 # Useful shortcuts for traversing directories
 function .. { 
@@ -53,16 +76,6 @@ function dirs {
         Get-ChildItem -Recurse | Foreach-Object FullName
     }
 }
-
-# Shows navigable menu of all options when hitting Tab
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-
-# Autocompletion for arrow keys
-Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-Import-Module PSReadLine
-Set-PSReadLineOption -PredictionSource History
 
 $condapath = "$env:USERPROFILE\.local\share\Miniconda3\Scripts\conda.exe"
 
