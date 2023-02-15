@@ -1,20 +1,22 @@
 {{ if ne .chezmoi.os "windows" }}
-Documents/PowerShell/
-AppData/
+.local/bin/card-disable.ps1
+.local/bin/card-enable.ps1
 .wslconfig
+AppData/
+Documents/PowerShell/
 {{ else }}
+.bash_profile
+.bashrc
 .config/clangd/clangd.yaml
 .config/fish/config.fish
-.oh-my-zsh/
-.local/share/shell/
+.fzf.bash
+.fzf.zsh
 .gnupg/
-.bashrc
-.bash_profile
+.local/share/shell/
+.oh-my-zsh/
 .profile
 .tmux.conf
 .zshenv
 .zshrc
-.fzf.bash
-.fzf.zsh
 starship_install.sh
 {{ end }}
