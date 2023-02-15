@@ -21,4 +21,10 @@ Where-Object { $_.Line -replace '.*:\s+' -eq "NVIDIA" } | ForEach-Object {
     }
 }
 
-pnputil /enable-device $result.InstanceId
+if ($result) {
+    pnputil /enable-device $result.InstanceId
+} else {
+    Write-Output "No NVIDIA card found."
+    Start-Sleep 10
+}
+
