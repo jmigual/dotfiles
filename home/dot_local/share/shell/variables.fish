@@ -42,6 +42,11 @@ switch (uname -a)
         end
 end
 
+# Search for nix shell
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]
+    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+end
+
 # Check for editor
 if command -vq code
 	set -x VISUAL "code"

@@ -64,6 +64,10 @@ elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
+if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then 
+	source "${HOME}/.nix-profile/etc/profile.d/nix.sh"; 
+fi
+
 # Check for editor
 if command -v code &> /dev/null; then
 	export VISUAL="code"
