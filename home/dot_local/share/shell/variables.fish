@@ -44,6 +44,7 @@ end
 
 # Search for nix shell
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.fish" ]
+    fish_add_path --prepend --path "$HOME/.nix-profile/bin"
     source "$HOME/.nix-profile/etc/profile.d/nix.fish"
 end
 
