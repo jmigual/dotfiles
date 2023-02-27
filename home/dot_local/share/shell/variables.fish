@@ -22,7 +22,7 @@ switch (uname -a)
         set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
         if cat /proc/version | grep -qi Microsoft;
-            set -x WIN_HOME (/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null || true)
+            set -x WIN_HOME (/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null; or true)
             set -x WIN_HOME_WSL (wslpath "$WIN_HOME")
             set -x WIN_GNUPG_HOME "$WIN_HOME\\AppData\\Roaming\\gnupg"
             set -x WIN_GNUPG_HOME_WSL (wslpath -u "$WIN_GNUPG_HOME")
@@ -35,7 +35,7 @@ switch (uname -a)
 			set PATH $PATH "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
 
             set WSL "/mnt/c/Windows/System32/wsl.exe"
-			$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit status >/dev/null || \
+			$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit status >/dev/null; or \
 				$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit start
         else
             set -x GPG_TTY (tty)
