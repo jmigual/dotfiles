@@ -43,8 +43,8 @@ switch (uname -a)
 end
 
 # Search for nix shell
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]
-    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.fish" ]
+    source "$HOME/.nix-profile/etc/profile.d/nix.fish"
 end
 
 # Check for editor
