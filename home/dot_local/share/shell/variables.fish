@@ -43,9 +43,9 @@ switch (uname -a)
 end
 
 # Check for editor
-if command -v code &> /dev/null;
+if command -vq code
 	set -x VISUAL "code"
-else if command -v vim &> /dev/null;
+else if command -vq vim
 	set -x VISUAL "vim"
 end
 set -x EDITOR "$VISUAL"
