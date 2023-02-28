@@ -51,7 +51,6 @@ alias edit='vim'
 alias fastping='ping -c 100 -s.2'
 
 # Apt aliases
-alias apt="sudo apt"
 alias update="sudo apt update && sudo apt upgrade -y"
 
 # Youtube aliases
