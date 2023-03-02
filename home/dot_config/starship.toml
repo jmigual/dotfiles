@@ -23,3 +23,6 @@ disabled = false
 [time]
 format = '[$time]($style) '
 disabled = false
+
+[git_status]
+ignore_submodules = true
