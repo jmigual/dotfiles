@@ -60,10 +60,10 @@ function Env: { Set-Location Env: }
 # Creates drive shortcut for Work Folders, if current user account is using it
 function pj {
     if ($args.Count -gt 0) {
-        Set-Location "$env:USERPROFILE\Documents\Projects\$args"
+        Set-Location "$env:USERPROFILE\Projects\$args"
     }
     else {
-        Set-Location "$env:USERPROFILE\Documents\Projects\"
+        Set-Location "$env:USERPROFILE\Projects\"
     }
 }
 
