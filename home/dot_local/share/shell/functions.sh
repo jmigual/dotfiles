@@ -41,6 +41,14 @@ extract () {
     fi
 }
 
+pj() {
+    if [ -z "$1" ]; then
+        echo "Usage: pj <project>"
+        return 1
+    fi
+    cd ${HOME}/Projects/"$1"
+}
+
 if command -v pyenv &> /dev/null; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	eval "$(pyenv init --path)"

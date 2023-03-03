@@ -1,4 +1,4 @@
-set -x PROJECTS_PATH "$HOME/Documents/Projects"
+set -x PROJECTS_PATH "$HOME/Projects"
 
 function up
     if count $argv > 0
