@@ -42,10 +42,6 @@ extract () {
 }
 
 pj() {
-    if [ -z "$1" ]; then
-        echo "Usage: pj <project>"
-        return 1
-    fi
     cd ${HOME}/Projects/"$1"
 }
 
