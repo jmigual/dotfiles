@@ -4,3 +4,7 @@
 # Editors
 .vscode/
 .idea/
+
+# clangd
+.cache/
+compile_commands.json
