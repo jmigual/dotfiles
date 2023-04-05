@@ -151,7 +151,7 @@
 {{- end}}
 {{- end}}
 
-{{ if lookPath "code" -}}
+{{ if and (lookPath "code") (contains "CLI" (output "code" "--version") | not) }}
 	# VSCode
 	editor = "code --wait"
 
