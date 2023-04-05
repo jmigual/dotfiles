@@ -69,8 +69,10 @@ if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
 fi
 
 # Check for editor
-if command -v code &> /dev/null; then
+if command -v code &> /dev/null && ! (code --version | grep "CLI" &> /dev/null); then
 	export VISUAL="code"
+elif command -v nvim &> /dev/null; then
+	export VISUAL="nvim"
 elif command -v vim &> /dev/null; then
 	export VISUAL="vim"
 fi

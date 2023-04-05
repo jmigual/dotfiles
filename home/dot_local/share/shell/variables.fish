@@ -49,8 +49,10 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.fish" ]
 end
 
 # Check for editor
-if command -vq code
+if command -vq code && code --version | string match -vq "*CLI*"
 	set -x VISUAL "code"
+else if command -vq nvim
+    set -x VISUAL "nvim"
 else if command -vq vim
 	set -x VISUAL "vim"
 end
