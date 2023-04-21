@@ -18,7 +18,7 @@ end
 
 alias mkdir="mkdir -pv"
 
-alias tnew="tmux new-session -A -s main fish"
+alias tnew="tmux new-session -A -s main"
 
 function path
     string join \n $PATH

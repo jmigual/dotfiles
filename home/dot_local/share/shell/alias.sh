@@ -26,7 +26,7 @@ alias la="ls -a"
 alias lla="ls -la"
 
 # Restore a session if it exists
-alias tnew="tmux new-session -A -s main zsh"
+alias tnew="tmux new-session -A -s main"
 
 # Create parent directories on demand
 alias mkdir="mkdir -pv"
