@@ -38,10 +38,6 @@ switch (uname -a)
 
             # Add specific entries from Windows (such as code, docker...) to PATH
 			set PATH $PATH "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
-
-            set WSL "/mnt/c/Windows/System32/wsl.exe"
-			$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit status >/dev/null; or \
-				$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit start
         else
             set -x GPG_TTY (tty)
         end
