@@ -49,6 +49,7 @@ These are the list of packages recommended in a system and recommended install s
         - [flamegraph](https://github.com/flamegraph-rs/flamegraph) (cargo)
         - pipx (pip)
         - yt-dlp (pipx)
+        - socat (apt)
 
 
 
