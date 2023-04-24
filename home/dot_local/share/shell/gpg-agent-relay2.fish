@@ -14,7 +14,6 @@ if not ss -a | grep -q "$SSH_AUTH_SOCK";
   else
     echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
   end
-  set --erase wsl2_ssh_pageant_bin
 end
 
 set -x GPG_AGENT_SOCK "$HOME/.gnupg/S.gpg-agent"

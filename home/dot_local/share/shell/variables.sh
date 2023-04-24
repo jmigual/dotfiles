@@ -40,10 +40,6 @@ case "$(uname -s)" in
 
 			# Add specific entries from Windows (such as code, docker...) to PATH
 			export PATH="${PATH}:${WIN_HOME_WSL}/AppData/Local/Programs/Microsoft VS Code/bin"
-
-			WSL=/mnt/c/Windows/System32/wsl.exe
-			$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit status >/dev/null || \
-				$WSL -d wsl-vpnkit --cd /app service wsl-vpnkit start
 		else
 			export GPG_TTY=$(tty)
 			gpgconf --launch gpg-agent
