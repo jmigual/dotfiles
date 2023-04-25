@@ -26,3 +26,9 @@ disabled = false
 
 [git_status]
 ignore_submodules = true
+
+[hostname]
+ssh_only = false
+
+[username]
+show_always = true
