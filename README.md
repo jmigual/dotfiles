@@ -21,6 +21,7 @@ These are the list of packages recommended in a system and recommended install s
         - git (winget)
         - 7zip (scoop)
         - [starship](https://starship.rs/) (scoop)
+        - [PSReadLine](https://github.com/PowerShell/PSReadLine) (`Install-Module PSReadLine`)
     - Recommended:
         - less (scoop)
         - [nodejs-lts](https://nodejs.org/) (scoop)
@@ -28,6 +29,8 @@ These are the list of packages recommended in a system and recommended install s
         - [fd](https://github.com/sharkdp/fd) (scoop)
         - [ripgrep](https://github.com/BurntSushi/ripgrep) (scoop)
         - [bat](https://github.com/sharkdp/bat) (scoop)
+        - [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) (`Install-Module -Name Terminal-Icons -Repository PSGallery`)
+        - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module -Name PSFzf`)
 - Linux / Unix:
     - Required:
         - zsh 

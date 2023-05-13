@@ -15,6 +15,19 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
 Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
 
+if (Get-Module -ListAvailable -Name "Terminal-Icons") {
+    Import-Module -Name Terminal-Icons
+}
+
+if (Get-Module -ListAvailable -Name "PSFzf") {
+    Import-Module -Name PSFzf
+
+    # replace 'Ctrl+t' and 'Ctrl+r' with your preferred bindings:
+    Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+
+    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+}
+
 if (Get-Module -ListAvailable -Name "git-aliases") {
     Import-Module git-aliases -DisableNameChecking
 }
