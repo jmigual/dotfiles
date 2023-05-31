@@ -1,19 +1,28 @@
 Invoke-Expression (&starship init powershell)
-Import-Module PSReadLine
 
-# Allow plugins prediction
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+$psmodule = Get-Module -ListAvailable -Name "PSReadLine"
+if ($psmodule) {
+    Import-Module PSReadLine
 
-# Shows navigable menu of all options when hitting Tab
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+    # Shows navigable menu of all options when hitting Tab
+    Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
-# Autocompletion for arrow keys
-Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+    # Autocompletion for arrow keys
+    Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+    Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# Accept suggestions
-Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
-Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
+    # Check if version 2.1.0 or higher as AcceptSuggestion was added in that version
+    if ($psmodule | Where-Object {$_.Version -ge [version]"2.1.0"}) {
+        # Allow plugins prediction
+        Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+        
+        # Accept suggestions
+        Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
+        Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
+    }
+}
+
+
 
 if (Get-Module -ListAvailable -Name "Terminal-Icons") {
     Import-Module -Name Terminal-Icons

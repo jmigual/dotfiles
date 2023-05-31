@@ -55,6 +55,20 @@ These are the list of packages recommended in a system and recommended install s
         - socat (apt)
 
 
+## SSH with Gpg
 
+### Windows
 
+- Install [Gpg4win](https://www.gpg4win.org/)
+- Import private key
+- Set environment variable `GIT_SSH` to `C:\Windows\System32\OpenSSH\ssh.exe`
+- Set environment variable `SSH_AUTH_SOCK` to `\\.\pipe\ssh-pageant`
+- Install [WSL-SSH-Pageant](https://github.com/benpye/wsl-ssh-pageant/releases)
+- Run `wsl-ssh-pageant.exe  --systray --winssh ssh-pageant` on startup
+- Add the following lines to `%APPDATA%\gnupg\gpg-agent.conf`:
+```
+enable-putty-support
+enable-ssh-support
+```
+- Run `gpg -K --with-keygrip` and set the keygrip of the key to `%APPDATA%\gnupg\sshcontrol`
 
