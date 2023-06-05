@@ -1,4 +1,7 @@
-Invoke-Expression (&starship init powershell)
+if ($PSVersionTable.PSVersion -ge [version]"6.0.0") {
+    Invoke-Expression (&starship init powershell)
+}
+
 
 $psmodule = Get-Module -ListAvailable -Name "PSReadLine"
 if ($psmodule) {
