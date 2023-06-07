@@ -90,7 +90,7 @@ complete --command pj --no-files --arguments=(__project_basenames)
 
 if command -v pyenv &> /dev/null;
 	export PYENV_ROOT="$HOME/.pyenv"
-	eval "$(pyenv init -)"
+	eval (pyenv init -)
 end
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
