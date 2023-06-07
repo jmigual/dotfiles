@@ -4,6 +4,7 @@
 .wslconfig
 AppData/
 Documents/PowerShell/
+Documents/WindowsPowerShell/
 windows_variables.ps1
 {{ else }}
 .bash_profile
