@@ -1,5 +1,9 @@
 set wsl2_ssh_pageant_bin "$HOME/.ssh/wsl2-ssh-pageant.exe"
 
+if ! test -d "$HOME/.ssh";
+  mkdir -p "$HOME/.ssh"
+end
+
 # Check if exists and otherwise install
 if ! test -x "$wsl2_ssh_pageant_bin";
     wget -O "$wsl2_ssh_pageant_bin" "https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/latest/download/wsl2-ssh-pageant.exe"
