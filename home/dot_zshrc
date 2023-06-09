@@ -18,3 +18,7 @@ fortune -s | xargs -0 cowsay
 
 # FZF search
 [[ -f ~/.fzf.zsh && -d ~/.fzf ]] && source ~/.fzf.zsh 
+
+# VSCode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+

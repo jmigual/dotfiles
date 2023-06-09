@@ -47,7 +47,8 @@ if (Get-Module -ListAvailable -Name "CompletionPredictor") {
     Import-Module CompletionPredictor
 }
 
-
+# VSCode shell integration
+if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
 
 # Useful shortcuts for traversing directories
 function .. { 

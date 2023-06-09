@@ -88,3 +88,6 @@ fi
 
 # FZF search
 [[ -f ~/.fzf.bash && -d ~/.fzf ]] && source ~/.fzf.bash
+
+# VS Code shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"
