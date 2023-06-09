@@ -17,4 +17,6 @@ function fish_greeting
 end
 
 # VSCode shell integration
-string match -q "$TERM_PROGRAM" "vscode" and . (code --locate-shell-integration-path fish)
+if string match -q "$TERM_PROGRAM" "vscode"
+    . (code --locate-shell-integration-path fish)
+end
