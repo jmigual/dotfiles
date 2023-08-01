@@ -89,7 +89,8 @@ end
 complete --command pj --no-files --arguments=(__project_basenames)
 
 if command -v pyenv &> /dev/null;
-	export PYENV_ROOT="$HOME/.pyenv"
+	set -x PYENV_ROOT="$HOME/.pyenv"
+    fish_add_path "$PYENV_ROOT/bin" 
 	pyenv init - | source
 end
 
