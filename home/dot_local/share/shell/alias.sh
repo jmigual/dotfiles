@@ -61,7 +61,7 @@ alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --ext
 # alias ff="find . -type f -name"
 alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 
-alias doco="docker-compose"
+alias doco="docker compose"
 
 # Updir aliases
 alias ..="cd .."

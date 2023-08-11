@@ -35,4 +35,4 @@ function update
     sudo apt update && sudo apt upgrade -y
 end
 
-alias doco="docker-compose"
+alias doco="docker compose"
