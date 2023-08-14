@@ -1,7 +1,7 @@
 set -x PROJECTS_PATH "$HOME/Projects"
 
 function up
-    if count $argv > 0
+    if test (count $argv) -gt 0
         set -f CDSTR ""
         for i in (seq 1 $argv[1])
             set CDSTR "$CDSTR../"
