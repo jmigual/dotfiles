@@ -11,11 +11,4 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-{{else}}
-["AppData/Roaming/wsl-ssh-pageant/wsl-ssh-pageant-amd64-gui.exe"]
-    type = "file"
-    url = "https://github.com/benpye/wsl-ssh-pageant/releases/download/20201121.2/wsl-ssh-pageant-amd64-gui.exe"
-    checksum.sha384 = "A4D2793B4A1BC2DE75A6BDE51AA7972C4AEF02A1C7FBB24491EFDF90000D2F12C1D63BA4BB12DE519641288A112BBD80"
-    executable = true
-    refreshPeriod = "168h"
 {{end}}
