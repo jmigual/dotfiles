@@ -6,6 +6,7 @@ AppData/
 Documents/PowerShell/
 Documents/WindowsPowerShell/
 windows_variables.ps1
+AppData/Roaming/gnupg/gpg-agent.conf
 {{ else }}
 .bash_profile
 .bashrc

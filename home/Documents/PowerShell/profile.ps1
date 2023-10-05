@@ -1,50 +1,52 @@
-if ($PSVersionTable.PSVersion -ge [version]"6.0.0") {
-    Invoke-Expression (&starship init powershell)
-}
-
-
-$psmodule = Get-Module -ListAvailable -Name "PSReadLine"
-if ($psmodule) {
-    Import-Module PSReadLine
-
-    # Shows navigable menu of all options when hitting Tab
-    Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-
-    # Autocompletion for arrow keys
-    Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-    Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-    # Check if version 2.1.0 or higher as AcceptSuggestion was added in that version
-    if ($psmodule | Where-Object {$_.Version -ge [version]"2.1.0"}) {
-        # Allow plugins prediction
-        Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-        
-        # Accept suggestions
-        Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
-        Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
+if ($Host.Name -match "ConsoleHost") {
+    if ($PSVersionTable.PSVersion -ge [version]"6.0.0") {
+        Invoke-Expression (&starship init powershell)
     }
-}
+
+    $psmodule = Get-Module -ListAvailable -Name "PSReadLine"
+    if ($psmodule) {
+        Import-Module PSReadLine
+
+        # Shows navigable menu of all options when hitting Tab
+        Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
+        # Autocompletion for arrow keys
+        Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+        Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+        # Check if version 2.1.0 or higher as AcceptSuggestion was added in that version
+        if ($psmodule | Where-Object {$_.Version -ge [version]"2.1.0"}) {
+            # Allow plugins prediction
+            Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+            
+            # Accept suggestions
+            Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
+            Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
+        }
+    }
 
 
 
-if (Get-Module -ListAvailable -Name "Terminal-Icons") {
-    Import-Module -Name Terminal-Icons
-}
+    if (Get-Module -ListAvailable -Name "Terminal-Icons") {
+        Import-Module -Name Terminal-Icons
+    }
 
-if (Get-Module -ListAvailable -Name "PSFzf") {
-    Import-Module -Name PSFzf
+    if (Get-Module -ListAvailable -Name "PSFzf") {
+        Import-Module -Name PSFzf
 
-    # replace 'Ctrl+t' and 'Ctrl+r' with your preferred bindings:
-    Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+        # replace 'Ctrl+t' and 'Ctrl+r' with your preferred bindings:
+        Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-}
+        Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+    }
 
-if (Get-Module -ListAvailable -Name "git-aliases") {
-    Import-Module git-aliases -DisableNameChecking
-}
-if (Get-Module -ListAvailable -Name "CompletionPredictor") {
-    Import-Module CompletionPredictor
+    if (Get-Module -ListAvailable -Name "git-aliases") {
+        Import-Module git-aliases -DisableNameChecking
+    }
+    if (Get-Module -ListAvailable -Name "CompletionPredictor") {
+        Import-Module CompletionPredictor
+    }
+
 }
 
 # VSCode shell integration
