@@ -144,6 +144,14 @@
 	fsmonitor = true
 	longpaths = true
 
+	packedGitLimit = 512m
+	packedGitWindowSize = 512m
+
+[pack]
+	deltaCacheSize = 2047m
+	packSizeLimit = 2047m
+	windowMemory = 2047m
+
 {{ $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" -}}
 {{ if glob $gitpath -}}
 [http]
