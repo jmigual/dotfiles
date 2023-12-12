@@ -31,6 +31,7 @@ These are the list of packages recommended in a system and recommended install s
         - [bat](https://github.com/sharkdp/bat) (scoop)
         - [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) (`Install-Module -Name Terminal-Icons -Repository PSGallery`)
         - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module -Name PSFzf`)
+        - [OpenSSH] (winget)
 - Linux / Unix:
     - Required:
         - zsh 
@@ -61,14 +62,13 @@ These are the list of packages recommended in a system and recommended install s
 
 - Install [Gpg4win](https://www.gpg4win.org/)
 - Import private key
-- Set environment variable `GIT_SSH` to `C:\Windows\System32\OpenSSH\ssh.exe`
-- Set environment variable `SSH_AUTH_SOCK` to `\\.\pipe\ssh-pageant`
-- Install [WSL-SSH-Pageant](https://github.com/benpye/wsl-ssh-pageant/releases)
-- Run `wsl-ssh-pageant.exe  --systray --winssh ssh-pageant` on startup
+- Set environment variable `GIT_SSH` to `C:\Program Files\OpenSSH\ssh.exe`
+- Delete environment variable `SSH_AUTH_SOCK` if set
 - Add the following lines to `%APPDATA%\gnupg\gpg-agent.conf`:
 ```
 enable-putty-support
 enable-ssh-support
+enable-win32-openssh-support
 ```
 - Run `gpg -K --with-keygrip` and set the keygrip of the key to `%APPDATA%\gnupg\sshcontrol`
 
