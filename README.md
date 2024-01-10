@@ -14,6 +14,8 @@ On Linux/Unix:
 sh -c "$(curl -fsLS chezmoi.io/get)" -- -b $HOME/.local/bin init --apply jmigual 
 ```
 
+## Packages
+
 These are the list of packages recommended in a system and recommended install source:
 
 - Windows:
@@ -29,9 +31,11 @@ These are the list of packages recommended in a system and recommended install s
         - [fd](https://github.com/sharkdp/fd) (scoop)
         - [ripgrep](https://github.com/BurntSushi/ripgrep) (scoop)
         - [bat](https://github.com/sharkdp/bat) (scoop)
-        - [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) (`Install-Module -Name Terminal-Icons -Repository PSGallery`)
-        - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module -Name PSFzf`)
-        - [OpenSSH] (winget)
+        - OpenSSH (winget)
+        - fzf (scoop)
+        - PowerShell modules:
+            - [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) (`Install-Module -Name Terminal-Icons -Repository PSGallery`)
+            - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module -Name PSFzf`)
 - Linux / Unix:
     - Required:
         - zsh 
@@ -64,11 +68,21 @@ These are the list of packages recommended in a system and recommended install s
 - Import private key
 - Set environment variable `GIT_SSH` to `C:\Program Files\OpenSSH\ssh.exe`
 - Delete environment variable `SSH_AUTH_SOCK` if set
+- Disable OpenSSH Authentication Agent service
 - Add the following lines to `%APPDATA%\gnupg\gpg-agent.conf`:
 ```
 enable-putty-support
 enable-ssh-support
 enable-win32-openssh-support
 ```
-- Run `gpg -K --with-keygrip` and set the keygrip of the key to `%APPDATA%\gnupg\sshcontrol`
+- Run `gpg -K --with-keygrip` and set the keygrip of the key to `%APPDATA%\gnupg\sshcontrol`. Make sure that the file has a single ending LF newline.
 
+## Recommendations
+
+### Windows
+
+Sometimes the home is set to `HOMESHARE` (e.g. `\\campushome\myuser`). To prevent this, you can add the following to the `C:\Windows\System32\drivers\etc\hosts` file:
+
+```txt
+campushome 127.0.0.1
+```
