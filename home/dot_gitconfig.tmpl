@@ -169,4 +169,14 @@
 
 [difftool "vscode"]
 	cmd = "code --wait --diff $LOCAL $REMOTE"
+
+[merge]
+	tool = "vscode"
+
+[mergetool "vscode"]
+	cmd = "code --wait --diff $REMOTE $LOCAL $BASE $MERGED"
 {{- end}}
+
+# Specific common repos settings
+[credential "https://git.overleaf.com"]
+	provider = generic
