@@ -174,7 +174,7 @@
 	tool = "vscode"
 
 [mergetool "vscode"]
-	cmd = "code --wait --diff $REMOTE $LOCAL $BASE $MERGED"
+	cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
 {{- end}}
 
 # Specific common repos settings
