@@ -11,11 +11,12 @@ function fish_greeting
     fortune -s | xargs -0 cowsay
 end
 
-set VSCODE_GUI false
+if status --is-interactive;
+    set VSCODE_GUI false
+    source "$CUSTOM_SHELL_DIR/interactive.fish"
+end
+
 if command -vq code && code --version | string match -vq "*CLI*"
     set VSCODE_GUI true
 end
 
-if status --is-interactive;
-    source "$CUSTOM_SHELL_DIR/interactive.fish"
-end
