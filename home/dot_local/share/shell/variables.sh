@@ -64,16 +64,6 @@ if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
 	source "${HOME}/.nix-profile/etc/profile.d/nix.sh"; 
 fi
 
-# Check for editor
-if command -v code &> /dev/null && ! (code --version | grep "CLI" &> /dev/null); then
-	export VISUAL="code"
-elif command -v nvim &> /dev/null; then
-	export VISUAL="nvim"
-elif command -v vim &> /dev/null; then
-	export VISUAL="vim"
-fi
-export EDITOR="${VISUAL}"
-
 DEV_KEYS="${HOME}/.config/dev_keys"
 if [ -f "${DEV_KEYS}" ]; then
 	source "${DEV_KEYS}"

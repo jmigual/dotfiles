@@ -12,13 +12,6 @@ function fish_greeting
 end
 
 if status --is-interactive;
-    set VSCODE_GUI false
     source "$CUSTOM_SHELL_DIR/interactive.fish"
-end
-
-env
-
-if command -vq code && code --version | string match -vq "*CLI*"
-    set VSCODE_GUI true
 end
 

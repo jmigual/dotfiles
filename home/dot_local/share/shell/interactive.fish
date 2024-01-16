@@ -11,6 +11,12 @@ switch (uname -s)
         end
 end
 
+set VSCODE_GUI false
+if command -vq code && code --version | string match -vq "*CLI*"
+    set VSCODE_GUI true
+end
+
+
 # Check for editor
 if $VSCODE_GUI
 	set -x VISUAL "code"

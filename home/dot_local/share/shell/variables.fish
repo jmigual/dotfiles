@@ -1,13 +1,13 @@
-set PATH_OLD $PATH
+set -x PATH_OLD $PATH
 
-# Games
-fish_add_path --prepend --path "/usr/games" "/usr/local/games"
-# System commands
-fish_add_path --prepend --path "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
+set -x PATH "$HOME/.local/bin" "$HOME/.cargo/bin"
+
 # System user commands
-fish_add_path --prepend --path "/usr/local/bin" "/usr/local/share/bin"
-# Home commands
-fish_add_path --prepend --path "$HOME/.local/bin" "$HOME/.cargo/bin"
+fish_add_path --path "/usr/local/bin" "/usr/local/share/bin"
+# System commands
+fish_add_path --path "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
+# Games
+fish_add_path --path "/usr/games" "/usr/local/games"
 
 set -x PAGER "less"
 
@@ -37,7 +37,8 @@ switch (uname -a)
             set -x WSL_AGENT_HOME "$WIN_GNUPG_HOME_WSL"
 
             # Add specific entries from Windows (such as code, docker...) to PATH
-			fish_add_path "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
+			fish_add_path --path "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
+            fish_add_path --path "/mnt/c/Program Files/Docker/Docker/resources/bin"
         else
             set -x GPG_TTY (tty)
         end

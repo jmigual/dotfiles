@@ -56,6 +56,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+source "${HOME}/.local/share/shell/variables.sh"
+
 eval "$(starship init bash)"
 
 unset color_prompt force_color_prompt
@@ -89,5 +91,3 @@ fi
 # FZF search
 [[ -f ~/.fzf.bash && -d ~/.fzf ]] && source ~/.fzf.bash
 
-# VS Code shell integration
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"
