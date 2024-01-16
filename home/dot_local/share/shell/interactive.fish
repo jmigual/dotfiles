@@ -11,6 +11,7 @@ switch (uname -s)
         end
 end
 
+set VSCODE_GUI false
 if command -vq code && code --version | string match -vq "*CLI*"
     set VSCODE_GUI true
 end
