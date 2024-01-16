@@ -16,6 +16,8 @@ if status --is-interactive;
     source "$CUSTOM_SHELL_DIR/interactive.fish"
 end
 
+env
+
 if command -vq code && code --version | string match -vq "*CLI*"
     set VSCODE_GUI true
 end
