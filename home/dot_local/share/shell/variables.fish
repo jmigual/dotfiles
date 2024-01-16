@@ -37,7 +37,7 @@ switch (uname -a)
             set -x WSL_AGENT_HOME "$WIN_GNUPG_HOME_WSL"
 
             # Add specific entries from Windows (such as code, docker...) to PATH
-			set PATH $PATH "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
+			fish_add_path "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
         else
             set -x GPG_TTY (tty)
         end
