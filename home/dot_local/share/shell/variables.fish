@@ -1,13 +1,13 @@
 set PATH_OLD $PATH
 
-# Home commands
-set PATH "$HOME/.local/bin" "$HOME/.cargo/bin"
-# System user commands
-set PATH $PATH "/usr/local/bin" "/usr/local/share/bin"
-# System commands
-set PATH $PATH "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
 # Games
-set PATH $PATH "/usr/games" "/usr/local/games"
+fish_add_path --prepend --path "/usr/games" "/usr/local/games"
+# System commands
+fish_add_path --prepend --path "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
+# System user commands
+fish_add_path --prepend --path "/usr/local/bin" "/usr/local/share/bin"
+# Home commands
+fish_add_path --prepend --path "$HOME/.local/bin" "$HOME/.cargo/bin"
 
 set -x PAGER "less"
 
@@ -48,13 +48,3 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.fish" ]
     fish_add_path --prepend --path "$HOME/.nix-profile/bin"
     source "$HOME/.nix-profile/etc/profile.d/nix.fish"
 end
-
-# Check for editor
-if command -vq code && code --version | string match -vq "*CLI*"
-	set -x VISUAL "code"
-else if command -vq nvim
-    set -x VISUAL "nvim"
-else if command -vq vim
-	set -x VISUAL "vim"
-end
-set -x EDITOR "$VISUAL"
