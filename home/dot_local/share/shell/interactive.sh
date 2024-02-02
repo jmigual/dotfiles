@@ -8,6 +8,7 @@ case "$(uname -s)" in
 		if cat /proc/version | grep -qi Microsoft; then
             source "${CUSTOM_SHELL_DIR}/gpg-agent-relay2.sh"
 		else
+			export GPG_TTY=$(tty)
 			gpgconf --launch gpg-agent
             gpg-connect-agent updatestartuptty /bye     
 		fi
