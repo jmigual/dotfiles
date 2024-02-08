@@ -14,8 +14,10 @@ if ($Host.Name -match "ConsoleHost") {
         Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
         Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-        # Check if version 2.1.0 or higher as AcceptSuggestion was added in that version
-        if ($psmodule | Where-Object {$_.Version -ge [version]"2.1.0"}) {
+        # Check if version 2.1.0 or higher and PowerShell version higher than 7.2 as AcceptSuggestion 
+        # was added in that version
+        if (($psmodule | Where-Object { $_.Version -ge [version]"2.1.0" }) -and 
+            ($PSVersionTable.PSVersion -ge [version]"7.2")) {
             # Allow plugins prediction
             Set-PSReadLineOption -PredictionSource HistoryAndPlugin
             
@@ -70,7 +72,8 @@ function cd.... { Set-Location ..\..\.. }
 function open {
     if ($args.Count -gt 0) {
         Invoke-Item $args
-    } else {
+    }
+    else {
         Invoke-Item .
     }
 }
@@ -108,9 +111,9 @@ function dirs {
 $condapath = "$env:USERPROFILE\.local\share\Miniconda3\Scripts\conda.exe"
 
 if (Test-Path "$condapath") {
-#region conda initialize
-# !! Contents within this block are managed by 'conda init' !!
-# (& "$condapath" "shell.powershell" "hook") | Out-String | Invoke-Expression
-#endregion
+    #region conda initialize
+    # !! Contents within this block are managed by 'conda init' !!
+    # (& "$condapath" "shell.powershell" "hook") | Out-String | Invoke-Expression
+    #endregion
 }
 
