@@ -87,7 +87,9 @@
 	# Auto-fetch submodule changes (sadly, won't auto-update)
 	recurseSubmodules = "on-demand"
 [pull]
-	rebase = true
+	# VS Code messes a lot when this is "true", specially when pushing code
+	# that doesn't need to be pulled.
+	rebase = false
 
 [push]
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
