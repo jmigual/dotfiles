@@ -1,6 +1,6 @@
 set -x PATH_OLD $PATH
 
-set -x PATH "$HOME/.local/bin" "$HOME/.cargo/bin"
+set -x PATH "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.local/share/juliaup/bin"
 
 # System user commands
 fish_add_path --path "/usr/local/bin" "/usr/local/share/bin"
