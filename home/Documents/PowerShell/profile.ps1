@@ -1,3 +1,8 @@
+# Disable module auto-loading to speed up PowerShell startup
+$PSModuleAutoLoadingPreference = 'None'
+Import-Module Microsoft.PowerShell.Utility
+Import-Module Microsoft.PowerShell.Management
+
 if ($Host.Name -match "ConsoleHost") {
     if ($PSVersionTable.PSVersion -ge [version]"6.0.0") {
         Invoke-Expression (&starship init powershell)
