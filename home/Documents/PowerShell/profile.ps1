@@ -109,6 +109,10 @@ function dirs {
     }
 }
 
+function path {
+    $env:PATH -split ";"
+}
+
 $condapath = "$env:USERPROFILE\.local\share\Miniconda3\Scripts\conda.exe"
 
 if (Test-Path "$condapath") {
