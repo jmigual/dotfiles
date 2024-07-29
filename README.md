@@ -38,15 +38,15 @@ These are the list of packages recommended in a system and recommended install s
             - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module -Name PSFzf`)
 - Linux / Unix:
     - Required:
-        - zsh 
-        - fish
-        - socat
         - git
         - fortune
         - cowsay
-        - ss
+        - socat: Required for SSH with Gpg running on Windows
+        - ss: Idem
         - [starship](https://starship.rs/) (source)
     - Recommended:
+        - zsh 
+        - fish
         - gcc
         - ninja
         - [cmake](https://cmake.org/download/) (source)
@@ -57,7 +57,6 @@ These are the list of packages recommended in a system and recommended install s
         - [flamegraph](https://github.com/flamegraph-rs/flamegraph) (cargo)
         - pipx (pip)
         - yt-dlp (pipx)
-        - socat (apt)
 
 
 ## SSH with Gpg
