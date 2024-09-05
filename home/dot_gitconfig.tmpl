@@ -1,7 +1,12 @@
 [user]
-	email = "jmigual@users.noreply.github.com"
 	name = "Joan Marcè i Igual"
 	signingkey = "B57766F5A401F867341B636942667CA965E20F39"
+
+# GitHub config sets the user.email to jmigual@noreply.users.github.com
+[includeIf "hasconfig:remote.*.url:*github.com:*/**"]
+	path = ~/.config/git/github.config
+[includeIf "hasconfig:remote.*.url:*://github.com/**"]
+	path = ~/.config/git/github.config
 
 [core]
 	autocrlf = false
