@@ -11,6 +11,12 @@ fish_add_path --path --append "/usr/games" "/usr/local/games"
 
 set -x PAGER "less"
 
+# XDG variables
+set -x XDG_CONFIG_HOME "$HOME/.config"
+set -x XDG_DATA_HOME "$HOME/.local/share"
+set -x XDG_CACHE_HOME "$HOME/.cache"
+set -x XDG_STATE_HOME "$HOME/.local/state"
+
 if command -vq fd
     set -x FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"

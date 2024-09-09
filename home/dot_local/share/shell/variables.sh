@@ -10,6 +10,12 @@ export PATH="${PATH}:/usr/games:/usr/local/games"
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
 export PAGER=less
 
+# XDG variables
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_STATE_HOME="${HOME}/.local/state"
+
 if locale -a | grep -Eiq "^C.UTF-?8"; then
 	export LC_ALL=C.UTF-8
 fi
