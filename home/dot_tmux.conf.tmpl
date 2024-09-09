@@ -12,6 +12,13 @@ bind r source-file ~/.tmux.conf
 ### DESIGN CHANGES ###
 ######################
 
+# start window numbers at 1 to match keyboard order with tmux window order
+set -g base-index 1
+set-window-option -g pane-base-index 1
+
+# renumber windows sequentially after closing any of them
+set -g renumber-windows on
+
 # loud or quiet?
 set -g visual-activity off
 set -g visual-bell off

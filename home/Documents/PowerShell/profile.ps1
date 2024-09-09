@@ -1,3 +1,18 @@
+# If initialization is slow try the following commands on a VS Studio Developer PowerShell terminal:
+# $env:PATH = [Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()
+# [AppDomain]::CurrentDomain.GetAssemblies() | ForEach-Object {
+#     $path = $_.Location
+#     if ($path) { 
+#         $name = Split-Path $path -Leaf
+#         Write-Host -ForegroundColor Yellow "`r`nRunning ngen.exe on '$name'"
+#         ngen.exe install $path /nologo
+#     }
+# }
+
+$PSModuleAutoLoadingPreference = 'None'
+
+Import-Module Microsoft.PowerShell.Utility
+Import-Module Microsoft.PowerShell.Management
 
 if ($Host.Name -match "ConsoleHost") {
     if ($PSVersionTable.PSVersion -ge [version]"6.0.0") {
