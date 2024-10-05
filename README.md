@@ -45,7 +45,7 @@ These are the list of packages recommended in a system and recommended install s
         - [fortune](https://github.com/shlomif/fortune-mod) (package manager or source)
         - cowsay
         - socat: Required for SSH with Gpg running on Windows
-        - ss: Idem
+        - ss (`apt install iproute2`): Idem
         - [starship](https://starship.rs/) (cargo)
     - Recommended:
         - cargo (comes with [rust toolchain](https://www.rust-lang.org/tools/install))
