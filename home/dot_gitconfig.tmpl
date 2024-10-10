@@ -1,119 +1,125 @@
 [user]
-	name = "Joan Marcè i Igual"
-	signingkey = "B57766F5A401F867341B636942667CA965E20F39"
+    name = "Joan Marcè i Igual"
+    signingkey = "B57766F5A401F867341B636942667CA965E20F39"
 
 # GitHub config sets the user.email to jmigual@noreply.users.github.com
 [includeIf "hasconfig:remote.*.url:*github.com:*/**"]
-	path = ~/.config/git/github.config
+    path = ~/.config/git/github.config
 [includeIf "hasconfig:remote.*.url:*://github.com/**"]
-	path = ~/.config/git/github.config
+    path = ~/.config/git/github.config
 
 [core]
-	autocrlf = false
 
-	# Always use LF as line endings
-	eol = "lf"
+{{- if eq .chezmoi.hostname "DELLJOANMARCE" }}
+    autocrlf = true
+{{- else }}
+    # Always use LF as line endings for non-work computer
+    autocrlf = false
+    eol = "lf"
+{{- end }}
 
-	# Use custom `.gitignore` and `.gitattributes`.
-	excludesfile = "~/.gitignore"
-	attributesfile = "~/.gitattributes"
+    # Use custom `.gitignore` and `.gitattributes`.
+    excludesfile = "~/.gitignore"
+    attributesfile = "~/.gitattributes"
 
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = "space-before-tab,-indent-with-non-tab,trailing-space"
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error.
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = "space-before-tab,-indent-with-non-tab,trailing-space"
 
-	# Make `git rebase` safer on macOS.
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
+    # Make `git rebase` safer on macOS.
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
 
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+    precomposeunicode = false
 
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
-	untrackedCache = true
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
 
-	ignorecase = false
+    ignorecase = false
+
 [init]
-	defaultBranch = "main"
+    defaultBranch = "main"
 
 [commit]
-	gpgsign = true
+    gpgsign = true
 
 [filter "lfs"]
-	clean = "git-lfs clean -- %f"
-	smudge = "git-lfs smudge -- %f"
-	process = "git-lfs filter-process"
-	required = true
+    clean = "git-lfs clean -- %f"
+    smudge = "git-lfs smudge -- %f"
+    process = "git-lfs filter-process"
+    required = true
 
 [color]
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = "auto"
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = "auto"
 
 [color "branch"]
-	current = "yellow reverse"
-	local = "yellow"
-	remote = "green"
+    current = "yellow reverse"
+    local = "yellow"
+    remote = "green"
 
 [color "diff"]
-	meta = "yellow bold"
-	frag = "magenta bold" # line info
-	old = "red" # deletions
-	new = "green" # additions
+    meta = "yellow bold"
+    frag = "magenta bold" # line info
+    old = "red" # deletions
+    new = "green" # additions
 
 [color "status"]
-	added = "green bold"
-	deleted = "red bold strike"
-	changed = "red bold"
-	untracked = "cyan"
-	branch = "yellow bold ul"
+    added = "green bold"
+    deleted = "red bold strike"
+    changed = "red bold"
+    untracked = "cyan"
+    branch = "yellow bold ul"
 
 
 [diff]
-	# Use better, descriptive initials (c, i, w) instead of a/b.
-	mnemonicPrefix = true
-	
-	# Detect copies as well as renames.
-	renames = "copies"
+    # Use better, descriptive initials (c, i, w) instead of a/b.
+    mnemonicPrefix = true
+    
+    # Detect copies as well as renames.
+    renames = "copies"
 
-	# Different coloring for moved lines
-	colorMoved = true
+    # Different coloring for moved lines
+    colorMoved = true
 
 [help]
-	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+    # Automatically correct and execute mistyped commands.
+    autocorrect = 1
 
 [fetch]
-	prune = true
+    prune = true
 
-	# Auto-fetch submodule changes (sadly, won't auto-update)
-	recurseSubmodules = "on-demand"
+    # Auto-fetch submodule changes (sadly, won't auto-update)
+    recurseSubmodules = "on-demand"
+
 [pull]
-	# VS Code messes a lot when this is "true", specially when pushing code
-	# that doesn't need to be pulled.
-	rebase = false
+    # VS Code messes a lot when this is "true", specially when pushing code
+    # that doesn't need to be pulled.
+    rebase = false
 
 [push]
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = "simple"
+    # https://git-scm.com/docs/git-config#git-config-pushdefault
+    default = "simple"
 
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
+    # Make `git push` push relevant annotated tags when pushing branches out.
+    followTags = true
 
 [tag]
-	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
-	sort = "version:refname"
+    # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+    sort = "version:refname"
 
 [versionsort]
-	prereleaseSuffix = "-pre"
-	prereleaseSuffix = ".pre"
-	prereleaseSuffix = "-beta"
-	prereleaseSuffix = ".beta"
-	prereleaseSuffix = "-rc"
-	prereleaseSuffix = ".rc"
+    prereleaseSuffix = "-pre"
+    prereleaseSuffix = ".pre"
+    prereleaseSuffix = "-beta"
+    prereleaseSuffix = ".beta"
+    prereleaseSuffix = "-rc"
+    prereleaseSuffix = ".rc"
 
 # Disable it for now as it is not compatible with all git implementations
 #[feature]
@@ -121,74 +127,77 @@
 
 # URL shorthands
 [url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
 
 [url "git://github.com/"]
-	insteadOf = "github:"
+    insteadOf = "github:"
 
 [url "git@gitlab.com:"]
-	insteadOf = "gl:"
-	pushInsteadOf = "gitlab:"
-	pushInsteadOf = "git://gitlab.com/"
+    insteadOf = "gl:"
+    pushInsteadOf = "gitlab:"
+    pushInsteadOf = "git://gitlab.com/"
 
 [url "git://gitlab.com"]
-	insteadOf = "gitlab:"
+    insteadOf = "gitlab:"
 
 [url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
 
 [url "git://gist.github.com/"]
-	insteadOf = "gist:"
+    insteadOf = "gist:"
 
 {{ if eq .chezmoi.os "windows" -}}
 [gpg]
-	program = "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"
-[core]
-	filemode = false
-	fsmonitor = true
-	longpaths = true
+    program = "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"
 
-	packedGitLimit = 512m
-	packedGitWindowSize = 512m
+[core]
+    filemode = false
+    fsmonitor = true
+    longpaths = true
+
+    packedGitLimit = 512m
+    packedGitWindowSize = 512m
 
 [pack]
-	deltaCacheSize = 2047m
-	packSizeLimit = 2047m
-	windowMemory = 2047m
+    deltaCacheSize = 2047m
+    packSizeLimit = 2047m
+    windowMemory = 2047m
 
-{{ $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" -}}
-{{ if glob $gitpath -}}
+{{- $gitpath := joinPath .chezmoi.homeDir "scoop/apps/mingit" -}}
+{{- if glob $gitpath -}}
+
 [http]
-	sslcainfo = {{$gitpath | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" | replace "\\" "\\\\" }}
+    sslcainfo = {{$gitpath | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" | replace "\\" "\\\\" }}
 {{- end}}
 {{- end}}
 
-{{ if and (lookPath "code") (contains "CLI" (output "code" "--version") | not) }}
-	# VSCode
-	editor = "code --wait"
+{{- if and (lookPath "code") (contains "CLI" (output "code" "--version") | not) }}
+
+[core]
+    # VSCode
+    editor = "code --wait"
 
 [diff]
-	# Use VSCode as default diff tool when running `git diff-tool`
-	tool = "vscode"
+    # Use VSCode as default diff tool when running `git diff-tool`
+    tool = "vscode"
 
 [difftool "vscode"]
-	cmd = "code --wait --diff $LOCAL $REMOTE"
+    cmd = "code --wait --diff $LOCAL $REMOTE"
 
 [merge]
-	tool = "vscode"
+    tool = "vscode"
 
 [mergetool "vscode"]
-	cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
+    cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
 {{- end}}
 
 # Specific common repos settings
 [credential "https://git.overleaf.com"]
-	provider = generic
+    provider = generic
 
 [alias]
-
-	lg = "log --all --decorate --graph --oneline"
+    lg = "log --all --decorate --graph --oneline"
