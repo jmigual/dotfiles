@@ -9,11 +9,6 @@
 #     }
 # }
 
-$PSModuleAutoLoadingPreference = 'None'
-
-Import-Module Microsoft.PowerShell.Utility
-Import-Module Microsoft.PowerShell.Management
-
 if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [version]"6.0.0")) {
     Invoke-Expression (&starship init powershell)
 
