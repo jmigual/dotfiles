@@ -181,15 +181,8 @@
     # VSCode
     editor = "code --wait"
 
-[diff]
-    # Use VSCode as default diff tool when running `git diff-tool`
-    tool = "vscode"
-
 [difftool "vscode"]
     cmd = "code --wait --diff $LOCAL $REMOTE"
-
-[merge]
-    tool = "vscode"
 
 [mergetool "vscode"]
     cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
