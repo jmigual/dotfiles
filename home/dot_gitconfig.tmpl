@@ -10,7 +10,7 @@
 
 [core]
 
-{{- if eq .chezmoi.hostname "DELLJOANMARCE" }}
+{{- if and (eq .chezmoi.hostname "DELLJOANMARCE") (eq .chezmoi.os "windows") }}
     autocrlf = true
 {{- else }}
     # Always use LF as line endings for non-work computer
