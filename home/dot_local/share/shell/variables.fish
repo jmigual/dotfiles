@@ -33,18 +33,25 @@ switch (uname -a)
         set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
         if cat /proc/version | grep -qi Microsoft;
-            set -x WIN_HOME (/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null; or true)
-            set -x WIN_HOME_WSL (wslpath "$WIN_HOME")
-            set -x WIN_GNUPG_HOME "$WIN_HOME\\AppData\\Roaming\\gnupg"
-            set -x WIN_GNUPG_HOME_WSL (wslpath -u "$WIN_GNUPG_HOME")
+            # Check if the cmd.exe and wslpath commands are available
+            set WIN_CMD_PATH "/mnt/c/Windows/System32/cmd.exe"
+            if command -v $WIN_CMD_PATH > /dev/null; and command -v wslpath > /dev/null
+                set -x WIN_HOME (/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null; or true)
+                set -x WIN_HOME_WSL (wslpath "$WIN_HOME")
 
-            # In my case they are the same
-            set -x WIN_AGENT_HOME "$WIN_GNUPG_HOME"
-            set -x WSL_AGENT_HOME "$WIN_GNUPG_HOME_WSL"
+                set -x WIN_GNUPG_HOME "$WIN_HOME\\AppData\\Roaming\\gnupg"
+                set -x WIN_GNUPG_HOME_WSL (wslpath -u "$WIN_GNUPG_HOME")
 
-            # Add specific entries from Windows (such as code, docker...) to PATH
-			fish_add_path --path --append "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
-            fish_add_path --path --append "/mnt/c/Program Files/Docker/Docker/resources/bin"
+                # In my case they are the same
+                set -x WIN_AGENT_HOME "$WIN_GNUPG_HOME"
+                set -x WSL_AGENT_HOME "$WIN_GNUPG_HOME_WSL"
+
+                # Add specific entries from Windows (such as code, docker...) to PATH
+                fish_add_path --path --append "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
+                fish_add_path --path --append "/mnt/c/Program Files/Docker/Docker/resources/bin"
+            else
+                echo "cmd.exe or wslpath is not available."
+            end
         else
             set -x GPG_TTY (tty)
         end
