@@ -99,12 +99,34 @@ function Env: { Set-Location Env: }
 
 # Creates drive shortcut for Work Folders, if current user account is using it
 function pj {
-    if ($args.Count -gt 0) {
-        Set-Location "$env:USERPROFILE\Projects\$args"
-    }
-    else {
+    if ($args.Count -eq 0) {
         Set-Location "$env:USERPROFILE\Projects\"
+        return;
     }
+
+    # Check if the fd command is in the path
+    $fdpath = Get-Command fd -ErrorAction SilentlyContinue
+    if ($fdpath) {
+        $projects = fd --type=d --max-depth=4 $args "$env:USERPROFILE\Projects"
+        $projectObjects = $projects | ForEach-Object {
+            [PSCustomObject]@{
+                Path  = $_
+                Depth = ($_.Split([System.IO.Path]::DirectorySeparatorChar).Length)
+                Len   = $_.Length
+            }
+        } | Sort-Object Depth, Len
+        $project = $projectObjects | Select-Object -First 1
+        if ($project) {
+            Set-Location $project.Path
+            return
+        }
+    }
+
+    if (-not (Test-Path "$env:USERPROFILE\Projects\$args")) {
+        Write-Host "Project $args not found in $env:USERPROFILE\Projects"
+        return;
+    }
+    Set-Location "$env:USERPROFILE\Projects\$args"
 }
 
 # Does the the rough equivalent of dir /s /b. For example, dirs *.png is dir /s /b *.png
