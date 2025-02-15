@@ -5,7 +5,7 @@ Repo containing my personal configuration files and environment. The files can b
 On Windows:
 
 ```pwsh
-'$params = "-b ~/.local/bin init --apply --force jmigual"', (irm https://chezmoi.io/get.ps1) | powershell -c -
+iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b '~/.local/bin' init --apply --force jmigual"
 ```
 
 On Linux/Unix:
