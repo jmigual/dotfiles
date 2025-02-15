@@ -61,6 +61,22 @@ function pj --description "Jump to a project"
 
     if test $argc -le 0
         cd "$PROJECTS_PATH"
+        return 0
+    end
+
+    if command -q fd
+        set -l projects (fd --type=d --max-depth=4 "$argv" "$PROJECTS_PATH")
+        if test (count $projects) -gt 0
+            # Sort by depth and minimum length in case of a tie and get the first one
+            set -l project (for p in $projects
+                set -l depth (count (string split '/' $p))
+                set -l len (string length $p)
+                echo "$depth $len $p"
+            end | sort -k1,2n | awk 'NR==1 { print $3 }')
+            
+            cd $project
+            return 0
+        end
     end
 
     set -l target "$PROJECTS_PATH/$argv"
@@ -73,8 +89,24 @@ function pj --description "Jump to a project"
 end
 
 function __project_basenames --description "List of project basenames"
+    if command -q fd
+        set -l projects (fd --type=d --max-depth=3 . "$PROJECTS_PATH")
+        set -l sorted_projects (for p in $projects
+            set -l contains_files (ls -A "$p" 2> /dev/null)
+            if test -z "$contains_files"
+                continue
+            end
+        
+            set -l depth (count (string split '/' $p))
+            set -l len (string length $p)
+            echo "$depth $len $p"
+        end | sort -k1,2n | awk '{ print $3 }' | xargs -n1 basename)
+        
+        echo $sorted_projects
+        return 0
+    end
+    
     set -l project_basenames
-
     for pp in $PROJECTS_PATH
         set -l contains_files (ls -A "$pp" 2> /dev/null)
         if test -n "$contains_files"
@@ -86,7 +118,7 @@ function __project_basenames --description "List of project basenames"
     echo $project_basenames
 end
 
-complete --command pj --no-files --arguments=(__project_basenames)
+complete --command pj --no-files --arguments=(__project_basenames) --keep-order
 
 if command -v pyenv &> /dev/null;
 	set -x PYENV_ROOT "$HOME/.pyenv"
