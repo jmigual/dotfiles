@@ -36,3 +36,4 @@ function update
 end
 
 alias doco="docker compose"
+alias bell="echo -e '\a'"
