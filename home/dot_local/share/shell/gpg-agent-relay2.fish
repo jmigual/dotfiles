@@ -19,6 +19,7 @@ function test_ssh_requirements
     echo >&2 "ERROR: ss is required to run this script. Install with apt install iproute2."
     return 1
   end
+  set wsl2_ssh_pageant_bin "$HOME/.ssh/wsl2-ssh-pageant.exe"
   if not command -v "$wsl2_ssh_pageant_bin" >/dev/null;
     echo >&2 "ERROR: $wsl2_ssh_pageant_bin is required to run this script."
     return 1
