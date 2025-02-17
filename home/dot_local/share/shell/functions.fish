@@ -91,6 +91,10 @@ end
 function __project_basenames --description "List of project basenames"
     if command -q fd
         set -l projects (fd --type=d --max-depth=3 . "$PROJECTS_PATH")
+        if test (count $projects) -le 0
+            return 0
+        end
+        
         set -l sorted_projects (for p in $projects
             set -l contains_files (ls -A "$p" 2> /dev/null)
             if test -z "$contains_files"
