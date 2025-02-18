@@ -9,6 +9,7 @@
 #     }
 # }
 
+# Enable some modules only if we are in an interactive session that supports them
 if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [version]"6.0.0")) {
     Invoke-Expression (&starship init powershell)
 
@@ -141,6 +142,33 @@ function dirs {
 
 function path {
     $env:PATH -split ";"
+}
+
+function doco {
+    docker compose $args
+}
+
+function bell {
+    Write-Output "`a"
+}
+
+# Check if the lsd command is defined and replace ls with it
+$lsdpath = Get-Command lsd -ErrorAction SilentlyContinue
+if ($lsdpath) {
+    Remove-Alias Alias:ls -ErrorAction SilentlyContinue
+    Set-Alias -Name ls -Value lsd
+
+    function ll {
+        lsd -lh $args
+    }
+
+    function la {
+        lsd -lah $args
+    }
+
+    function lt {
+        lsd --tree --depth 3 $args
+    }
 }
 
 $condapath = "$env:USERPROFILE\.local\share\Miniconda3\Scripts\conda.exe"
