@@ -11,6 +11,11 @@ switch (uname -s)
         end
 end
 
+# Check if WSL_DISTRO_NAME is missing or empty and add a default value otherwise
+if not set -q WSL_DISTRO_NAME
+    set -x WSL_DISTRO_NAME "Ubuntu"
+end
+
 set VSCODE_GUI false
 if command -vq code && code --version | string match -vq "*CLI*"
     set VSCODE_GUI true
