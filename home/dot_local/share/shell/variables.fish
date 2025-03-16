@@ -49,6 +49,7 @@ switch (uname -a)
                 # Add specific entries from Windows (such as code, docker...) to PATH
                 fish_add_path --path --append "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
                 fish_add_path --path --append "/mnt/c/Program Files/Docker/Docker/resources/bin"
+                fish_add_path --path --append "/mnt/wsl/docker-desktop/cli-tools/usr/bin/"
             else
                 echo "cmd.exe or wslpath is not available."
             end
