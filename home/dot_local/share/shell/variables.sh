@@ -46,6 +46,8 @@ case "$(uname -s)" in
 
 			# Add specific entries from Windows (such as code, docker...) to PATH
 			export PATH="${PATH}:${WIN_HOME_WSL}/AppData/Local/Programs/Microsoft VS Code/bin"
+			export PATH="${PATH}:/mnt/c/Program\ Files/Docker/Docker/resources/bin/"
+			export PATH="${PATH}:/mnt/wsl/docker-desktop/cli-tools/usr/bin/"
 		fi
 	    ;;
     Darwin*)    
