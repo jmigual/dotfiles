@@ -1,16 +1,20 @@
+{{- $isWorkLaptop := and (eq .chezmoi.hostname "DELLJOANMARCE") (eq .chezmoi.os "windows") -}}
+{{- $hasVsCode := and (lookPath "code") (contains "CLI" (output "code" "--version") | not) -}}
+
+# This file is managed by chezmoi. Do not edit it directly. Go to ~/.local/share/chezmoi to edit it.
+
 [user]
     name = "Joan Marcè i Igual"
     signingkey = "B57766F5A401F867341B636942667CA965E20F39"
 
-# GitHub config sets the user.email to jmigual@noreply.users.github.com
+# GitHub config sets the user.email to jmigual@users.noreply.github.com
 [includeIf "hasconfig:remote.*.url:*github.com:*/**"]
     path = ~/.config/git/github.config
 [includeIf "hasconfig:remote.*.url:*://github.com/**"]
     path = ~/.config/git/github.config
 
 [core]
-
-{{- if and (eq .chezmoi.hostname "DELLJOANMARCE") (eq .chezmoi.os "windows") }}
+{{ if $isWorkLaptop }}
     autocrlf = true
 {{- else }}
     # Always use LF as line endings for non-work computer
@@ -40,6 +44,20 @@
     untrackedCache = true
 
     ignorecase = false
+
+{{- if eq .chezmoi.os "windows" }}
+    filemode = false
+    fsmonitor = true
+    longpaths = true
+
+    packedGitLimit = 512m
+    packedGitWindowSize = 512m
+{{- end }}
+
+{{- if $hasVsCode }}
+    # Use VSCode as the default editor for Git.
+    editor = "code --wait"
+{{- end }}
 
 [init]
     defaultBranch = "main"
@@ -86,6 +104,11 @@
 
     # Different coloring for moved lines
     colorMoved = true
+
+{{- if $hasVsCode -}}
+    # Use VSCode as the default diff tool.
+    tool = "vscode"
+{{- end }}
 
 [help]
     # Automatically correct and execute mistyped commands.
@@ -154,14 +177,6 @@
 [gpg]
     program = "C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe"
 
-[core]
-    filemode = false
-    fsmonitor = true
-    longpaths = true
-
-    packedGitLimit = 512m
-    packedGitWindowSize = 512m
-
 [pack]
     deltaCacheSize = 2047m
     packSizeLimit = 2047m
@@ -172,21 +187,19 @@
 
 [http]
     sslcainfo = {{$gitpath | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" | replace "\\" "\\\\" }}
-{{- end}}
-{{- end}}
+{{- end }}
+{{- end }}
 
-{{- if and (lookPath "code") (contains "CLI" (output "code" "--version") | not) }}
-
-[core]
-    # VSCode
-    editor = "code --wait"
-
+{{- if $hasVsCode -}}
 [difftool "vscode"]
     cmd = "code --wait --diff $LOCAL $REMOTE"
 
 [mergetool "vscode"]
     cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
-{{- end}}
+
+[merge]
+    tool = "vscode"
+{{- end }}
 
 # Specific common repos settings
 [credential "https://git.overleaf.com"]
