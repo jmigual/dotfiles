@@ -1,5 +1,6 @@
 {{- $isWorkLaptop := and (eq .chezmoi.hostname "DELLJOANMARCE") (eq .chezmoi.os "windows") -}}
-{{- $hasVsCode := and (lookPath "code") (contains "CLI" (output "code" "--version") | not) -}}
+{{- $vsCodePath := lookPath "code" -}}
+{{- $hasVsCode := and $vsCodePath (contains "CLI" (output "code" "--version") | not) -}}
 
 # This file is managed by chezmoi. Do not edit it directly. Go to ~/.local/share/chezmoi to edit it.
 
@@ -94,6 +95,20 @@
     untracked = "cyan"
     branch = "yellow bold ul"
 
+{{ if $hasVsCode -}}
+[difftool "vscode"]
+    cmd = "code --wait --diff $LOCAL $REMOTE"
+    path = {{ $vsCodePath | quote}}
+
+[mergetool "vscode"]
+    cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
+    path = {{ $vsCodePath | quote }}
+
+[merge]
+    tool = vscode
+    guitool = vscode
+{{- end }}
+
 
 [diff]
     # Use better, descriptive initials (c, i, w) instead of a/b.
@@ -105,9 +120,10 @@
     # Different coloring for moved lines
     colorMoved = true
 
-{{- if $hasVsCode -}}
+{{- if $hasVsCode }}
     # Use VSCode as the default diff tool.
-    tool = "vscode"
+    tool = vscode
+    guitool = vscode
 {{- end }}
 
 [help]
@@ -187,17 +203,6 @@
 [http]
     sslcainfo = {{$gitpath | printf "%s\\current\\mingw64\\ssl\\certs\\ca-bundle.crt" | replace "\\" "\\\\" }}
 {{- end }}
-{{- end }}
-
-{{ if $hasVsCode -}}
-[difftool "vscode"]
-    cmd = "code --wait --diff $LOCAL $REMOTE"
-
-[mergetool "vscode"]
-    cmd = "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"
-
-[merge]
-    tool = "vscode"
 {{- end }}
 
 # Specific common repos settings
