@@ -27,6 +27,7 @@ if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [versi
         # Autocompletion for arrow keys
         Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
         Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+        Set-PSReadLineKeyHandler -Key 'Ctrl+d' -Function DeleteCharOrExit
 
         # Check if version 2.1.0 or higher and PowerShell version higher than 7.2 as AcceptSuggestion 
         # was added in that version
@@ -36,15 +37,9 @@ if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [versi
             Set-PSReadLineOption -PredictionSource HistoryAndPlugin
             
             # Accept suggestions
-            Set-PSReadlineKeyHandler -Chord "Ctrl+f" -Function AcceptSuggestion
-            Set-PSReadlineKeyHandler -Chord "Alt+f" -Function AcceptNextSuggestionWord
+            Set-PSReadlineKeyHandler -Key "Ctrl+f" -Function AcceptSuggestion
+            Set-PSReadlineKeyHandler -Key "Alt+f" -Function AcceptNextSuggestionWord
         }
-    }
-
-
-
-    if (Get-Module -ListAvailable -Name "Terminal-Icons") {
-        Import-Module -Name Terminal-Icons
     }
 
     if (Get-Module -ListAvailable -Name "PSFzf") {
