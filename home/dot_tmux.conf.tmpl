@@ -10,7 +10,7 @@ bind r source-file ~/.tmux.conf
 
 # Prevent copy mode from exiting automatically after selection
 unbind -T copy-mode-vi MouseDragEnd1Pane
-bind -T copy-mode-vi MouseDragEnd1Pane send -X stop-selection
+bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection-no-clear
 
 ######################
 ### DESIGN CHANGES ###
