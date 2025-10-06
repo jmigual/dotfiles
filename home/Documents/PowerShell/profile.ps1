@@ -9,6 +9,10 @@
 #     }
 # }
 
+# Uncomment the following line to enable script debugging
+# Set-PSDebug -Trace 2
+# Set-TraceSource -Name "ParameterBinding" -Option ExecutionFlow -PSHost -ListenerOption "DateTime"
+
 # Enable some modules only if we are in an interactive session that supports them
 if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [version]"6.0.0")) {
     Invoke-Expression (&starship init powershell)
@@ -183,3 +187,5 @@ if (Test-Path "$condapath") {
 if (Get-Command "fnm" -ErrorAction SilentlyContinue) {
     fnm env --use-on-cd | Out-String | Invoke-Expression
 }
+
+Set-PSDebug -Trace 0
