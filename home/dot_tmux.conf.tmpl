@@ -8,6 +8,10 @@ set -g mouse on
 # reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf
 
+# Prevent copy mode from exiting automatically after selection
+unbind -T copy-mode-vi MouseDragEnd1Pane
+bind -T copy-mode-vi MouseDragEnd1Pane send -X stop-selection
+
 ######################
 ### DESIGN CHANGES ###
 ######################
