@@ -17,16 +17,6 @@
 if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [version]"6.0.0")) {
     Invoke-Expression (&starship init powershell)
 
-    # Capture Starship's prompt implementation
-    $script:StarshipPrompt = (Get-Command prompt).ScriptBlock
-
-    function prompt {
-        # Force cursor to column 0 before Starship draws
-        [Console]::SetCursorPosition(0, [Console]::CursorTop)
-
-        # Call the original Starship prompt
-        & $script:StarshipPrompt
-    }
     $psmodule = Get-Module -ListAvailable -Name "PSReadLine"
     if ($psmodule) {
         Import-Module PSReadLine
