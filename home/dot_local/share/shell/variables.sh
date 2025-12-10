@@ -15,10 +15,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_STATE_HOME="${HOME}/.local/state"
-
-if locale -a | grep -Eiq "^C.UTF-?8"; then
-	export LC_ALL=C.UTF-8
-fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib:$HOME/.local/lib64"
 
 # colored GCC warnings and errors

@@ -22,10 +22,6 @@ if command -vq fd
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 end
 
-if locale -a | grep -Eiq "^C.UTF-?8";
-	set -x LC_ALL C.UTF-8
-end
-
 set -x --path LD_LIBRARY_PATH "$LD_LIBRARY_PATH" "$HOME/.local/lib" "$HOME/.local/lib64"
 
 switch (uname -a)
