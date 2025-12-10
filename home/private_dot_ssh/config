@@ -1,0 +1,6 @@
+Host pve3-bmc
+    HostName 192.168.1.18
+    User ADMIN
+    HostKeyAlgorithms +ssh-rsa
+    PubkeyAcceptedKeyTypes +ssh-rsa
+
