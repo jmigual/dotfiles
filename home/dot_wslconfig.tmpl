@@ -1,8 +1,10 @@
 [wsl2]
 {{- if eq .chezmoi.hostname "TUE036878" }}
 memory=10GB
-{{ else }}
+{{ else if eq .chezmoi.hostname "JOAN-TORRE-E" }}
 memory=10GB
+{{ else }}
+memory=6GB
 {{ end }}
 
 [experimental]
