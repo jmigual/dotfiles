@@ -28,7 +28,11 @@ function test_ssh_requirements
 end
 
 set -x SSH_AUTH_SOCK "$HOME/.ssh/agent.sock"
-if not ss -a | grep -q "$SSH_AUTH_SOCK";
+# Check if socket exists and is actually listening
+if test -S "$SSH_AUTH_SOCK" && ss -a | grep -q "$SSH_AUTH_SOCK";
+  # Socket exists and is active, do nothing
+else
+  # Socket is missing or stale, recreate it
   rm -f "$SSH_AUTH_SOCK"
   if test -x "$wsl2_ssh_pageant_bin";
     setsid nohup socat UNIX-LISTEN:"$SSH_AUTH_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin" >/dev/null 2>&1 &
@@ -38,7 +42,11 @@ if not ss -a | grep -q "$SSH_AUTH_SOCK";
 end
 
 set -x GPG_AGENT_SOCK "$HOME/.gnupg/S.gpg-agent"
-if not ss -a | grep -q "$GPG_AGENT_SOCK";
+# Check if socket exists and is actually listening
+if test -S "$GPG_AGENT_SOCK" && ss -a | grep -q "$GPG_AGENT_SOCK";
+  # Socket exists and is active, do nothing
+else
+  # Socket is missing or stale, recreate it
   rm -rf "$GPG_AGENT_SOCK"
   set wsl2_ssh_pageant_bin "$HOME/.ssh/wsl2-ssh-pageant.exe"
   if test -x "$wsl2_ssh_pageant_bin";
