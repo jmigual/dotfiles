@@ -61,7 +61,7 @@ if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [versi
 }
 
 # VSCode shell integration
-if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
+# if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
 
 # Useful shortcuts for traversing directories
 function .. { 
