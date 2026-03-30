@@ -21,6 +21,10 @@ if command -vq code && code --version | string match -vq "*CLI*"
     set VSCODE_GUI true
 end
 
+if command -vq fnm
+    fnm env --use-on-cd --shell fish | source
+end
+
 
 # Check for editor
 if $VSCODE_GUI
