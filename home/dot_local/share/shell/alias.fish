@@ -20,7 +20,7 @@ alias mkdir="mkdir -pv"
 
 alias tnew="tmux new-session -A -s main"
 
-function path
+function print-path
     string join \n $PATH
 end
 alias now='date +"%T"'
