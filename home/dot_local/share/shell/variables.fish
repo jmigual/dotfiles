@@ -63,3 +63,8 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.fish" ]
     fish_add_path --prepend --path "$HOME/.nix-profile/bin"
     source "$HOME/.nix-profile/etc/profile.d/nix.fish"
 end
+
+# If linuxbrew is there, add it
+if [ -e "/home/linuxbrew/.linuxbrew/bin"]
+    fish_add_path --path "/home/linuxbrew/.linuxbrew/bin"
+end
