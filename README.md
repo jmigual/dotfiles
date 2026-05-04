@@ -21,47 +21,46 @@ This will download chezmoi in the `~/.local/bin/` folder, initialize the reposit
 These are the list of packages recommended in a system and recommended install source (in parenthesis):
 
 - Windows:
-    - Required:
-        - [git](https://git-scm.com/) (winget)
-        - [7zip](https://www.7-zip.org/) (scoop)
-        - [starship](https://starship.rs/) (scoop)
-        - [PSReadLine](https://github.com/PowerShell/PSReadLine) (`Install-Module PSReadLine`)
-    - Recommended:
-        - [scoop](https://scoop.sh/): Package manager for windows that doesn't require admin rights
-        - less (scoop)
-        - [nodejs-lts](https://nodejs.org/) (scoop)
-        - [cmake](https://cmake.org/) (scoop)
-        - [fd](https://github.com/sharkdp/fd) (scoop): better `find` command
-        - [ripgrep](https://github.com/BurntSushi/ripgrep) (scoop): better `grep` command
-        - [bat](https://github.com/sharkdp/bat) (scoop): better `cat` command
-        - OpenSSH (winget)
-        - fzf (scoop)
-        - PowerShell modules:
-            - [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) (`Install-Module Terminal-Icons`)
-            - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module PSFzf`)
+  - Required:
+    - [git](https://git-scm.com/) (winget)
+    - [7zip](https://www.7-zip.org/) (scoop)
+    - [starship](https://starship.rs/) (scoop)
+    - [PSReadLine](https://github.com/PowerShell/PSReadLine) (`Install-Module PSReadLine`)
+  - Recommended:
+    - [scoop](https://scoop.sh/): Package manager for windows that doesn't require admin rights
+    - less (scoop)
+    - [nodejs-lts](https://nodejs.org/) (scoop)
+    - [cmake](https://cmake.org/) (scoop)
+    - [fd](https://github.com/sharkdp/fd) (scoop): better `find` command
+    - [ripgrep](https://github.com/BurntSushi/ripgrep) (scoop): better `grep` command
+    - [bat](https://github.com/sharkdp/bat) (scoop): better `cat` command
+    - OpenSSH (winget)
+    - fzf (scoop)
+    - PowerShell modules:
+      - [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) (`Install-Module Terminal-Icons`)
+      - [PSFzf](https://github.com/kelleyma49/PSFzf) (`Install-Module PSFzf`)
 - Linux / Unix:
-    - Required:
-        - [git](https://git-scm.com/)
-        - [fortune](https://github.com/shlomif/fortune-mod) (package manager or source)
-        - cowsay
-        - socat: Required for SSH with Gpg running on Windows
-        - ss (`apt install iproute2`): Idem
-        - [starship](https://starship.rs/) (cargo)
-    - Recommended:
-        - cargo (comes with [rust toolchain](https://www.rust-lang.org/tools/install))
-        - zsh 
-        - fish
-        - gcc
-        - ninja
-        - [cmake](https://cmake.org/download/) (source)
-        - [fd-find](https://github.com/sharkdp/fd) (cargo): better `find` command
-        - [ripgrep](https://github.com/BurntSushi/ripgrep) (cargo): better `grep` command
-        - [bat](https://github.com/sharkdp/bat) (cargo): better `cat` command
-        - [lsd](https://github.com/lsd-rs/lsd) (cargo): better `ls` command
-        - [flamegraph](https://github.com/flamegraph-rs/flamegraph) (cargo)
-        - pipx (pip)
-        - yt-dlp (pipx)
-
+  - Required:
+    - [git](https://git-scm.com/)
+    - [fortune](https://github.com/shlomif/fortune-mod) (package manager or source)
+    - cowsay
+    - socat: Required for SSH with Gpg running on Windows
+    - ss (`apt install iproute2`): Idem
+    - [starship](https://starship.rs/) (cargo)
+  - Recommended:
+    - cargo (comes with [rust toolchain](https://www.rust-lang.org/tools/install))
+    - zsh
+    - fish
+    - gcc
+    - ninja
+    - [cmake](https://cmake.org/download/) (source)
+    - [fd-find](https://github.com/sharkdp/fd) (cargo): better `find` command
+    - [ripgrep](https://github.com/BurntSushi/ripgrep) (cargo): better `grep` command
+    - [bat](https://github.com/sharkdp/bat) (cargo): better `cat` command
+    - [lsd](https://github.com/lsd-rs/lsd) (cargo): better `ls` command
+    - [flamegraph](https://github.com/flamegraph-rs/flamegraph) (cargo)
+    - pipx (pip)
+    - yt-dlp (pipx)
 
 ## SSH with Gpg
 
@@ -73,12 +72,20 @@ These are the list of packages recommended in a system and recommended install s
 - Delete environment variable `SSH_AUTH_SOCK` if set
 - Disable OpenSSH Authentication Agent service
 - Add the following lines to `%APPDATA%\gnupg\gpg-agent.conf`:
-```
+
+```config
 enable-putty-support
 enable-ssh-support
 enable-win32-openssh-support
 ```
+
 - Run `gpg -K --with-keygrip` and set the keygrip of the key to `%APPDATA%\gnupg\sshcontrol`. Make sure that the file has a single ending LF newline.
+
+### Linux
+
+- Import private key
+- List the keys with keygrip: `gpg -K --with-keygrip`
+- Mark the desired key as "Use-for-ssh": `gpg-connect-agent 'keyattr <auth keygrip> Use-for-ssh: true' /bye`
 
 ## Recommendations
 
