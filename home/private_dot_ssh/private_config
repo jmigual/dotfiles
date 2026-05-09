@@ -7,3 +7,6 @@ Host pve3-bmc
     User ADMIN
     HostKeyAlgorithms +ssh-rsa
     PubkeyAcceptedKeyTypes +ssh-rsa
+
+Host clouding-linux-dev
+    HostName 2e0d5064-1892-4ad3-bc9f-8bf49528243f.clouding.host
