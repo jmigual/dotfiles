@@ -1,11 +1,12 @@
+{{- /* Total host RAM in MiB (1 MiB = 1048576 bytes) */ -}}
+{{- $totalMiB := output "powershell" "-NoProfile" "-Command" "[math]::Floor((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1MB)" | trim | atoi -}}
+{{- /* Cap at min(30% of host RAM, 10 GiB) */ -}}
+{{- $memMiB := min (div (mul $totalMiB 30) 100) 10240 -}}
+{{- /* 1 core per 2 GiB of allocated memory, at least 1 */ -}}
+{{- $cores := max 1 (div $memMiB 2048) -}}
 [wsl2]
-{{- if eq .chezmoi.hostname "TUE036878" }}
-memory=10GB
-{{ else if eq .chezmoi.hostname "JOAN-TORRE-E" }}
-memory=10GB
-{{ else }}
-memory=6GB
-{{ end }}
+memory={{ $memMiB }}MB
+processors={{ $cores }}
 
 [experimental]
 autoMemoryReclaim=gradual
