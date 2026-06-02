@@ -96,3 +96,29 @@ Sometimes the home is set to `HOMESHARE` (e.g. `\\campushome\myuser`). To preven
 ```txt
 campushome 127.0.0.1
 ```
+
+## LLMs
+
+### MCPs
+
+Recommended MCPs for LLMs:
+
+- [Serena](https://github.com/oraios/serena). MCP with semantic access to files. Install with:
+
+    ```sh
+    uv tool install -p 3.13 serena-agent
+    serena init
+    ```
+
+- [Contex7](https://context7.com): MCP with documentation. Install with:
+
+    ```sh
+    npx ctx7 setup
+    ```
+
+- [rtk](https://github.com/rtk-ai/rtk): MCP for executing common known commands and save tokens. Install with:
+
+    ```sh
+    cargo install --git https://github.com/rtk-ai/rtk
+    rtk init -g
+    ```
