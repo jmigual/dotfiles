@@ -151,6 +151,10 @@ function bell {
     Write-Output "`a"
 }
 
+function Reset-Terminal {
+    [Console]::Write("`ec")
+}
+
 # Check if the lsd command is defined and replace ls with it
 $lsdpath = Get-Command lsd -ErrorAction SilentlyContinue
 if ($lsdpath) {
