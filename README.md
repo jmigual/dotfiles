@@ -122,3 +122,10 @@ Recommended MCPs for LLMs:
     cargo install --git https://github.com/rtk-ai/rtk
     rtk init -g
     ```
+
+- [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. Install with:
+
+    ```sh
+    npm i -g @colbymchenry/codegraph
+    codegraph install
+    ```
