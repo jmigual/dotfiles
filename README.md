@@ -99,6 +99,14 @@ campushome 127.0.0.1
 
 ## LLMs
 
+### Tools
+
+- [Claude](https://claude.ai/): LLM with a focus on safety and reliability. It is a good alternative to ChatGPT.
+
+    ```sh
+    curl -fsSL https://claude.ai/install.sh | bash
+    ```
+
 ### MCPs
 
 Recommended MCPs for LLMs:
