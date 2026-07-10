@@ -49,6 +49,11 @@ These are the list of packages recommended in a system and recommended install s
     - [starship](https://starship.rs/) (cargo)
   - Recommended:
     - cargo (comes with [rust toolchain](https://www.rust-lang.org/tools/install))
+
+      ```sh
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      ```
+
     - zsh
     - fish
     - gcc
