@@ -129,3 +129,9 @@ Recommended MCPs for LLMs:
     npm i -g @colbymchenry/codegraph
     codegraph install
     ```
+- [Ponytail](https://github.com/DietrichGebert/ponytail): Plugin to reduce amount of code written to a minimum that solves the issue. Run inside claude:
+
+    ```sh
+    /plugin marketplace add DietrichGebert/ponytail
+    /plugin install ponytail@ponytail
+    ```
