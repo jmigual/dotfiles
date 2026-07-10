@@ -21,10 +21,7 @@ if command -vq code && code --version | string match -vq "*CLI*"
     set VSCODE_GUI true
 end
 
-if command -vq fnm
-    fnm env --use-on-cd --shell fish | source
-end
-
+# fnm is loaded from conf.d/fnm.fish (runs for all shells, not just interactive)
 
 # Check for editor
 if $VSCODE_GUI

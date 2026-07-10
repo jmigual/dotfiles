@@ -107,7 +107,7 @@ Recommended MCPs for LLMs:
 
     ```sh
     uv tool install -p 3.13 serena-agent
-    serena init
+    serena setup claude-code
     ```
 
 - [Contex7](https://context7.com): MCP with documentation. Install with:
