@@ -3,8 +3,8 @@ set -x PATH_OLD $PATH
 set -x PATH "$HOME/.local/bin"
 
 fish_add_path --path --append "$HOME/.cargo/bin"
-
 fish_add_path --path --append "$HOME/.local/share/juliaup/bin"
+fish_add_path --path --append "$HOME/.dotnet/tools"
 
 # System user commands
 fish_add_path --path --append "/usr/local/bin" "/usr/local/share/bin"
