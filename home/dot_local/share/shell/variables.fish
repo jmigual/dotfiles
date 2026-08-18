@@ -15,6 +15,12 @@ fish_add_path --path --append "/usr/games" "/usr/local/games"
 
 set -x PAGER "less"
 
+# Locale picked by chezmoi at apply time (see locale.tmpl)
+set -l l C.UTF-8
+test -r "$HOME/.local/share/shell/locale"; and read l < "$HOME/.local/share/shell/locale"
+set -x LC_ALL $l
+set -x LANG $l
+
 # XDG variables
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_DATA_HOME "$HOME/.local/share"

@@ -17,6 +17,13 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_STATE_HOME="${HOME}/.local/state"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib:$HOME/.local/lib64"
 
+# Locale picked by chezmoi at apply time (see locale.tmpl)
+_l=C.UTF-8
+[ -r "${HOME}/.local/share/shell/locale" ] && read -r _l < "${HOME}/.local/share/shell/locale"
+export LC_ALL="$_l"
+export LANG="$_l"
+unset _l
+
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 

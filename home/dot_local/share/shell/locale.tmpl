@@ -1,0 +1,8 @@
+{{/* Best available UTF-8 locale, resolved at apply time and read by variables.sh/.fish.
+     glibc lists "en_GB.utf8", macOS "en_GB.UTF-8", so both sides are lowercased with
+     dashes stripped. Checks run worst-to-best preference so the best match wins last. */ -}}
+{{- $have := output "sh" "-c" "locale -a 2>/dev/null | tr -d '-' | tr '[:upper:]' '[:lower:]'" | splitList "\n" -}}
+{{- $locale := "C.UTF-8" -}}
+{{- if has "en_us.utf8" $have }}{{ $locale = "en_US.UTF-8" }}{{ end -}}
+{{- if has "en_gb.utf8" $have }}{{ $locale = "en_GB.UTF-8" }}{{ end -}}
+{{ $locale }}
