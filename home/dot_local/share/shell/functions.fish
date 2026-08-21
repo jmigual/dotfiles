@@ -143,3 +143,14 @@ function _fzf_compgen_dir
     fd --type d --hidden --follow --exclude ".git" . "$1"
 end
 
+function gpg-mode-ssh
+    systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY
+    gpgconf --kill gpg-agent
+    set -gx GPG_TTY (tty)
+    gpg-connect-agent updatestartuptty /bye
+end
+
+function gpg-mode-gui
+    systemctl --user set-environment DISPLAY=:1 WAYLAND_DISPLAY=wayland-0
+    gpgconf --kill gpg-agent
+end

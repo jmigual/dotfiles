@@ -4,7 +4,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 
 # PATH configuration
 PATH_OLD="${PATH}"
-export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/.local/share/juliaup/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin"
+export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/.local/share/juliaup/bin:${HOME}/.dotnet/tools:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin"
 export PATH="${PATH}:/usr/games:/usr/local/games"
 
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
@@ -16,6 +16,13 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_STATE_HOME="${HOME}/.local/state"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib:$HOME/.local/lib64"
+
+# Locale picked by chezmoi at apply time (see locale.tmpl)
+_l=C.UTF-8
+[ -r "${HOME}/.local/share/shell/locale" ] && read -r _l < "${HOME}/.local/share/shell/locale"
+export LC_ALL="$_l"
+export LANG="$_l"
+unset _l
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

@@ -3,8 +3,8 @@ set -x PATH_OLD $PATH
 set -x PATH "$HOME/.local/bin"
 
 fish_add_path --path --append "$HOME/.cargo/bin"
-
 fish_add_path --path --append "$HOME/.local/share/juliaup/bin"
+fish_add_path --path --append "$HOME/.dotnet/tools"
 
 # System user commands
 fish_add_path --path --append "/usr/local/bin" "/usr/local/share/bin"
@@ -14,6 +14,12 @@ fish_add_path --path --append "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
 fish_add_path --path --append "/usr/games" "/usr/local/games"
 
 set -x PAGER "less"
+
+# Locale picked by chezmoi at apply time (see locale.tmpl)
+set -l l C.UTF-8
+test -r "$HOME/.local/share/shell/locale"; and read l < "$HOME/.local/share/shell/locale"
+set -x LC_ALL $l
+set -x LANG $l
 
 # XDG variables
 set -x XDG_CONFIG_HOME "$HOME/.config"
