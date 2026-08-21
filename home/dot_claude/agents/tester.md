@@ -1,7 +1,7 @@
 ---
 name: tester
 description: Use to write or extend unit/integration tests, fill a coverage gap the reviewer surfaced, or verify a change by running the test suite and reporting results. Edit access, but restrict changes to test code. Knows the repo's test layout and conventions.
-tools: Read, Edit, Write, Grep, Glob, Bash
+tools: Read, Edit, Write, Grep, Glob, Bash, mcp__serena__activate_project, mcp__serena__get_symbols_overview, mcp__serena__find_symbol, mcp__serena__find_referencing_symbols, mcp__serena__find_declaration, mcp__serena__find_implementations, mcp__serena__get_diagnostics_for_file, mcp__context7__resolve-library-id, mcp__context7__query-docs
 model: sonnet
 ---
 

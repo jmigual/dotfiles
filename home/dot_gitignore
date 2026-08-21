@@ -9,3 +9,5 @@
 # clangd
 .cache/
 compile_commands.json
+
+**/.claude/settings.local.json
