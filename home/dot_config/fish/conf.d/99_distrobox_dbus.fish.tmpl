@@ -1,0 +1,12 @@
+{{/* Distrobox/Toolbx only: this container runs its own systemd user session, so
+     /run/user/$UID/bus is the *container's* bus, and its xdg-desktop-portal never
+     starts (no graphical-session.target in here). Portal clients then fall back to
+     spawning zenity, which steals pointer focus and panics winit-based apps. The
+     host's bus is bind-mounted under /run/host, so use that one instead.
+     Outside a container that path is absent, the template renders empty, and
+     chezmoi creates no file at all. */ -}}
+{{- $hostBus := printf "/run/host/run/user/%s/bus" .chezmoi.uid -}}
+{{- if stat $hostBus -}}
+# Container-local dbus has no portal; borrow the host's (see the chezmoi template).
+set -gx DBUS_SESSION_BUS_ADDRESS unix:path={{ $hostBus }}
+{{ end -}}
