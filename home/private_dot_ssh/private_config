@@ -1,3 +1,7 @@
+  Host co34.ics.ele.tue.nl
+    HostName co34.ics.ele.tue.nl
+    User jmigual
+
 Host server.marceigual.eu
     HostName server.marceigual.eu
     User jmigual
