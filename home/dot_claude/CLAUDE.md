@@ -1,5 +1,23 @@
 @RTK.md
 @coding-style.md
+@machine.md
+
+## Ambiguous Input
+If my message is empty, a bare `.`, or otherwise has no actionable request, ask what I want. Do NOT infer a task from the worktree name, branch name, or open issues.
+
+## Scope Discipline
+Implement exactly what was asked and nothing more. Never add DB columns, migrations, extra `SaveChangesAsync` calls, new abstractions, or new notation/comment conventions unless explicitly requested. If you believe a schema change or larger refactor is required, STOP and ask before writing code.
+
+## Commits & Signing
+Commits are GPG-signed, and the pinentry prompt can block or time out: a GUI popup (`pinentry-w32`) on Windows, a tty prompt on Linux where `export GPG_TTY=$(tty)` is the usual fix. If signing blocks, tell me immediately and retry once — do NOT silently skip `git commit` when I have asked you to commit and push.
+
+## GitLab / MR
+
+### Merge Request Descriptions
+MR descriptions must be short and factual: what changed, why, and the alternatives actually considered. No LLM-flavored prose, no marketing adjectives, no duplicated phases or filler sections. Before writing one, read the branch's commit history (`git log main..HEAD`) and any prior discussion so the description reflects the real design path. Never post extra comments on an MR unless I ask, and never set a reviewer I did not name.
+
+## Worktrees
+Work happens in git worktrees. Relative sibling-path lookups (e.g. Rauthy dev client secret, Aspire-generated Postgres credentials, `.env` files) break from a worktree — check for these before debugging application-level causes, and prefer a link to the main checkout — `ln -s` on Linux, `New-Item -ItemType Junction` on Windows.
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph
@@ -11,10 +29,6 @@ In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the re
 
 If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
 <!-- CODEGRAPH_END -->
-
-# graphify
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
 
 # workflows
 
