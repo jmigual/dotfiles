@@ -201,3 +201,9 @@
 
 [alias]
     lg = "log --all --decorate --graph --date-order \"--date=format-local:%F %R\" \"--pretty=tformat:%C(auto)%h %C(green)%ad %C(cyan)%ae %C(auto)%d %s\""
+
+# Machine-local overrides, not managed by chezmoi. Must stay last so it wins;
+# git ignores it where the file does not exist. The ai-dev container uses it
+# to sign with its own key instead of the one above.
+[include]
+    path = "~/.config/git/local"
