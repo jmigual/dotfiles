@@ -1,4 +1,4 @@
-{{- $isWorkLaptop := and (eq .chezmoi.hostname "DELLJOANMARCE") (eq .chezmoi.os "windows") -}}
+{{- $isWorkLaptop := and (eq .chezmoi.hostname "JOAN-XPS-9730") (eq .chezmoi.os "windows") -}}
 {{- $vsCodePath := lookPath "code" -}}
 {{- $hasVsCode := and $vsCodePath (contains "CLI" (output "code" "--version") | not) -}}
 
