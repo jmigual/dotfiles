@@ -16,6 +16,7 @@
 
 [core]
 {{ if $isWorkLaptop }}
+    # Clouding uses CRLF for their code and relies on it
     autocrlf = true
 {{- else }}
     # Always use LF as line endings for non-work computer
