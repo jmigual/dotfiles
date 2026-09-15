@@ -14,11 +14,20 @@ On Linux/Unix:
 sh -c "$(curl -fsLS chezmoi.io/get)" -- -b $HOME/.local/bin init --apply jmigual 
 ```
 
-This will download chezmoi in the `~/.local/bin/` folder, initialize the repository and apply the configuration. The configuration will be stored in the `~/.local/share/chezmoi` directory.
+This will download chezmoi in the `~/.local/bin/` folder, initialize the repository and apply the configuration. The configuration will be stored in the `~/.local/share/chezmoi` directory. `init` asks whether this is a work machine; answer again later with `chezmoi init` (or `chezmoi init --promptBool work=true`).
 
 ## Documentation
 
 - [Codex setup and configuration](docs/codex.md)
+
+## Tests
+
+The Codex templates have tests under `extra/tests`. `mise` provides `uv`, which fetches a suitable Python on its own:
+
+```sh
+mise install
+uv run python -m unittest discover -s extra/tests
+```
 
 ## Packages
 
@@ -29,6 +38,7 @@ These are the list of packages recommended in a system and recommended install s
     - [git](https://git-scm.com/) (winget)
     - [7zip](https://www.7-zip.org/) (scoop)
     - [starship](https://starship.rs/) (scoop)
+    - [mise](https://mise.jdx.dev/) (scoop): tool version manager, also provides `uv` for the repo tests
     - [PSReadLine](https://github.com/PowerShell/PSReadLine) (`Install-Module PSReadLine`)
   - Recommended:
     - [scoop](https://scoop.sh/): Package manager for windows that doesn't require admin rights
@@ -50,7 +60,7 @@ These are the list of packages recommended in a system and recommended install s
     - cowsay
     - socat: Required for SSH with Gpg running on Windows
     - ss (`apt install iproute2`): Idem
-    - [starship](https://starship.rs/) (cargo)
+    - [starship](https://starship.rs/) (installed to `~/.local/bin` by a chezmoi run-once script)
   - Recommended:
     - cargo (comes with [rust toolchain](https://www.rust-lang.org/tools/install))
 
@@ -58,6 +68,7 @@ These are the list of packages recommended in a system and recommended install s
       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
       ```
 
+    - [mise](https://mise.jdx.dev/) (`curl https://mise.run | sh`): tool version manager, also provides `uv` for the repo tests
     - zsh
     - fish
     - gcc
@@ -77,18 +88,11 @@ These are the list of packages recommended in a system and recommended install s
 
 - Install [Gpg4win](https://www.gpg4win.org/)
 - Import private key
-- Set environment variable `GIT_SSH` to `C:\Program Files\OpenSSH\ssh.exe`
 - Delete environment variable `SSH_AUTH_SOCK` if set
 - Disable OpenSSH Authentication Agent service
-- Add the following lines to `%APPDATA%\gnupg\gpg-agent.conf`:
-
-```config
-enable-putty-support
-enable-ssh-support
-enable-win32-openssh-support
-```
-
+- `chezmoi apply` already sets `GIT_SSH` and writes `%APPDATA%\gnupg\gpg-agent.conf` with the ssh/putty/win32-openssh support lines
 - Run `gpg -K --with-keygrip` and set the keygrip of the key to `%APPDATA%\gnupg\sshcontrol`. Make sure that the file has a single ending LF newline.
+- Start gpg-agent at logon: `pwsh extra/scripts/register_gpg_agent_task.ps1` (registers the task for the current user)
 
 ### Linux
 
@@ -136,7 +140,7 @@ Recommended MCPs for LLMs:
     serena setup claude-code
     ```
 
-- [Contex7](https://context7.com): MCP with documentation. Install with:
+- [Context7](https://context7.com): MCP with documentation. Install with:
 
     ```sh
     npx ctx7 setup

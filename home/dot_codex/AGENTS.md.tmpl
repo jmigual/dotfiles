@@ -1,4 +1,4 @@
-{{- $claude := include "dot_claude/CLAUDE.md" | replace "\r\n" "\n" -}}
+{{- $claude := includeTemplate "dot_claude/CLAUDE.md.tmpl" . | replace "\r\n" "\n" -}}
 {{ $claude | replace "@RTK.md\n" "" | replace "@coding-style.md\n" "" | replace "@machine.md\n" "" | trim }}
 
 ## Local Context

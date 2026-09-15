@@ -6,4 +6,4 @@ scoop install 7zip git
 scoop update
 scoop status
 scoop checkup
-scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+scoop install starship

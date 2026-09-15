@@ -14,10 +14,12 @@ CODEX = SOURCE / "dot_codex"
 CHEZMOI = shutil.which("chezmoi")
 
 
-def render(path, *, os_name="linux", home_dir="/home/test user", existing=""):
+def render(path, *, os_name="linux", home_dir="/home/test user", work=False,
+           existing=""):
     template = (
         '{{- $_ := set .chezmoi "os" ' + json.dumps(os_name) + ' -}}\n'
         '{{- $_ := set .chezmoi "homeDir" ' + json.dumps(home_dir) + ' -}}\n'
+        '{{- $_ := set . "work" ' + json.dumps(work) + ' -}}\n'
         + path.read_text(encoding="utf-8")
     )
     result = subprocess.run(
@@ -113,6 +115,15 @@ args = ["old-argument"]
         self.assertNotIn("@machine.md", instructions)
         self.assertNotIn("@coding-style.md", instructions)
         self.assertIn('"$ship"', render(CODEX / "skills/ship/SKILL.md.tmpl"))
+
+    def test_work_sections_only_render_on_work_machines(self):
+        for work, expected in ((False, self.assertNotIn), (True, self.assertIn)):
+            with self.subTest(work=work):
+                instructions = render(CODEX / "AGENTS.md.tmpl", work=work)
+                expected("## GitLab / MR", instructions)
+                expected("## Worktrees", instructions)
+                expected("SaveChangesAsync", instructions)
+                self.assertIn("## Scope Discipline", instructions)
 
     @unittest.skipUnless(shutil.which("node") and shutil.which("rtk"), "node and RTK required")
     def test_rtk_rewrites_and_leaves_already_wrapped_commands_alone(self):

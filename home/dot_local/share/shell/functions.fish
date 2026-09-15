@@ -122,7 +122,7 @@ function __project_basenames --description "List of project basenames"
     echo $project_basenames
 end
 
-complete --command pj --no-files --arguments=(__project_basenames) --keep-order
+complete --command pj --no-files --arguments='(__project_basenames)' --keep-order
 
 if command -v pyenv &> /dev/null;
 	set -x PYENV_ROOT "$HOME/.pyenv"

@@ -32,6 +32,3 @@ elif command -v vim &> /dev/null; then
 	export VISUAL="vim"
 fi
 export EDITOR="${VISUAL}"
-
-# VS Code shell integration
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path bash)"

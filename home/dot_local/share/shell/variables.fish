@@ -1,17 +1,22 @@
-set -x PATH_OLD $PATH
+# PATH configuration. The reset drops whatever the environment appended (WSL adds
+# the whole Windows PATH), so it only runs in the outermost shell: nested ones
+# (nix develop, venvs, distrobox...) must keep what their parent added.
+if not set -q PATH_OLD
+    set -x PATH_OLD $PATH
 
-set -x PATH "$HOME/.local/bin"
+    set -x PATH "$HOME/.local/bin"
 
-fish_add_path --path --append "$HOME/.cargo/bin"
-fish_add_path --path --append "$HOME/.local/share/juliaup/bin"
-fish_add_path --path --append "$HOME/.dotnet/tools"
+    fish_add_path --path --append "$HOME/.cargo/bin"
+    fish_add_path --path --append "$HOME/.local/share/juliaup/bin"
+    fish_add_path --path --append "$HOME/.dotnet/tools"
 
-# System user commands
-fish_add_path --path --append "/usr/local/bin" "/usr/local/share/bin"
-# System commands
-fish_add_path --path --append "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
-# Games
-fish_add_path --path --append "/usr/games" "/usr/local/games"
+    # System user commands
+    fish_add_path --path --append "/usr/local/bin" "/usr/local/share/bin"
+    # System commands
+    fish_add_path --path --append "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
+    # Games
+    fish_add_path --path --append "/usr/games" "/usr/local/games"
+end
 
 set -x PAGER "less"
 
@@ -32,7 +37,8 @@ if command -vq fd
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 end
 
-set -x --path LD_LIBRARY_PATH "$LD_LIBRARY_PATH" "$HOME/.local/lib" "$HOME/.local/lib64"
+# Unquoted so an unset LD_LIBRARY_PATH contributes nothing (a "" entry means CWD)
+set -x --path LD_LIBRARY_PATH $LD_LIBRARY_PATH "$HOME/.local/lib" "$HOME/.local/lib64"
 
 switch (uname -a)
     case "Linux*"
@@ -45,17 +51,10 @@ switch (uname -a)
                 set -x WIN_HOME (/mnt/c/Windows/System32/cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null; or true)
                 set -x WIN_HOME_WSL (wslpath "$WIN_HOME")
 
-                set -x WIN_GNUPG_HOME "$WIN_HOME\\AppData\\Roaming\\gnupg"
-                set -x WIN_GNUPG_HOME_WSL (wslpath -u "$WIN_GNUPG_HOME")
-
-                # In my case they are the same
-                set -x WIN_AGENT_HOME "$WIN_GNUPG_HOME"
-                set -x WSL_AGENT_HOME "$WIN_GNUPG_HOME_WSL"
-
                 # Add specific entries from Windows (such as code, docker...) to PATH
                 fish_add_path --path --append "$WIN_HOME_WSL/AppData/Local/Programs/Microsoft VS Code/bin"
-                fish_add_path --path --append "/mnt/c/Program\ Files/Docker/Docker/resources/bin/"
-                fish_add_path --path --append "/mnt/wsl/docker-desktop/cli-tools/usr/bin/"
+                fish_add_path --path --append "/mnt/c/Program Files/Docker/Docker/resources/bin"
+                fish_add_path --path --append "/mnt/wsl/docker-desktop/cli-tools/usr/bin"
             else
                 echo "cmd.exe or wslpath is not available."
             end
@@ -70,7 +69,9 @@ if [ -e "$HOME/.nix-profile/etc/profile.d/nix.fish" ]
     source "$HOME/.nix-profile/etc/profile.d/nix.fish"
 end
 
-# If linuxbrew is there, add it
+# If homebrew is there, add it
 if [ -e "/home/linuxbrew/.linuxbrew/bin" ]
     fish_add_path --path "/home/linuxbrew/.linuxbrew/bin"
+else if [ -e "/opt/homebrew/bin" ]
+    fish_add_path --path "/opt/homebrew/bin"
 end

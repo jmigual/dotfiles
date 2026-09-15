@@ -51,11 +51,13 @@ alias edit='vim'
 alias fastping='ping -c 100 -s.2'
 
 # Apt aliases
-alias update="sudo apt update && sudo apt upgrade -y"
+if command -v apt-get > /dev/null 2>&1; then
+    alias update="sudo apt update && sudo apt upgrade -y"
+fi
 
 # Youtube aliases
-alias yt='cd $HOME/Downloads; youtube-dl'
-alias yt3='cd $HOME/Downloads; youtube-dl --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
+alias yt='cd $HOME/Downloads; yt-dlp'
+alias yt3='cd $HOME/Downloads; yt-dlp --embed-thumbnail --add-metadata --extract-audio --audio-format m4a'
 
 # alias fd="find . -type d -name"
 # alias ff="find . -type f -name"

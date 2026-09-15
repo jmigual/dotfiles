@@ -1,0 +1,9 @@
+# Runner for extra/tests (stdlib only; tomllib needs Python 3.11+).
+# Usage: mise install && uv run python -m unittest discover -s extra/tests
+[project]
+name = "dotfiles-tests"
+version = "0"
+requires-python = ">=3.11"
+
+[tool.uv]
+package = false

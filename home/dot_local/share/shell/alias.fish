@@ -31,8 +31,10 @@ alias vi="vim"
 
 alias fastping="ping -c 100 -s 0.2"
 
-function update
-    sudo apt update && sudo apt upgrade -y
+if command -q apt-get
+    function update
+        sudo apt update && sudo apt upgrade -y
+    end
 end
 
 alias doco="docker compose"

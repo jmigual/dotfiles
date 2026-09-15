@@ -6,11 +6,12 @@
 If my message is empty, a bare `.`, or otherwise has no actionable request, ask what I want. Do NOT infer a task from the worktree name, branch name, or open issues.
 
 ## Scope Discipline
-Implement exactly what was asked and nothing more. Never add DB columns, migrations, extra `SaveChangesAsync` calls, new abstractions, or new notation/comment conventions unless explicitly requested. If you believe a schema change or larger refactor is required, STOP and ask before writing code.
+Implement exactly what was asked and nothing more. Never add {{ if .work }}DB columns, migrations, extra `SaveChangesAsync` calls, {{ end }}new abstractions, or new notation/comment conventions unless explicitly requested. If you believe a schema change or larger refactor is required, STOP and ask before writing code.
 
 ## Commits & Signing
 Commits are GPG-signed, and the pinentry prompt can block or time out: a GUI popup (`pinentry-w32`) on Windows, a tty prompt on Linux where `export GPG_TTY=$(tty)` is the usual fix. If signing blocks, tell me immediately and retry once — do NOT silently skip `git commit` when I have asked you to commit and push.
 
+{{ if .work -}}
 ## GitLab / MR
 
 ### Merge Request Descriptions
@@ -19,6 +20,7 @@ MR descriptions must be short and factual: what changed, why, and the alternativ
 ## Worktrees
 Work happens in git worktrees. Relative sibling-path lookups (e.g. Rauthy dev client secret, Aspire-generated Postgres credentials, `.env` files) break from a worktree — check for these before debugging application-level causes, and prefer a link to the main checkout — `ln -s` on Linux, `New-Item -ItemType Junction` on Windows.
 
+{{ end -}}
 <!-- CODEGRAPH_START -->
 ## CodeGraph
 

@@ -1,0 +1,7 @@
+{{- /* Rendered by `chezmoi init`; re-run it to answer the prompts again. */ -}}
+{{- $work := promptBoolOnce . "work" "Work machine" -}}
+[data]
+    work = {{ $work }}
+
+[diff]
+    exclude = ["scripts"]

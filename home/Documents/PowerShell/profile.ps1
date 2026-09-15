@@ -158,7 +158,7 @@ function Reset-Terminal {
 # Check if the lsd command is defined and replace ls with it
 $lsdpath = Get-Command lsd -ErrorAction SilentlyContinue
 if ($lsdpath) {
-    Remove-Alias Alias:ls -ErrorAction SilentlyContinue
+    Remove-Alias -Name ls -ErrorAction SilentlyContinue
     Set-Alias -Name ls -Value lsd
 
     function ll {
@@ -174,20 +174,11 @@ if ($lsdpath) {
     }
 }
 
-$condapath = "$env:USERPROFILE\.local\share\Miniconda3\Scripts\conda.exe"
-
-if (Test-Path "$condapath") {
-    #region conda initialize
-    # !! Contents within this block are managed by 'conda init' !!
-    # (& "$condapath" "shell.powershell" "hook") | Out-String | Invoke-Expression
-    #endregion
-}
-
 if (Get-Command "fnm" -ErrorAction SilentlyContinue) {
     fnm env --use-on-cd | Out-String | Invoke-Expression
 }
 
-$env:MISE_ACTIVATE_AGGRESSIVE = "1"
-mise activate pwsh | Out-String | Invoke-Expression
-
-Set-PSDebug -Trace 0
+if (Get-Command "mise" -ErrorAction SilentlyContinue) {
+    $env:MISE_ACTIVATE_AGGRESSIVE = "1"
+    mise activate pwsh | Out-String | Invoke-Expression
+}

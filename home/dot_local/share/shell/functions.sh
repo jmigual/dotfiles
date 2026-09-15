@@ -6,7 +6,7 @@ function up {
         cd ..
     else
         CDSTR=""
-        for i in {1..$1} ; do
+        for i in $(seq 1 "$1") ; do
             CDSTR="../${CDSTR}"
         done
 	    echo "${CDSTR}"
