@@ -187,4 +187,7 @@ if (Get-Command "fnm" -ErrorAction SilentlyContinue) {
     fnm env --use-on-cd | Out-String | Invoke-Expression
 }
 
+$env:MISE_ACTIVATE_AGGRESSIVE = "1"
+mise activate pwsh | Out-String | Invoke-Expression
+
 Set-PSDebug -Trace 0
