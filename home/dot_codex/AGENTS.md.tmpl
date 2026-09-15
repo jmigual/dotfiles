@@ -1,0 +1,26 @@
+{{- $claude := include "dot_claude/CLAUDE.md" | replace "\r\n" "\n" -}}
+{{ $claude | replace "@RTK.md\n" "" | replace "@coding-style.md\n" "" | replace "@machine.md\n" "" | trim }}
+
+## Local Context
+
+If `~/.codex/machine.md` exists, read it for machine-local notes. It is intentionally
+not synchronized. Discover the current home directory, operating system, shell,
+available tools, and repository paths instead of assuming a particular machine.
+
+## Attribution
+
+Do not add AI co-author trailers, generated-by text, or session links to commits or
+pull/merge requests unless I explicitly ask for them.
+
+## RTK
+
+When installed, RTK's Codex hook rewrites supported shell commands to reduce output.
+Use `rtk gain` for statistics and `rtk proxy <command>` when unfiltered output is needed.
+Do not assume Claude's hook configuration applies to Codex.
+
+## Context7
+
+For external library/framework documentation, use Context7 when it is available.
+{{ include "dot_codex/context7.md" | trim }}
+
+{{ include "dot_claude/coding-style.md" | replace "`CLAUDE.md`" "`AGENTS.md` (or legacy `CLAUDE.md`)" | trim }}

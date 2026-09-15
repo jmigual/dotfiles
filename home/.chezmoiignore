@@ -23,3 +23,17 @@ AppData/Roaming/gnupg/gpg-agent.conf
 .zshrc
 starship_install.sh
 {{ end }}
+
+# Codex credentials, runtime data, and machine-local notes are never synchronized.
+.codex/auth.json
+.codex/machine.md
+.codex/backups/
+.codex/.sandbox*/
+.codex/*.sqlite*
+.codex/cap_sid
+.codex/history.jsonl
+.codex/session_index.jsonl
+.codex/sessions/
+.codex/memories/
+.codex/plugins/
+.codex/rules/

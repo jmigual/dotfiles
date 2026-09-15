@@ -1,0 +1,17 @@
+{{- $source := include .source | replace "\r\n" "\n" -}}
+{{- $parts := splitList "\n---\n" $source -}}
+{{- $meta := index $parts 0 | trimPrefix "---\n" | fromYaml -}}
+{{- $body := slice $parts 1 | join "\n---\n" | trim -}}
+{{- $body = $body | replace ".claude/agents/" ".codex/agents/" | replace "CLAUDE.md" "AGENTS.md (or legacy CLAUDE.md)" | replace "`Task`" "`spawn_agent`" | replace "`TodoWrite`" "the plan-tracking tool" -}}
+{{- $agent := dict "name" $meta.name "description" $meta.description "developer_instructions" $body -}}
+{{- if eq $meta.model "sonnet" -}}
+{{-   $_ := set $agent "model" "gpt-5.6-terra" -}}
+{{-   $_ := set $agent "model_reasoning_effort" "high" -}}
+{{- else if eq $meta.model "opus" -}}
+{{-   $_ := set $agent "model" "gpt-6-astra" -}}
+{{-   $_ := set $agent "model_reasoning_effort" "xhigh" -}}
+{{- end -}}
+{{- if eq $meta.name "reviewer" -}}
+{{-   $_ := set $agent "sandbox_mode" "read-only" -}}
+{{- end -}}
+{{ $agent | toToml }}

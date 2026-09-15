@@ -16,6 +16,10 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- -b $HOME/.local/bin init --apply jmigual
 
 This will download chezmoi in the `~/.local/bin/` folder, initialize the repository and apply the configuration. The configuration will be stored in the `~/.local/share/chezmoi` directory.
 
+## Documentation
+
+- [Codex setup and configuration](docs/codex.md)
+
 ## Packages
 
 These are the list of packages recommended in a system and recommended install source (in parenthesis):
@@ -103,6 +107,15 @@ campushome 127.0.0.1
 ```
 
 ## LLMs
+
+### Codex
+
+Portable Codex settings, agents, skills, and hooks are managed under `home/dot_codex`.
+Apply them with:
+
+```sh
+chezmoi apply --exclude=scripts ~/.codex
+```
 
 ### Tools
 

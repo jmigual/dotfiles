@@ -1,0 +1,42 @@
+model_reasoning_effort = "xhigh"
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+sandbox_mode = "workspace-write"
+project_doc_fallback_filenames = ["CLAUDE.md"]
+
+[features]
+hooks = true
+
+[mcp_servers.serena]
+command = "serena"
+args = ["start-mcp-server", "--context=codex", "--project-from-cwd", "--open-web-dashboard=false"]
+startup_timeout_sec = 60
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+env_http_headers = { CONTEXT7_API_KEY = "CONTEXT7_API_KEY" }
+
+[mcp_servers.playwright]
+{{ if eq .chezmoi.os "windows" -}}
+command = "cmd"
+args = ["/d", "/c", "npx", "-y", "@playwright/mcp@latest"]
+{{ else -}}
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+{{ end -}}
+startup_timeout_sec = 60
+
+[mcp_servers.codegraph]
+{{ if eq .chezmoi.os "windows" -}}
+command = "cmd"
+args = ["/d", "/c", "codegraph", "serve", "--mcp"]
+{{ else -}}
+command = "codegraph"
+args = ["serve", "--mcp"]
+{{ end -}}
+default_tools_approval_mode = "approve"
+
+{{ if eq .chezmoi.os "windows" -}}
+[windows]
+sandbox = "elevated"
+{{ end -}}

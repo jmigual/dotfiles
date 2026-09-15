@@ -1,0 +1,16 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $local := fromToml .chezmoi.stdin | default dict -}}
+{{- $shared := includeTemplate "codex/config.toml.tmpl" . | fromToml -}}
+{{- if not (hasKey $local "model") -}}
+{{-   $_ := set $local "model" "gpt-6-astra" -}}
+{{- end -}}
+{{- /* Replace migrated MCP definitions, preserving unrelated local servers. */ -}}
+{{- $servers := get $local "mcp_servers" | default dict -}}
+{{- $_ := unset $servers "serena-2" -}}
+{{- $_ := unset $servers "contex7-2" -}}
+{{- range $name, $server := $shared.mcp_servers -}}
+{{-   $_ := set $servers $name $server -}}
+{{- end -}}
+{{- $_ := set $local "mcp_servers" $servers -}}
+{{- $_ := unset $shared "mcp_servers" -}}
+{{ mergeOverwrite $local $shared | toToml }}
