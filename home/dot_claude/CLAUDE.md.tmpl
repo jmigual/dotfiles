@@ -11,6 +11,8 @@ Implement exactly what was asked and nothing more. Never add {{ if .work }}DB co
 ## Commits & Signing
 Commits are GPG-signed, and the pinentry prompt can block or time out: a GUI popup (`pinentry-w32`) on Windows, a tty prompt on Linux where `export GPG_TTY=$(tty)` is the usual fix. If signing blocks, tell me immediately and retry once — do NOT silently skip `git commit` when I have asked you to commit and push.
 
+Split a branch into small, reviewable commits: one logical unit each (for example a Core helper with its tests, then the command that uses it), every commit building and passing tests on its own. Never one big commit per branch; when a csproj or manifest gains entries for several commits, stage only the lines that belong to each one.
+
 {{ if .work -}}
 ## GitLab / MR
 
