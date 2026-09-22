@@ -24,7 +24,7 @@ each machine, restart it after applying, and review new or changed hooks in `/ho
 - Global instructions and coding style, rendered into `~/.codex/AGENTS.md` from the
   existing Claude source files. Context7 guidance and no-attribution preferences
   are included. Legacy project `CLAUDE.md` files remain a fallback for `AGENTS.md`.
-- Seven native Codex agents, rendered from the Claude agents. Opus roles use
+- Four native Codex agents, rendered from the Claude agents. Opus roles use
   `gpt-6-astra` with xhigh effort; Sonnet roles use `gpt-5.6-terra` with high effort;
   inherit roles keep the parent model. The reviewer requests a read-only sandbox.
   Claude tool allowlists become role instructions, not equivalent Codex tool ACLs.
