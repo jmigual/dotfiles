@@ -2,5 +2,3 @@
 
 git:
   parseEmoji: true
-  commit:
-    signOff: true
