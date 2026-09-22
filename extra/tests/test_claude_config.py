@@ -29,6 +29,7 @@ class ClaudeAgentTests(unittest.TestCase):
                 self.assertEqual(deep_meta["model"], "opus")
                 self.assertEqual(deep_meta["effort"], "xhigh")
                 self.assertEqual(deep_meta["tools"], base_meta["tools"])
+                self.assertEqual(deep_meta.get("isolation"), base_meta.get("isolation"))
                 self.assertIn(base_meta["description"], deep_meta["description"])
                 self.assertEqual(deep_body, base_body)
 

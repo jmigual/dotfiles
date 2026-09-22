@@ -9,6 +9,9 @@ description: {{ printf "Opus xhigh-effort escalation of `%s` for long-running, c
 tools: {{ $meta.tools }}
 model: opus
 effort: xhigh
+{{- if hasKey $meta "isolation" }}
+isolation: {{ $meta.isolation }}
+{{- end }}
 ---
 
 {{ $body }}
