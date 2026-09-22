@@ -2,7 +2,7 @@
 {{- $local := fromToml .chezmoi.stdin | default dict -}}
 {{- $shared := includeTemplate "codex/config.toml.tmpl" . | fromToml -}}
 {{- if not (hasKey $local "model") -}}
-{{-   $_ := set $local "model" "gpt-6-astra" -}}
+{{-   $_ := set $local "model" "gpt-5.6-sol" -}}
 {{- end -}}
 {{- /* Replace migrated MCP definitions, preserving unrelated local servers. */ -}}
 {{- $servers := get $local "mcp_servers" | default dict -}}

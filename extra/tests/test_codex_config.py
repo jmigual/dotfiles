@@ -45,7 +45,7 @@ class CodexConfigTests(unittest.TestCase):
                 text = render(CODEX / "modify_private_config.toml",
                               os_name=os_name, home_dir=home_dir)
                 config = tomllib.loads(text)
-                self.assertEqual(config["model"], "gpt-6-astra")
+                self.assertEqual(config["model"], "gpt-5.6-sol")
                 self.assertEqual(config["sandbox_mode"], "workspace-write")
                 self.assertEqual(set(config["mcp_servers"]),
                                  {"serena", "context7", "playwright", "codegraph"})
@@ -107,6 +107,7 @@ args = ["old-argument"]
         self.assertEqual(len(agents), 4)
         self.assertEqual(agents["reviewer"]["sandbox_mode"], "read-only")
         self.assertEqual(agents["coder"]["model"], "gpt-5.6-terra")
+        self.assertEqual(agents["coder"]["model_reasoning_effort"], "high")
         self.assertNotIn("model", agents["architect"])
         instructions = render(CODEX / "AGENTS.md.tmpl")
         self.assertIn("# Coding style guide", instructions)

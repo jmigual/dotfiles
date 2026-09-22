@@ -25,7 +25,7 @@ each machine, restart it after applying, and review new or changed hooks in `/ho
   existing Claude source files. Context7 guidance and no-attribution preferences
   are included. Legacy project `CLAUDE.md` files remain a fallback for `AGENTS.md`.
 - Four native Codex agents, rendered from the Claude agents. Opus roles use
-  `gpt-6-astra` with xhigh effort; Sonnet roles use `gpt-5.6-terra` with high effort;
+  `gpt-5.6-sol` and Sonnet roles `gpt-5.6-terra`, each at the effort the Claude agent declares;
   inherit roles keep the parent model. The reviewer requests a read-only sandbox.
   Claude tool allowlists become role instructions, not equivalent Codex tool ACLs.
 - The `ship` skill (invoke as `$ship`) and a Codex-specific `setup-serena` skill.
@@ -40,7 +40,7 @@ each machine, restart it after applying, and review new or changed hooks in `/ho
 shared preferences and the four managed MCP definitions into the current local
 config. It preserves the selected main model, other MCP servers, app plugin
 registrations, runtime paths, notifications, project trust, and hook trust state
-without copying them into Git. A new machine defaults to `gpt-6-astra`.
+without copying them into Git. A new machine defaults to `gpt-5.6-sol`.
 
 Shared reasoning, approval, and sandbox settings are managed by
 [config.toml.tmpl](../home/.chezmoitemplates/codex/config.toml.tmpl).
