@@ -10,7 +10,31 @@
   "permissions": {"defaultMode": "auto"},
   "worktree": {"baseRef": "head"},
   "dialogExpiry": "never",
-  "autoUpdatesChannel": "latest"
+  "autoUpdatesChannel": "latest",
+  "env": {"ENABLE_CLAUDEAI_MCP_SERVERS": "false"},
+  "enabledPlugins": {
+    "engineering@synced": false,
+    "cowork-plugin-management@synced": false,
+    "frontend-design@claude-plugins-official": false,
+    "playwright@claude-plugins-official": true,
+    "understand-anything@understand-anything": false
+  },
+  "skillOverrides": {
+    "context7-mcp": "off",
+    "claude-api": "off",
+    "anthropic-skills:built-in-browser": "off",
+    "anthropic-skills:chrome-browser": "off",
+    "anthropic-skills:computer-use": "off",
+    "anthropic-skills:deep-research": "off",
+    "anthropic-skills:docs": "off",
+    "anthropic-skills:docx": "off",
+    "anthropic-skills:import-memory": "off",
+    "anthropic-skills:morning": "off",
+    "anthropic-skills:pdf": "off",
+    "anthropic-skills:pptx": "off",
+    "anthropic-skills:skill-creator": "off",
+    "anthropic-skills:xlsx": "off"
+  }
 }` -}}
 {{- /* Managed hooks replace local entries with the same command; other local hooks are kept. */ -}}
 {{- $managedHooks := fromJson `{

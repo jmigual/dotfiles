@@ -22,7 +22,7 @@ This will download chezmoi in the `~/.local/bin/` folder, initialize the reposit
 
 ## Tests
 
-The Codex templates have tests under `extra/tests`. `mise` provides `uv`, which fetches a suitable Python on its own:
+The Claude Code and Codex templates have tests under `extra/tests`. `mise` provides `uv`, which fetches a suitable Python on its own:
 
 ```sh
 mise install
@@ -112,6 +112,19 @@ campushome 127.0.0.1
 
 ## LLMs
 
+### Claude Code
+
+Claude Code's instructions (`CLAUDE.md`, `coding-style.md`), agents, skills, and settings are managed under `home/dot_claude`.
+`settings.json` is a modify template: it merges the shared keys (model, effort, auto mode, hooks, plugin toggles, claude.ai connectors disabled) and keeps everything else local.
+`~/.claude/machine.md` and `~/.claude/RTK.md` (written by `rtk init -g`) are machine-local.
+Apply them with:
+
+```sh
+chezmoi apply --exclude=scripts ~/.claude
+```
+
+Plugins are only toggled by the settings; install them once per machine (see [MCPs and plugins](#mcps-and-plugins)).
+
 ### Codex
 
 Portable Codex settings, agents, skills, and hooks are managed under `home/dot_codex`.
@@ -129,9 +142,15 @@ chezmoi apply --exclude=scripts ~/.codex
     curl -fsSL https://claude.ai/install.sh | bash
     ```
 
-### MCPs
+    On Windows:
 
-Recommended MCPs for LLMs:
+    ```pwsh
+    irm https://claude.ai/install.ps1 | iex
+    ```
+
+### MCPs and plugins
+
+Recommended MCPs and plugins for LLMs:
 
 - [Serena](https://github.com/oraios/serena). MCP with semantic access to files. Install with:
 
@@ -140,13 +159,13 @@ Recommended MCPs for LLMs:
     serena setup claude-code
     ```
 
-- [Context7](https://context7.com): MCP with documentation. Install with:
+- [Context7](https://context7.com): MCP with documentation. The shared Claude Code settings disable the `context7-mcp` skill because the MCP's own instructions already cover it. Install with:
 
     ```sh
     npx ctx7 setup
     ```
 
-- [rtk](https://github.com/rtk-ai/rtk): MCP for executing common known commands and save tokens. Install with:
+- [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Its Claude Code hook is managed by chezmoi. Install with:
 
     ```sh
     cargo install --git https://github.com/rtk-ai/rtk
@@ -159,9 +178,16 @@ Recommended MCPs for LLMs:
     npm i -g @colbymchenry/codegraph
     codegraph install
     ```
+
 - [Ponytail](https://github.com/DietrichGebert/ponytail): Plugin to reduce amount of code written to a minimum that solves the issue. Run inside claude:
 
     ```sh
     /plugin marketplace add DietrichGebert/ponytail
     /plugin install ponytail@ponytail
+    ```
+
+- [Playwright](https://github.com/microsoft/playwright-mcp): browser automation MCP, installed as the official Claude Code plugin (Codex launches it with npx). Run inside claude:
+
+    ```sh
+    /plugin install playwright@claude-plugins-official
     ```
