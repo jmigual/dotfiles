@@ -1,0 +1,16 @@
+# Global attributes (git config core.attributesfile). Diff drivers give
+# language-aware hunk headers; nothing here changes line endings.
+*.c      diff=cpp
+*.cc     diff=cpp
+*.cpp    diff=cpp
+*.h      diff=cpp
+*.hpp    diff=cpp
+*.cs     diff=csharp
+*.py     diff=python
+*.rs     diff=rust
+*.sh     diff=bash
+*.bash   diff=bash
+*.tex    diff=tex
+*.md     diff=markdown
+*.html   diff=html
+*.css    diff=css
