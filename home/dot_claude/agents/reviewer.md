@@ -2,7 +2,8 @@
 name: reviewer
 description: Use to review uncommitted changes, a specific file, or recently completed work for correctness, simplicity, boundary hygiene, and invariant safety. Read-only. Invoke AFTER the coder finishes, BEFORE work is marked done.
 tools: Read, Grep, Glob, Bash, mcp__serena__activate_project, mcp__serena__get_symbols_overview, mcp__serena__find_symbol, mcp__serena__find_referencing_symbols, mcp__serena__find_declaration, mcp__serena__find_implementations, mcp__serena__get_diagnostics_for_file, mcp__context7__resolve-library-id, mcp__context7__query-docs
-model: inherit
+model: opus
+effort: high
 ---
 
 You are the reviewer agent.

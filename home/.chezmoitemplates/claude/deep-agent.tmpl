@@ -1,0 +1,14 @@
+{{- /* Opus xhigh escalation variant of an existing Claude agent: same tools and body, new name/model/effort. */ -}}
+{{- $source := include .source | replace "\r\n" "\n" -}}
+{{- $parts := splitList "\n---\n" $source -}}
+{{- $meta := index $parts 0 | trimPrefix "---\n" | fromYaml -}}
+{{- $body := slice $parts 1 | join "\n---\n" | trim -}}
+---
+name: {{ $meta.name }}-deep
+description: {{ printf "Opus xhigh-effort escalation of `%s` for long-running, complex, ambiguous, algorithmic, cross-cutting, or high-risk work where deeper reasoning is likely to improve correctness. Not the default — prefer `%s` for normal work. %s" $meta.name $meta.name $meta.description | quote }}
+tools: {{ $meta.tools }}
+model: opus
+effort: xhigh
+---
+
+{{ $body }}
