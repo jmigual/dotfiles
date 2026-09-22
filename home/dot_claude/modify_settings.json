@@ -5,8 +5,8 @@
 {{- $shared := fromJson `{
   "attribution": {"commit": "", "pr": "", "sessionUrl": false},
   "model": "opus[1m]",
-  "effortLevel": "xhigh",
-  "modelSettings": {"claude-opus-5": {"effortLevel": "high"}},
+  "effortLevel": "high",
+  "modelSettings": {"claude-opus-5-5": {"effortLevel": "high"}},
   "permissions": {"defaultMode": "auto"},
   "worktree": {"baseRef": "head"},
   "dialogExpiry": "never",
