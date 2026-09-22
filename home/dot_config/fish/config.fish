@@ -7,7 +7,9 @@ source "$CUSTOM_SHELL_DIR/alias.fish"
 source "$CUSTOM_SHELL_DIR/functions.fish"
 
 function fish_greeting
-    fortune -s | xargs -0 cowsay
+    if command -vq fortune; and command -vq cowsay
+        fortune -s | xargs -0 cowsay
+    end
 end
 
 if status --is-interactive;

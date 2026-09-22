@@ -15,6 +15,10 @@ if not set -q PATH_OLD
     fish_add_path --path --append "/bin" "/sbin" "/usr/bin" "/usr/sbin" "/snap/bin"
     # Games
     fish_add_path --path --append "/usr/games" "/usr/local/games"
+
+    # Locally built libraries (shared clusters); appended so system libraries keep priority.
+    # Unquoted so an unset LD_LIBRARY_PATH contributes nothing (a "" entry means CWD)
+    set -x --path LD_LIBRARY_PATH $LD_LIBRARY_PATH "$HOME/.local/lib" "$HOME/.local/lib64"
 end
 
 set -x PAGER "less"
@@ -22,7 +26,6 @@ set -x PAGER "less"
 # Locale picked by chezmoi at apply time (see locale.tmpl)
 set -l l C.UTF-8
 test -r "$HOME/.local/share/shell/locale"; and read l < "$HOME/.local/share/shell/locale"
-set -x LC_ALL $l
 set -x LANG $l
 
 # XDG variables
@@ -35,9 +38,6 @@ if command -vq fd
     set -x FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 end
-
-# Unquoted so an unset LD_LIBRARY_PATH contributes nothing (a "" entry means CWD)
-set -x --path LD_LIBRARY_PATH $LD_LIBRARY_PATH "$HOME/.local/lib" "$HOME/.local/lib64"
 
 switch (uname -a)
     case "Linux*"

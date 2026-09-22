@@ -17,6 +17,8 @@ if [ -z "${PATH_OLD+x}" ]; then
     export PATH="${PATH}:/usr/games:/usr/local/games"
     # Shims for non-interactive shells; interactive rc files run `mise activate` on top.
     command -v mise >/dev/null 2>&1 && eval "$(mise activate bash --shims)"
+    # Locally built libraries (shared clusters); appended so system libraries keep priority.
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}${HOME}/.local/lib:${HOME}/.local/lib64"
 fi
 
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
@@ -27,12 +29,10 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_STATE_HOME="${HOME}/.local/state"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}${HOME}/.local/lib:${HOME}/.local/lib64"
 
 # Locale picked by chezmoi at apply time (see locale.tmpl)
 _l=C.UTF-8
 [ -r "${HOME}/.local/share/shell/locale" ] && read -r _l < "${HOME}/.local/share/shell/locale"
-export LC_ALL="$_l"
 export LANG="$_l"
 unset _l
 

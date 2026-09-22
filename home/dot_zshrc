@@ -2,6 +2,12 @@
 eval "$(starship init zsh)"
 command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
+# History (zsh keeps none unless HISTFILE is set)
+HISTFILE="${HOME}/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt share_history hist_ignore_dups hist_ignore_space extended_history
+
 # ZSH options
 unsetopt BG_NICE
 setopt rm_star_silent
@@ -12,7 +18,7 @@ source "${CUSTOM_SHELL_DIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${CUSTOM_SHELL_DIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Best part of the file
-fortune -s | xargs -0 cowsay
+command -v fortune >/dev/null 2>&1 && command -v cowsay >/dev/null 2>&1 && fortune -s | xargs -0 cowsay
 
 # FZF search
 [[ -f ~/.fzf.zsh && -d ~/.fzf ]] && source ~/.fzf.zsh 
