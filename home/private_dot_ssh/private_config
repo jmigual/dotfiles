@@ -1,16 +1,3 @@
-  Host co34.ics.ele.tue.nl
-    HostName co34.ics.ele.tue.nl
-    User jmigual
-
-Host server.marceigual.eu
-    HostName server.marceigual.eu
-    User jmigual
-
-Host pve3-bmc
-    HostName 192.168.1.18
-    User ADMIN
-    HostKeyAlgorithms +ssh-rsa
-    PubkeyAcceptedKeyTypes +ssh-rsa
-
-Host clouding-linux-dev
-    HostName 2e0d5064-1892-4ad3-bc9f-8bf49528243f.clouding.host
+# Machine-independent options go here. Host entries live in config.d/hosts,
+# which is gpg-encrypted in the dotfiles repo (see .chezmoi.toml.tmpl).
+Include config.d/*

@@ -1,7 +1,23 @@
 {{- /* Rendered by `chezmoi init`; re-run it to answer the prompts again. */ -}}
 {{- $work := promptBoolOnce . "work" "Work machine" -}}
+{{- $secrets := promptBoolOnce . "secrets" "Private GPG key present here (decrypt encrypted files)" -}}
+# encrypted_* source files are encrypted to the same key that signs commits;
+# decrypting them on apply needs its private key (see the "secrets" prompt).
+encryption = "gpg"
+
 [data]
     work = {{ $work }}
+    secrets = {{ $secrets }}
 
 [diff]
     exclude = ["scripts"]
+
+[gpg]
+    recipient = "B57766F5A401F867341B636942667CA965E20F39"
+{{- if eq .chezmoi.os "windows" }}
+{{- /* Prefer Gpg4win: from Git Bash, lookPath finds Git's bundled gpg, which uses a different keyring. */}}
+{{- $gpg := "C:/Program Files/GnuPG/bin/gpg.exe" }}
+{{- if stat $gpg }}
+    command = "{{ $gpg }}"
+{{- end }}
+{{- end }}

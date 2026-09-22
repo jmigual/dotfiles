@@ -36,3 +36,8 @@ starship_install.sh
 .codex/memories/
 .codex/plugins/
 .codex/rules/
+
+# Encrypted files need the private GPG key; skip them where it is absent.
+{{ if not (get . "secrets") }}
+.ssh/config.d/
+{{ end }}
