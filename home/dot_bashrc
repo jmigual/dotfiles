@@ -61,6 +61,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 eval "$(starship init bash)"
+command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
 
 unset color_prompt force_color_prompt
 

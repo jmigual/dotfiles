@@ -1,5 +1,6 @@
 # Start starship
 eval "$(starship init zsh)"
+command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
 # ZSH options
 unsetopt BG_NICE

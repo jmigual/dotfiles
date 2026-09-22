@@ -124,12 +124,6 @@ end
 
 complete --command pj --no-files --arguments='(__project_basenames)' --keep-order
 
-if command -v pyenv &> /dev/null;
-	set -x PYENV_ROOT "$HOME/.pyenv"
-    fish_add_path "$PYENV_ROOT/bin" 
-	pyenv init - | source
-end
-
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal

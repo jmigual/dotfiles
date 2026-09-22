@@ -1,0 +1,2 @@
+# Targets chezmoi deletes on apply: files this repo used to manage.
+.config/fish/conf.d/fnm.fish

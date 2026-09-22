@@ -45,12 +45,6 @@ pj() {
     cd ${HOME}/Projects/"$1"
 }
 
-if command -v pyenv &> /dev/null; then
-	export PYENV_ROOT="$HOME/.pyenv"
-	eval "$(pyenv init --path)"
-	eval "$(pyenv init -)"
-fi
-
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal

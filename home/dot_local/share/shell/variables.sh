@@ -1,5 +1,3 @@
-# Node, Android and go path configurations
-NODE_MODULES_BIN=$HOME/.config/node_modules/bin
 export ANDROID_HOME=$HOME/Android/Sdk
 
 # Append a directory to PATH unless it is already there
@@ -15,8 +13,10 @@ path_append() {
 # (nix develop, venvs, distrobox...) must keep what their parent added.
 if [ -z "${PATH_OLD+x}" ]; then
     export PATH_OLD="${PATH}"
-    export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/.local/share/juliaup/bin:${HOME}/.dotnet/tools:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin"
+    export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${HOME}/.dotnet/tools:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin"
     export PATH="${PATH}:/usr/games:/usr/local/games"
+    # Shims for non-interactive shells; interactive rc files run `mise activate` on top.
+    command -v mise >/dev/null 2>&1 && eval "$(mise activate bash --shims)"
 fi
 
 export MANPATH="${HOME}/.local/share/man:${MANPATH}"
@@ -64,7 +64,6 @@ case "$(uname -s)" in
     *)
         echo UNKNOWN MACHINE!!!!
 esac
-path_append "${NODE_MODULES_BIN}"
 path_append "${ANDROID_HOME}"
 
 if [ -f "${HOME}/.linuxbrew/bin/brew" ]; then
@@ -85,8 +84,3 @@ if [ -f "${DEV_KEYS}" ]; then
 fi
 
 export CUSTOM_SHELL_DIR="${HOME}/.local/share/shell"
-
-CARGO_ENV="${HOME}/.cargo/env"
-if [ -f "${CARGO_ENV}" ]; then
-    . "${CARGO_ENV}"
-fi

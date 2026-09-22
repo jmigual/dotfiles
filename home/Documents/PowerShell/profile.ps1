@@ -174,10 +174,6 @@ if ($lsdpath) {
     }
 }
 
-if (Get-Command "fnm" -ErrorAction SilentlyContinue) {
-    fnm env --use-on-cd | Out-String | Invoke-Expression
-}
-
 if (Get-Command "mise" -ErrorAction SilentlyContinue) {
     $env:MISE_ACTIVATE_AGGRESSIVE = "1"
     mise activate pwsh | Out-String | Invoke-Expression

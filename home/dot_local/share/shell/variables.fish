@@ -7,7 +7,6 @@ if not set -q PATH_OLD
     set -x PATH "$HOME/.local/bin"
 
     fish_add_path --path --append "$HOME/.cargo/bin"
-    fish_add_path --path --append "$HOME/.local/share/juliaup/bin"
     fish_add_path --path --append "$HOME/.dotnet/tools"
 
     # System user commands
