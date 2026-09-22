@@ -13,16 +13,12 @@ Commits are GPG-signed, and the pinentry prompt can block or time out: a GUI pop
 
 Split a branch into small, reviewable commits: one logical unit each (for example a Core helper with its tests, then the command that uses it), every commit building and passing tests on its own. Never one big commit per branch; when a csproj or manifest gains entries for several commits, stage only the lines that belong to each one.
 
-{{ if .work -}}
-## GitLab / MR
-
-### Merge Request Descriptions
-MR descriptions must be short and factual: what changed, why, and the alternatives actually considered. No LLM-flavored prose, no marketing adjectives, no duplicated phases or filler sections. Before writing one, read the branch's commit history (`git log main..HEAD`) and any prior discussion so the description reflects the real design path. Never post extra comments on an MR unless I ask, and never set a reviewer I did not name.
+## Merge / Pull Requests
+MR/PR descriptions must be short and factual: what changed, why, and the alternatives actually considered. No LLM-flavored prose, no marketing adjectives, no duplicated phases or filler sections. Before writing one, read the branch's commit history (`git log <base>..HEAD`) and any prior discussion so the description reflects the real design path. Never post extra comments on an MR/PR unless I ask, and never set a reviewer I did not name.
 
 ## Worktrees
-Work happens in git worktrees. Relative sibling-path lookups (e.g. Rauthy dev client secret, Aspire-generated Postgres credentials, `.env` files) break from a worktree — check for these before debugging application-level causes, and prefer a link to the main checkout — `ln -s` on Linux, `New-Item -ItemType Junction` on Windows.
+Work happens in git worktrees. Relative sibling-path lookups (`.env` files, dev secrets, generated credentials, anything resolved via `../`) break from a worktree — check for these before debugging application-level causes, and prefer a link to the main checkout — `ln -s` on Linux, `New-Item -ItemType Junction` on Windows.
 
-{{ end -}}
 <!-- CODEGRAPH_START -->
 ## CodeGraph
 

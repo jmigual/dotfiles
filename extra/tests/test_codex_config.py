@@ -121,10 +121,10 @@ args = ["old-argument"]
         for work, expected in ((False, self.assertNotIn), (True, self.assertIn)):
             with self.subTest(work=work):
                 instructions = render(CODEX / "AGENTS.md.tmpl", work=work)
-                expected("## GitLab / MR", instructions)
-                expected("## Worktrees", instructions)
                 expected("SaveChangesAsync", instructions)
                 self.assertIn("## Scope Discipline", instructions)
+                self.assertIn("## Merge / Pull Requests", instructions)
+                self.assertIn("## Worktrees", instructions)
 
     @unittest.skipUnless(shutil.which("node") and shutil.which("rtk"), "node and RTK required")
     def test_rtk_rewrites_and_leaves_already_wrapped_commands_alone(self):
