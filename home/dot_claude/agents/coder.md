@@ -5,6 +5,7 @@ tools: Read, Edit, Write, Grep, Glob, Bash, mcp__serena-wt__activate_project, mc
 model: sonnet
 effort: high
 mcpServers: [{"serena-wt": {"type": "stdio", "command": "serena", "args": ["start-mcp-server", "--context=claude-code"]}}]
+experimental: {"cacheTtl": "1h"}
 ---
 
 You are the coder agent.

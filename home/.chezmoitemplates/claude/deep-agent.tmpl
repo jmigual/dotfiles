@@ -12,6 +12,9 @@ effort: xhigh
 {{- if hasKey $meta "mcpServers" }}
 mcpServers: {{ $meta.mcpServers | toJson }}
 {{- end }}
+{{- if hasKey $meta "experimental" }}
+experimental: {{ $meta.experimental | toJson }}
+{{- end }}
 {{- if hasKey $meta "isolation" }}
 isolation: {{ $meta.isolation }}
 {{- end }}
