@@ -116,7 +116,7 @@ campushome 127.0.0.1
 
 Claude Code's instructions (`CLAUDE.md`, `coding-style.md`), agents, skills, and settings are managed under `home/dot_claude`.
 `settings.json` is a modify template: it merges the shared keys (model, effort, auto mode, hooks, plugin toggles, claude.ai connectors disabled) and keeps everything else local.
-`~/.claude/machine.md` and `~/.claude/RTK.md` (written by `rtk init -g`) are machine-local.
+`~/.claude/machine.md` is machine-local.
 Apply them with:
 
 ```sh
@@ -165,14 +165,14 @@ Recommended MCPs and plugins for LLMs:
     npx ctx7 setup
     ```
 
-- [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Its Claude Code hook is managed by chezmoi. Install with:
+- [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Codex uses its hook; chezmoi strips the Claude Code hook `rtk init -g` adds, because auto mode blocks the rewritten commands in subagents. Install with:
 
     ```sh
     cargo install --git https://github.com/rtk-ai/rtk
     rtk init -g
     ```
 
-- [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. Install with:
+- [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. chezmoi strips the prompt hook `codegraph install` adds, since it costs tokens on every prompt. Install with:
 
     ```sh
     npm i -g @colbymchenry/codegraph

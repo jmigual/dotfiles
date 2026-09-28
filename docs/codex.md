@@ -31,7 +31,7 @@ each machine, restart it after applying, and review new or changed hooks in `/ho
 - The `ship` skill (invoke as `$ship`) and a Codex-specific `setup-serena` skill.
 - Serena, Context7, Playwright, and CodeGraph MCP servers. Windows npm commands use
   `cmd`; other systems launch them directly. No executable path is hard-coded.
-- Serena lifecycle hooks, CodeGraph's prompt hook, and an RTK adapter that supplies
+- Serena lifecycle hooks and an RTK adapter that supplies
   the explicit permission decision Codex requires for command rewriting.
 
 ## Shared Settings And Local State

@@ -45,7 +45,9 @@ class ClaudeAgentTests(unittest.TestCase):
                     {"matcher": "", "hooks": [{"type": "command", "command": "local-hook"}]},
                     {"matcher": "", "hooks": [{"type": "command",
                                                "command": "serena-hooks remind --client=claude-code"}]},
+                    {"matcher": "Bash", "hooks": [{"type": "command", "command": "rtk hook claude"}]},
                 ],
+                "UserPromptSubmit": [{"hooks": [{"type": "command", "command": "codegraph prompt-hook"}]}],
                 "Stop": [{"hooks": [{"type": "command", "command": "local-stop"}]}],
             },
         })
@@ -57,13 +59,14 @@ class ClaudeAgentTests(unittest.TestCase):
         pre = [h["command"] for e in settings["hooks"]["PreToolUse"] for h in e["hooks"]]
         self.assertEqual(pre.count("serena-hooks remind --client=claude-code"), 1)
         self.assertIn("local-hook", pre)
-        self.assertIn("rtk hook claude", pre)
+        self.assertNotIn("rtk hook claude", pre)
+        self.assertNotIn("UserPromptSubmit", settings["hooks"])
         self.assertEqual(settings["hooks"]["Stop"][0]["hooks"][0]["command"], "local-stop")
         self.assertIn("SessionStart", settings["hooks"])
         self.assertEqual(first, render(CLAUDE / "modify_settings.json", existing=first))
         fresh = json.loads(render(CLAUDE / "modify_settings.json"))
         self.assertEqual(fresh["worktree"], {"baseRef": "head"})
-        self.assertIn("UserPromptSubmit", fresh["hooks"])
+        self.assertIn("SessionEnd", fresh["hooks"])
 
 
 if __name__ == "__main__":
