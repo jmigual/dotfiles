@@ -11,7 +11,7 @@
   "worktree": {"baseRef": "head"},
   "dialogExpiry": "never",
   "autoUpdatesChannel": "latest",
-  "env": {"ENABLE_CLAUDEAI_MCP_SERVERS": "false"},
+  "env": {"ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5", "ENABLE_CLAUDEAI_MCP_SERVERS": "false"},
   "enabledPlugins": {
     "engineering@synced": false,
     "cowork-plugin-management@synced": false,
