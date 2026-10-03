@@ -8,7 +8,7 @@ name: {{ $meta.name }}-deep
 description: {{ printf "Opus xhigh-effort escalation of `%s` for long-running, complex, ambiguous, algorithmic, cross-cutting, or high-risk work where deeper reasoning is likely to improve correctness. Not the default — prefer `%s` for normal work. %s" $meta.name $meta.name $meta.description | quote }}
 tools: {{ $meta.tools }}
 model: opus
-effort: xhigh
+effort: high
 {{- if hasKey $meta "mcpServers" }}
 mcpServers: {{ $meta.mcpServers | toJson }}
 {{- end }}
