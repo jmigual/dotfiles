@@ -56,7 +56,7 @@ end
 
 set -x SSH_AUTH_SOCK "$HOME/.ssh/agent.sock"
 # Check if socket exists and is actually listening
-if test -S "$SSH_AUTH_SOCK" && ss -a | grep -q "$SSH_AUTH_SOCK";
+if test -S "$SSH_AUTH_SOCK" && ss -ax | grep -Fq -- "$SSH_AUTH_SOCK";
   # Socket exists and is active, do nothing
 else
   # Socket is missing or stale, recreate it
