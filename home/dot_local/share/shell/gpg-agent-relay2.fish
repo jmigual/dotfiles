@@ -70,7 +70,7 @@ end
 
 set -x GPG_AGENT_SOCK "$HOME/.gnupg/S.gpg-agent"
 # Check if socket exists and is actually listening
-if test -S "$GPG_AGENT_SOCK" && ss -a | grep -q "$GPG_AGENT_SOCK";
+if test -S "$GPG_AGENT_SOCK" && ss -ax | grep -Fq "$GPG_AGENT_SOCK";
   # Socket exists and is active, do nothing
 else
   # Socket is missing or stale, recreate it
