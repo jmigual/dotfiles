@@ -4,8 +4,9 @@ switch (uname -s)
         # Check if WSL
         if cat /proc/version | grep -qi Microsoft
             # VS Code's WSL integration breaks when the distro name is missing from
-            # the environment (shells not spawned through wsl.exe).
-            set -q WSL_DISTRO_NAME; or set -x WSL_DISTRO_NAME "Ubuntu"
+            # the environment (shells not spawned through wsl.exe). The distro name is
+            # the share in `\\wsl.localhost\<distro>\`, so it works for any distro.
+            set -q WSL_DISTRO_NAME; or set -x WSL_DISTRO_NAME (string split '\\' (wslpath -w /))[4]
             # We are in WSL, start gpg-relay agent
             source "$CUSTOM_SHELL_DIR/gpg-agent-relay2.fish"
         else
