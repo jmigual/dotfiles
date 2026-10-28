@@ -1,5 +1,12 @@
 {{- $vsCodePath := lookPath "code" -}}
-{{- $hasVsCode := and $vsCodePath (contains "CLI" (output "code" "--version") | not) -}}
+{{- $vsCodeVersion := "" -}}
+{{- if and $vsCodePath (eq .chezmoi.os "windows") -}}
+{{-   $vsCodeVersion = output "code" "--version" -}}
+{{- else if $vsCodePath -}}
+{{- /* On WSL with broken interop the Windows `code` is on PATH but cannot run. */ -}}
+{{-   $vsCodeVersion = output "sh" "-c" "code --version 2>/dev/null || true" -}}
+{{- end -}}
+{{- $hasVsCode := and $vsCodeVersion (contains "CLI" $vsCodeVersion | not) -}}
 {{- $gitVersion := output "git" "--version" | regexFind `[0-9]+\.[0-9]+\.[0-9]+` -}}
 
 # This file is managed by chezmoi. Do not edit it directly. Go to ~/.local/share/chezmoi to edit it.
