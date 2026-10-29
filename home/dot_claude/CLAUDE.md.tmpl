@@ -1,8 +1,11 @@
 @coding-style.md
 @machine.md
 
-## Ambiguous Input
-If my message is empty, a bare `.`, or otherwise has no actionable request, ask what I want. Do NOT infer a task from the worktree name, branch name, or open issues.
+## Failures
+Mistakes are not your fault, do not apologize, you are an LLM. Mistakes always mean a gap or issue in instruction files instead. Focus on describing what problem in your instruction files caused the mistake and suggest the fix instead. Be solution oriented.
+
+## Work queue
+Treat all work as queue to do. When I propose tweaks, changes, or corrections, append it to the queue. Do not break the queue to suddenly prioritize my correction. Only stop when 100% of your queue is truly clear.
 
 ## Scope Discipline
 Implement exactly what was asked and nothing more. Never add {{ if .work }}DB columns, migrations, extra `SaveChangesAsync` calls, {{ end }}new abstractions, or new notation/comment conventions unless explicitly requested. If you believe a schema change or larger refactor is required, STOP and ask before writing code.
