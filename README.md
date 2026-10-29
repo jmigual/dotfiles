@@ -159,7 +159,7 @@ Recommended MCPs and plugins for LLMs:
     serena setup claude-code
     ```
 
-- [Context7](https://context7.com): MCP with documentation. The shared Claude Code settings disable the `context7-mcp` skill because the MCP's own instructions already cover it. Install with:
+- [Context7](https://context7.com): MCP with documentation. The shared Claude Code settings disable the `context7-mcp` skill, and chezmoi deletes the `~/.claude/rules/context7.md` that setup writes, because the MCP's own instructions already cover both. Install with:
 
     ```sh
     mise x npm:ctx7 -- ctx7 setup
