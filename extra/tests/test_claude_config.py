@@ -28,7 +28,7 @@ class ClaudeAgentTests(unittest.TestCase):
                     render(CLAUDE / "agents" / f"{base}-deep.md.tmpl"))
                 self.assertEqual(deep_meta["name"], f"{base}-deep")
                 self.assertEqual(deep_meta["model"], "opus")
-                self.assertEqual(deep_meta["effort"], "xhigh")
+                self.assertEqual(deep_meta["effort"], "high")
                 self.assertEqual(deep_meta["tools"], base_meta["tools"])
                 self.assertEqual(deep_meta.get("isolation"), base_meta.get("isolation"))
                 self.assertEqual(json.loads(deep_meta["mcpServers"]), json.loads(base_meta["mcpServers"]))
