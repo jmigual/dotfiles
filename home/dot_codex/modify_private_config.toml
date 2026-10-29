@@ -1,5 +1,8 @@
 {{- /* chezmoi:modify-template */ -}}
-{{- $local := fromToml .chezmoi.stdin | default dict -}}
+{{- /* `codegraph install` only finds its table header at column 0 and otherwise appends a
+       duplicate. Drop that copy (the shared definition replaces it) and write unindented. */ -}}
+{{- $stdin := regexReplaceAll `(?m)^\[mcp_servers\.codegraph\]\r?\n(?:[^\s\[].*\n?|[ \t]*\r?\n)*` .chezmoi.stdin "" -}}
+{{- $local := fromToml $stdin | default dict -}}
 {{- $shared := includeTemplate "codex/config.toml.tmpl" . | fromToml -}}
 {{- if not (hasKey $local "model") -}}
 {{-   $_ := set $local "model" "gpt-5.6-sol" -}}
@@ -13,4 +16,4 @@
 {{- end -}}
 {{- $_ := set $local "mcp_servers" $servers -}}
 {{- $_ := unset $shared "mcp_servers" -}}
-{{ mergeOverwrite $local $shared | toToml }}
+{{ regexReplaceAll `(?m)^[ \t]+` (mergeOverwrite $local $shared | toToml) "" }}

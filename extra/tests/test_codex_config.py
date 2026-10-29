@@ -95,6 +95,26 @@ args = ["old-argument"]
         self.assertNotIn("fixture-secret", first)
         self.assertEqual(first, render(CODEX / "modify_private_config.toml", existing=first))
 
+    def test_heals_and_avoids_codegraph_install_duplicate(self):
+        # `codegraph install` only finds its table header at column 0; otherwise it appends one.
+        broken = '''model = "local-model"
+
+[mcp_servers]
+  [mcp_servers.codegraph]
+    args = ["serve", "--mcp"]
+    command = "codegraph"
+    default_tools_approval_mode = "approve"
+
+[mcp_servers.codegraph]
+command = "codegraph"
+args = ["serve", "--mcp"]
+'''
+        text = render(CODEX / "modify_private_config.toml", existing=broken)
+        config = tomllib.loads(text)
+        self.assertEqual(config["model"], "local-model")
+        self.assertEqual(config["mcp_servers"]["codegraph"]["default_tools_approval_mode"], "approve")
+        self.assertIn("\n[mcp_servers.codegraph]\n", text)
+
     def test_agents_and_instructions_are_self_contained(self):
         agents = {}
         for path in sorted((CODEX / "agents").glob("*.toml.tmpl")):
