@@ -162,7 +162,7 @@ Recommended MCPs and plugins for LLMs:
 - [Context7](https://context7.com): MCP with documentation. The shared Claude Code settings disable the `context7-mcp` skill because the MCP's own instructions already cover it. Install with:
 
     ```sh
-    npx ctx7 setup
+    mise x npm:ctx7 -- ctx7 setup
     ```
 
 - [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Codex uses its hook; chezmoi strips the Claude Code hook `rtk init -g` adds, because auto mode blocks the rewritten commands in subagents. Install with:
@@ -175,7 +175,7 @@ Recommended MCPs and plugins for LLMs:
 - [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. chezmoi strips the prompt hook `codegraph install` adds, since it costs tokens on every prompt. Install with:
 
     ```sh
-    npm i -g @colbymchenry/codegraph
+    mise use -g github:colbymchenry/codegraph
     codegraph install
     ```
 
