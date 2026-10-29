@@ -172,11 +172,11 @@ Recommended MCPs and plugins for LLMs:
     rtk init -g
     ```
 
-- [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. chezmoi strips the prompt hook `codegraph install` adds, since it costs tokens on every prompt. Install with:
+- [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. chezmoi strips the prompt hook `codegraph install` adds, since it costs tokens on every prompt, and configures Codex itself, so install only the Claude Code target:
 
     ```sh
     mise use -g github:colbymchenry/codegraph
-    codegraph install
+    codegraph install --target claude --location global
     ```
 
 - [Ponytail](https://github.com/DietrichGebert/ponytail): Plugin to reduce amount of code written to a minimum that solves the issue. Run inside claude:
