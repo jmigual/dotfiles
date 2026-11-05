@@ -3,10 +3,11 @@
      starts (no graphical-session.target in here). Portal clients then fall back to
      spawning zenity, which steals pointer focus and panics winit-based apps. The
      host's bus is bind-mounted under /run/host, so use that one instead.
-     Outside a container that path is absent, the template renders empty, and
-     chezmoi creates no file at all. */ -}}
-{{- $hostBus := printf "/run/host/run/user/%s/bus" .chezmoi.uid -}}
-{{- if stat $hostBus -}}
+     The check runs at shell startup, not at render time: the host home is
+     bind-mounted into the container, so a file rendered in one environment can
+     be sourced in the other, and a baked-in /run/host path breaks host podman. */ -}}
+{{- $hostBus := printf "/run/host/run/user/%s/bus" .chezmoi.uid }}
 # Container-local dbus has no portal; borrow the host's (see the chezmoi template).
-set -gx DBUS_SESSION_BUS_ADDRESS unix:path={{ $hostBus }}
-{{ end -}}
+if test -S {{ $hostBus }}
+    set -gx DBUS_SESSION_BUS_ADDRESS unix:path={{ $hostBus }}
+end
