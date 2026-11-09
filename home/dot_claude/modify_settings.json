@@ -41,9 +41,10 @@
 }` -}}
 {{- /* Managed hooks replace local entries with the same command; other local hooks are kept.
        Removed hooks are ones tool installers (`rtk init -g`, `codegraph install`) add locally:
-       the RTK rewrite gets subagents' Bash calls blocked in auto mode, and CodeGraph's prompt
-       hook costs tokens on every prompt. Serena's remind hook runs through a wrapper that turns
-       its deny into a reminder, since a denied call costs a retry turn. */ -}}
+       auto mode reviews a command before the RTK hook rewrites it, so it denies every rewrite,
+       and CodeGraph's prompt hook costs tokens on every prompt. Serena's remind hook runs
+       through a wrapper that turns its deny into a reminder, since a denied call costs a
+       retry turn. */ -}}
 {{- $remind := printf "node \"%s/.claude/hooks/serena-remind.mjs\"" .chezmoi.homeDir -}}
 {{- $managedHooks := fromJson (printf `{
   "PreToolUse": [
@@ -71,4 +72,11 @@
 {{-   $_ := set $hooks $event (concat (get $hooks $event | default list) $entries) -}}
 {{- end -}}
 {{- $_ := set $local "hooks" $hooks -}}
+{{- /* Tells the auto mode classifier what rtk is, so explicit `rtk <cmd>` calls are judged as <cmd>.
+       Local environment entries are kept; without any, "$defaults" keeps the built-in ones. */ -}}
+{{- $rtkNote := "**rtk**: local CLI proxy (rtk-ai/rtk) that compresses command output: `rtk <tool> <args>` runs `<tool> <args>` and only filters the output (`rtk read` is `cat`; `rtk proxy <cmd>` runs `<cmd>` unfiltered). Judge an rtk command exactly as the wrapped command; `rtk gain` only prints local savings statistics." -}}
+{{- $autoMode := get $local "autoMode" | default dict -}}
+{{- $environment := get $autoMode "environment" | default (list "$defaults") -}}
+{{- if not (has $rtkNote $environment) }}{{ $_ := set $autoMode "environment" (append $environment $rtkNote) }}{{ end -}}
+{{- $_ := set $local "autoMode" $autoMode -}}
 {{ mergeOverwrite $local $shared | toPrettyJson }}

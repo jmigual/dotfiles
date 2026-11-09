@@ -46,6 +46,7 @@ class ClaudeAgentTests(unittest.TestCase):
             "permissions": {"allow": ["Bash(ls *)"], "defaultMode": "default"},
             "statusLine": {"type": "command", "command": "local-statusline"},
             "worktree": {"baseRef": "fresh"},
+            "autoMode": {"environment": ["local-environment"]},
             "hooks": {
                 "PreToolUse": [
                     {"matcher": "", "hooks": [{"type": "command", "command": "local-hook"}]},
@@ -67,6 +68,9 @@ class ClaudeAgentTests(unittest.TestCase):
         self.assertEqual(pre.count('node "/home/test user/.claude/hooks/serena-remind.mjs"'), 1)
         self.assertIn("local-hook", pre)
         self.assertNotIn("rtk hook claude", pre)
+        environment = settings["autoMode"]["environment"]
+        self.assertEqual(environment[0], "local-environment")
+        self.assertEqual(sum(e.startswith("**rtk**") for e in environment), 1)
         self.assertNotIn("UserPromptSubmit", settings["hooks"])
         self.assertEqual(settings["hooks"]["Stop"][0]["hooks"][0]["command"], "local-stop")
         self.assertIn("SessionStart", settings["hooks"])
@@ -74,6 +78,7 @@ class ClaudeAgentTests(unittest.TestCase):
         fresh = json.loads(render(CLAUDE / "modify_settings.json"))
         self.assertEqual(fresh["worktree"], {"baseRef": "head"})
         self.assertIn("SessionEnd", fresh["hooks"])
+        self.assertEqual(fresh["autoMode"]["environment"][0], "$defaults")
 
     @unittest.skipUnless(shutil.which("node") and shutil.which("serena-hooks"), "node and Serena required")
     def test_serena_remind_never_blocks(self):

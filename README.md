@@ -165,11 +165,10 @@ Recommended MCPs and plugins for LLMs:
     mise x npm:ctx7 -- ctx7 setup
     ```
 
-- [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Codex uses its hook; chezmoi strips the Claude Code hook `rtk init -g` adds, because auto mode blocks the rewritten commands in subagents. Install with:
+- [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Codex uses its hook; chezmoi strips the Claude Code hook `rtk init -g` adds, because auto mode reviews a command before the hook rewrites it and so denies every rewrite. chezmoi instead describes rtk in Claude Code's auto mode environment, so an explicit `rtk git status` is judged as `git status`, and its `~/.claude/RTK.md` asks Claude to add the prefix itself. Install with:
 
     ```sh
     mise use -g rtk
-    rtk init -g
     ```
 
 - [CodeGraph](https://github.com/colbymchenry/codegraph): MCP for code analysis. chezmoi strips the prompt hook `codegraph install` adds, since it costs tokens on every prompt, and configures Codex itself, so install only the Claude Code target:
