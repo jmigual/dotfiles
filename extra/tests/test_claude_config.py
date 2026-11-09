@@ -1,7 +1,11 @@
 """Validate the Claude agent definitions chezmoi renders from templates."""
 
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
+import tempfile
 import unittest
 
 from test_codex_config import CHEZMOI, SOURCE, render
@@ -59,7 +63,8 @@ class ClaudeAgentTests(unittest.TestCase):
         self.assertEqual(settings["permissions"], {"allow": ["Bash(ls *)"], "defaultMode": "auto"})
         self.assertEqual(settings["statusLine"]["command"], "local-statusline")
         pre = [h["command"] for e in settings["hooks"]["PreToolUse"] for h in e["hooks"]]
-        self.assertEqual(pre.count("serena-hooks remind --client=claude-code"), 1)
+        self.assertNotIn("serena-hooks remind --client=claude-code", pre)
+        self.assertEqual(pre.count('node "/home/test user/.claude/hooks/serena-remind.mjs"'), 1)
         self.assertIn("local-hook", pre)
         self.assertNotIn("rtk hook claude", pre)
         self.assertNotIn("UserPromptSubmit", settings["hooks"])
@@ -69,6 +74,21 @@ class ClaudeAgentTests(unittest.TestCase):
         fresh = json.loads(render(CLAUDE / "modify_settings.json"))
         self.assertEqual(fresh["worktree"], {"baseRef": "head"})
         self.assertIn("SessionEnd", fresh["hooks"])
+
+    @unittest.skipUnless(shutil.which("node") and shutil.which("serena-hooks"), "node and Serena required")
+    def test_serena_remind_never_blocks(self):
+        payload = json.dumps({"session_id": "test", "hook_event_name": "PreToolUse",
+                              "tool_name": "Grep", "tool_input": {"pattern": "x"}})
+        with tempfile.TemporaryDirectory() as serena_home:
+            outputs = [subprocess.run(
+                [shutil.which("node"), str(CLAUDE / "hooks/serena-remind.mjs")],
+                input=payload, env={**os.environ, "SERENA_HOME": serena_home},
+                text=True, encoding="utf-8", capture_output=True, check=True, timeout=15,
+            ).stdout for _ in range(3)]
+        self.assertEqual(outputs[:2], ["", ""])
+        hook = json.loads(outputs[2])["hookSpecificOutput"]
+        self.assertNotIn("permissionDecision", hook)
+        self.assertTrue(hook["additionalContext"])
 
 
 if __name__ == "__main__":

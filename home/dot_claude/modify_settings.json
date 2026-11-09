@@ -42,16 +42,18 @@
 {{- /* Managed hooks replace local entries with the same command; other local hooks are kept.
        Removed hooks are ones tool installers (`rtk init -g`, `codegraph install`) add locally:
        the RTK rewrite gets subagents' Bash calls blocked in auto mode, and CodeGraph's prompt
-       hook costs tokens on every prompt. */ -}}
-{{- $managedHooks := fromJson `{
+       hook costs tokens on every prompt. Serena's remind hook runs through a wrapper that turns
+       its deny into a reminder, since a denied call costs a retry turn. */ -}}
+{{- $remind := printf "node \"%s/.claude/hooks/serena-remind.mjs\"" .chezmoi.homeDir -}}
+{{- $managedHooks := fromJson (printf `{
   "PreToolUse": [
-    {"matcher": "", "hooks": [{"type": "command", "command": "serena-hooks remind --client=claude-code"}]},
+    {"matcher": "", "hooks": [{"type": "command", "command": %s}]},
     {"matcher": "mcp__serena(-wt)?__.*", "hooks": [{"type": "command", "command": "serena-hooks auto-approve --client=claude-code"}]}
   ],
   "SessionStart": [{"matcher": "", "hooks": [{"type": "command", "command": "serena-hooks activate --client=claude-code"}]}],
   "SessionEnd": [{"matcher": "", "hooks": [{"type": "command", "command": "serena-hooks cleanup --client=claude-code"}]}]
-}` -}}
-{{- $dropCommands := list "rtk hook claude" "codegraph prompt-hook" -}}
+}` ($remind | toJson)) -}}
+{{- $dropCommands := list "rtk hook claude" "codegraph prompt-hook" "serena-hooks remind --client=claude-code" -}}
 {{- range $event, $entries := $managedHooks -}}
 {{-   range $entries }}{{ range .hooks }}{{ $dropCommands = append $dropCommands .command }}{{ end }}{{ end -}}
 {{- end -}}
