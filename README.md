@@ -168,7 +168,7 @@ Recommended MCPs and plugins for LLMs:
 - [rtk](https://github.com/rtk-ai/rtk): CLI proxy that compresses the output of common commands to save tokens. Codex uses its hook; chezmoi strips the Claude Code hook `rtk init -g` adds, because auto mode blocks the rewritten commands in subagents. Install with:
 
     ```sh
-    cargo install --git https://github.com/rtk-ai/rtk
+    mise use -g rtk
     rtk init -g
     ```
 
