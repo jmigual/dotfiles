@@ -15,7 +15,15 @@
 
 # Enable some modules only if we are in an interactive session that supports them
 if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [version]"6.0.0")) {
-    Invoke-Expression (&starship init powershell)
+    # Cache starship's init script: generating it spawns starship twice per shell. Regenerated
+    # whenever starship.exe is newer than the cache (e.g. after a scoop upgrade).
+    $starshipInit = "$env:LOCALAPPDATA\starship\init.ps1"
+    $starshipExe = Get-Item (Get-Command starship).Source
+    if (-not (Test-Path $starshipInit) -or $starshipExe.LastWriteTime -gt (Get-Item $starshipInit).LastWriteTime) {
+        New-Item -ItemType Directory -Force (Split-Path $starshipInit) | Out-Null
+        starship init powershell --print-full-init | Set-Content $starshipInit
+    }
+    . $starshipInit
 
     $psmodule = Get-Module -ListAvailable -Name "PSReadLine"
     if ($psmodule) {
