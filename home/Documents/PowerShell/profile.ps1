@@ -25,10 +25,8 @@ if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [versi
     }
     . $starshipInit
 
-    $psmodule = Get-Module -ListAvailable -Name "PSReadLine"
+    $psmodule = Import-Module PSReadLine -PassThru
     if ($psmodule) {
-        Import-Module PSReadLine
-
         # Shows navigable menu of all options when hitting Tab
         Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
@@ -59,12 +57,8 @@ if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [versi
         Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
     }
 
-    if (Get-Module -ListAvailable -Name "git-aliases") {
-        Import-Module git-aliases -DisableNameChecking
-    }
-    if (Get-Module -ListAvailable -Name "CompletionPredictor") {
-        Import-Module CompletionPredictor
-    }
+    Import-Module git-aliases -DisableNameChecking -ErrorAction SilentlyContinue
+    Import-Module CompletionPredictor -ErrorAction SilentlyContinue
 
 }
 
