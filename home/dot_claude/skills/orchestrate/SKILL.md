@@ -39,9 +39,10 @@ Pick the cheapest tier likely to finish reliably. xhigh is an escalation, never 
 2. **Plan.** `architect` gets the verbatim request and constraints; it returns steps marked
    independent/dependent with the files each touches. Ask the user only at a real fork.
 3. **Implement.** One `coder` per step, every one with `isolation: "worktree"` on the Agent
-   call — a coder without it builds against a tree another agent is editing. Launch the
-   ready independent steps together; when a step finishes, launch what it unblocked.
-   Small related steps go to one coder rather than one each.
+   call — a coder without it builds against a tree another agent is editing. Launch all
+   ready steps together, including mid-run requests; when a step finishes, launch what it
+   unblocked. Small related steps go to one coder rather than one each. New features go in new
+   modules, not shared files.
    Every prompt: the user's request verbatim; files to touch and not touch; the acceptance
    check; what to report (files, checks run, deviations, worktree path and branch). Point to
    files instead of pasting them, and ask for a brief report, not a narration.
@@ -68,7 +69,8 @@ Pick the cheapest tier likely to finish reliably. xhigh is an escalation, never 
 ## Rules
 - No agent's "done" counts until a different agent verified it.
 - One agent per logical unit; parallelism comes from independent units, not thinner slices.
-- Steps touching the same files run in sequence: a conflict costs a rebase, re-checks, and
-  another review.
+- Shared files are not a dependency: sequence only on a needed result (decision, API, verdict).
+  Parallel coders rebase before reporting; assign ADR/migration numbers up front.
+- Several steps in one mixed-responsibility file → split-only refactor first.
 - Pass the user's constraints through; extra work an agent did is a finding, not a keep.
 - An agent's question is answered from what you have or passed to the user, never guessed.
