@@ -48,13 +48,23 @@ if (($Host.Name -match "ConsoleHost") -and ($PSVersionTable.PSVersion -ge [versi
         }
     }
 
-    if (Get-Module -ListAvailable -Name "PSFzf") {
-        Import-Module -Name PSFzf
-
-        # replace 'Ctrl+t' and 'Ctrl+r' with your preferred bindings:
+    # PSFzf takes ~200 ms to import, so it loads on the first Tab/Ctrl+t/Ctrl+r instead.
+    # Once loaded, its own bindings replace these; without PSFzf the defaults remain.
+    function Import-PsFzfOnDemand {
+        if (Get-Module PSFzf) { return $true }
+        if (-not (Import-Module PSFzf -Global -PassThru -ErrorAction SilentlyContinue)) { return $false }
         Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-
         Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+        return $true
+    }
+    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock {
+        if (Import-PsFzfOnDemand) { Invoke-FzfTabCompletion } else { [Microsoft.PowerShell.PSConsoleReadLine]::MenuComplete() }
+    }
+    Set-PSReadLineKeyHandler -Key 'Ctrl+t' -ScriptBlock {
+        if (Import-PsFzfOnDemand) { Invoke-FzfPsReadlineHandlerProvider }
+    }
+    Set-PSReadLineKeyHandler -Key 'Ctrl+r' -ScriptBlock {
+        if (Import-PsFzfOnDemand) { Invoke-FzfPsReadlineHandlerHistory } else { [Microsoft.PowerShell.PSConsoleReadLine]::ReverseSearchHistory() }
     }
 
     Import-Module git-aliases -DisableNameChecking -ErrorAction SilentlyContinue
