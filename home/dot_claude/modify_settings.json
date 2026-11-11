@@ -6,6 +6,7 @@
   "attribution": {"commit": "", "pr": "", "sessionUrl": false},
   "model": "opus[1m]",
   "effortLevel": "high",
+  "outputStyle": "ELI5",
   "modelSettings": {"claude-opus-5-5": {"effortLevel": "high"}},
   "permissions": {"defaultMode": "auto"},
   "worktree": {"baseRef": "head"},
