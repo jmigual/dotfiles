@@ -46,9 +46,11 @@
        and CodeGraph's prompt hook costs tokens on every prompt. Serena's remind hook runs
        through a wrapper that turns its deny into a reminder, since a denied call costs a
        retry turn. On Windows the wrapper runs as `node.exe`: Git Bash runs hooks, and it does
-       not find `node` because mise keeps a `node` folder next to its `node.exe` shim. */ -}}
+       not find `node` because mise keeps a `node` folder next to its `node.exe` shim. The
+       wrapper starts from the home folder, so the mise shim picks the global Node and not a
+       version a project pins (cldn pins Node 7, which cannot run the wrapper). */ -}}
 {{- $node := ternary "node.exe" "node" (eq .chezmoi.os "windows") -}}
-{{- $remind := printf "%s \"%s/.claude/hooks/serena-remind.mjs\"" $node .chezmoi.homeDir -}}
+{{- $remind := printf "cd ~ && %s \"%s/.claude/hooks/serena-remind.mjs\"" $node .chezmoi.homeDir -}}
 {{- $managedHooks := fromJson (printf `{
   "PreToolUse": [
     {"matcher": "", "hooks": [{"type": "command", "command": %s}]},
@@ -57,7 +59,7 @@
   "SessionStart": [{"matcher": "", "hooks": [{"type": "command", "command": "serena-hooks activate --client=claude-code"}]}],
   "SessionEnd": [{"matcher": "", "hooks": [{"type": "command", "command": "serena-hooks cleanup --client=claude-code"}]}]
 }` ($remind | toJson)) -}}
-{{- $dropCommands := list "rtk hook claude" "codegraph prompt-hook" "serena-hooks remind --client=claude-code" (printf "node \"%s/.claude/hooks/serena-remind.mjs\"" .chezmoi.homeDir) -}}
+{{- $dropCommands := list "rtk hook claude" "codegraph prompt-hook" "serena-hooks remind --client=claude-code" (printf "node \"%s/.claude/hooks/serena-remind.mjs\"" .chezmoi.homeDir) (printf "node.exe \"%s/.claude/hooks/serena-remind.mjs\"" .chezmoi.homeDir) -}}
 {{- range $event, $entries := $managedHooks -}}
 {{-   range $entries }}{{ range .hooks }}{{ $dropCommands = append $dropCommands .command }}{{ end }}{{ end -}}
 {{- end -}}

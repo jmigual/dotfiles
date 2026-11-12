@@ -65,7 +65,7 @@ class ClaudeAgentTests(unittest.TestCase):
         self.assertEqual(settings["statusLine"]["command"], "local-statusline")
         pre = [h["command"] for e in settings["hooks"]["PreToolUse"] for h in e["hooks"]]
         self.assertNotIn("serena-hooks remind --client=claude-code", pre)
-        self.assertEqual(pre.count('node "/home/test user/.claude/hooks/serena-remind.mjs"'), 1)
+        self.assertEqual(pre.count('cd ~ && node "/home/test user/.claude/hooks/serena-remind.mjs"'), 1)
         self.assertIn("local-hook", pre)
         self.assertNotIn("rtk hook claude", pre)
         environment = settings["autoMode"]["environment"]
