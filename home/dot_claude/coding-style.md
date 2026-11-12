@@ -66,8 +66,11 @@ Turn tasks into verifiable goals, then loop until they pass.
 - A test that passes regardless of the change is worthless — a new test should fail against the
   pre-change code.
 - Assert on error *type*/variant, not on a specific message string.
-- Document public APIs; keep comments about *why* and non-obvious invariants, not restating the
-  code.
+- Doc comments on public APIs say what the member does, its parameters, and its contract.
+- Inline comments say *why* the code does what it does: the reason, a non-obvious invariant,
+  or the race it guards against. Never restate what the code does.
+- Keep each comment to one or two lines. State a fact once; don't repeat it across the doc
+  comment, the constant, and the call site. Long scenarios belong in tests or docs.
 
 ## 9. Dependencies
 - Minimize them; each adds compile time, binary size, and attack surface.
