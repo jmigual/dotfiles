@@ -22,22 +22,22 @@
   },
   "skillOverrides": {
     "context7-mcp": "off",
-    "claude-api": "off",
-    "dataviz": "off",
+    "claude-api": "name-only",
+    "dataviz": "name-only",
     "anthropic-skills:artifact-emulator": "off",
     "anthropic-skills:google-workspace": "off",
     "anthropic-skills:built-in-browser": "off",
     "anthropic-skills:chrome-browser": "off",
     "anthropic-skills:computer-use": "off",
-    "anthropic-skills:deep-research": "off",
+    "anthropic-skills:deep-research": "name-only",
     "anthropic-skills:docs": "off",
-    "anthropic-skills:docx": "off",
+    "anthropic-skills:docx": "name-only",
     "anthropic-skills:import-memory": "off",
     "anthropic-skills:morning": "off",
-    "anthropic-skills:pdf": "off",
-    "anthropic-skills:pptx": "off",
-    "anthropic-skills:skill-creator": "off",
-    "anthropic-skills:xlsx": "off"
+    "anthropic-skills:pdf": "name-only",
+    "anthropic-skills:pptx": "name-only",
+    "anthropic-skills:skill-creator": "name-only",
+    "anthropic-skills:xlsx": "name-only"
   }
 }` -}}
 {{- /* Managed hooks replace local entries with the same command; other local hooks are kept.
