@@ -3,3 +3,7 @@
 .claude/skills/setup-serena/
 # `ctx7 setup` writes this; it repeats the Context7 MCP's own instructions.
 .claude/rules/context7.md
+# Older agents that coder, tester, reviewer and /orchestrate replace.
+.claude/agents/swe-subagent.md
+.claude/agents/qa-subagent.md
+.claude/agents/rug-orchestrator.md
