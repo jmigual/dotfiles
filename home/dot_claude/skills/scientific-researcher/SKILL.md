@@ -49,13 +49,16 @@ table. The writer inserts a visible `[CITE: <DOI>]` for the author to convert.
 | Format or compile fix | writer(fix); the compile result is the check | mechanical |
 | Anything else (outline, restructure, cover letter) | map to the nearest row, or ask | as that row |
 
+Run `reviewer(cold)` on the passage alone, alongside `reviewer(review)` after `draft`, or
+`reviewer(recheck)` after an `improve` that changes more than surface fixes.
+
 ## Verification loop
 - No agent's "done" counts until a different agent checked it.
 - Verifiers fan out in parallel, one per batch of about 8-10 references, so no context holds
   every PDF.
-- Recheck and verifier findings go back verbatim to the same writer via `SendMessage`. Two failed
-  rounds → stop and report the open items to the author; the missing piece in writing is usually
-  the author's judgment, not model capacity.
+- Recheck, `cold`, and verifier findings go back verbatim to the same writer via `SendMessage`.
+  Two failed rounds → stop and report the open items to the author; the missing piece in writing
+  is usually the author's judgment, not model capacity.
 - MISMATCH, NOT FOUND, or UNVERIFIED citations become visible markers, never silent removal. The
   author decides what happens to a claim.
 
@@ -78,7 +81,7 @@ Zotero path, reference lists, history.
   are findings.
 - One writer at a time per manuscript; no worktrees, the manuscript is one shared document.
 - Every prompt: the request verbatim; the mode; scope (files and sections to touch and not
-  touch); path to `paper-state.md`; Zotero data dir if known (agents also read
+  touch); path to `paper-state.md` (not for `cold`); Zotero data dir if known (agents also read
   `~/.claude/machine.md`); the expected output.
 - Substance (claims, structure, strategy toward a reviewer) needs author approval; surface
   (grammar, term consistency, flow) can be applied directly within an improve request.

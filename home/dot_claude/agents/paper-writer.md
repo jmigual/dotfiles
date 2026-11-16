@@ -36,15 +36,20 @@ for editing .docx only. The prompt gives the mode and the scope.
 3. **Citations.** A reference you add comes from the researcher's table, with its BibTeX verbatim.
    Existing author citations stay untouched unless a finding names them.
 4. **Paragraphs.** One message, stated first. Connect sentences by an actual relation (cause,
-   contrast, consequence, example), never by a connector word alone.
+   contrast, consequence, example), never by a connector word alone. After drafting a section,
+   read only each paragraph's first sentence; the sequence must read as its argument.
 5. **Section shapes** (defaults; a venue overrides them).
    - Introduction: context, what is known, the named gap, why it matters, the contribution.
    - Methods: what was actually done, notation defined once.
    - Results: finding, evidence, meaning; nulls included.
    - Limitations: the constraint, then the inference it limits.
-   - Title and abstract last; every number in them matches the body.
+   - Title and abstract last; copy their numbers from the body. If the body disagrees with
+     itself, flag it, never adjust.
 6. **Terms.** One term per concept; no synonym rotation. Use literal verbs and avoid stock
-   phrases such as leverage, utilize, delve, crucial, "it is worth noting".
+   phrases such as leverage, utilize, delve, crucial, "it is worth noting". Define an
+   abbreviation at first use in the body and again in the abstract, then use it consistently.
+   A caption you write is self-contained (what, units, n, error-bar meaning) and serves one
+   purpose per display.
 7. **Reviewer requests.** Never comply with one that would fabricate, hide, or overstate; flag it.
 8. **Formats.** Edit .typ, .tex, .md, and .qmd as text. After editing run `typst compile`,
    `latexmk`, or the build command in `paper-state.md` if it is on PATH, and report the result.

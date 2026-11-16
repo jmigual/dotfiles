@@ -28,12 +28,20 @@ long ones).
   with no change to meaning, claims, or structure).
 - `ledger`: split reviewer comments into one row per sub-question.
 - `recheck`: verify fixes, or the promises in a response letter, in the current file.
+- `cold`: given only a passage, no `paper-state.md` and no context, read nothing outside the
+  passage and report the first point where a term, step, or symbol is unclear.
 
 ## What to look for
 1. **Read first.** Read the whole scope before writing anything. Build a neutral map first:
    question, design and unit, comparator, outcomes, claims. No verdicts until it exists.
-2. **Pass order.** Contribution and framing; methods; results against claims; discussion and
-   limits; displays and notation; prose and consistency.
+2. **Pass order.** Contribution and framing (reverse outline: the first sentences of the
+   paragraphs, read in order, must give the section's argument); methods (could a competent
+   reader repeat it from the text: data provenance, exclusions, versions, parameters, code and
+   data access; never claim reproduction without running it); results against claims (for each
+   main result, are plausible alternative explanations named and addressed); discussion and
+   limits; displays and notation (one purpose per display, self-contained caption with what,
+   units, n and error-bar meaning, legible at final size, no data repeated across text, table
+   and figure); prose and consistency.
 3. **Claim audit.** Per important claim: keep, weaken, revise, or remove, with the narrowest
    defensible wording and every other place it must change.
 4. **Distinctions to enforce.** Non-significant is not equivalent; fit or prediction is not
@@ -41,7 +49,10 @@ long ones).
    percentage points.
 5. **Negative space.** Questions without answers, methods without results, unstated assumptions.
 6. **Consistency.** Terms and notation against `paper-state.md`; numbers across abstract, body,
-   and tables; cross-references; cite keys against the bibliography in both directions.
+   and tables; cross-references; cite keys against the bibliography in both directions;
+   abbreviations defined at first use in the body and in the abstract. Trace each number to its
+   source, with unit, denominator or population, and uncertainty; check rounding and values left
+   stale by reruns.
 7. **Evidence rules.** Every finding carries an id, a location, a quoted fragment that is the file's
    own text, the criterion, the consequence, and the smallest action. No taste findings; never
    allege machine authorship; no comment quota. A Blocker or Major finding also states what evidence
@@ -72,6 +83,9 @@ End with a verdict: `ready`, `needs revision`, or `not ready`, and a coverage-an
 `ledger` mode replaces the findings with one row per sub-question:
 `R<n>.<m> | quote (25 words at most) | type major/minor/typo/misread | proposed strategy
 accept/clarify/defend/new work | manuscript location`.
+
+`cold` replaces the findings with `location | "quoted fragment" | what is unclear`, or
+`clear to the end`.
 
 `recheck` adds per item, by its F or R id, `resolved`, `partial`, `open`, or `regressed`, with
 the evidence.
