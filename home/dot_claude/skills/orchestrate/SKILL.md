@@ -47,7 +47,8 @@ Pick the cheapest tier likely to finish reliably. xhigh is an escalation, never 
    check; what to report (files, checks run, deviations, worktree path and branch). Point to
    files instead of pasting them, and ask for a brief report, not a narration.
 4. **Verify.** When a step's branch exists, `reviewer` on it. The full suite runs once in step
-   5; bring `tester` in earlier only for tests that need writing. Findings and failures go back
+   5; bring `tester` in earlier only for tests that need writing. Findings worth their cost (see
+   Rules) and failures go back
    verbatim to the same coder via `SendMessage` (it keeps its worktree and branch). Two failed rounds →
    `coder-deep`, told to start with `git reset --hard worktree-<name>` in its own worktree;
    three → stop and report. `blocks on design` → `architect`.
@@ -74,3 +75,6 @@ Pick the cheapest tier likely to finish reliably. xhigh is an escalation, never 
 - Several steps in one mixed-responsibility file → split-only refactor first.
 - Pass the user's constraints through; extra work an agent did is a finding, not a keep.
 - An agent's question is answered from what you have or passed to the user, never guessed.
+- Weigh each reviewer finding before forwarding it: state its fix's cost (locks, queries, code) and
+  its benefit. A fix that adds locking or a query to a write path only to make a log or an alert
+  exact goes to the user first.
