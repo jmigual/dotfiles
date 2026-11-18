@@ -18,6 +18,7 @@
     "cowork-plugin-management@synced": false,
     "frontend-design@claude-plugins-official": false,
     "playwright@claude-plugins-official": true,
+    "ponytail@ponytail": false,
     "understand-anything@understand-anything": false
   },
   "skillOverrides": {

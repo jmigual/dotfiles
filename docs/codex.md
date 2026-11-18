@@ -53,7 +53,7 @@ Claude notes may be copied locally to `~/.codex/machine.md` when applicable.
 
 ## Claude Compatibility
 
-Claude-only plugin registrations (Ponytail, Understand-Anything, frontend-design),
+Claude-only plugin registrations (Understand-Anything, frontend-design),
 its status-line executable, remote-control/session settings, automatic-update
 channel, and its Opus model/context-window setting have no direct config mapping.
 They are not installed as Codex plugins. Existing Codex plugins remain intact.

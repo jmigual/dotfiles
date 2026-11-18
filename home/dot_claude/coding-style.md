@@ -19,12 +19,17 @@ Write the minimum code that solves the problem. Nothing speculative.
 - No configurability or "flexibility" that wasn't requested.
 - No error handling for impossible scenarios.
 - If 200 lines could be 50, rewrite it.
+- Before writing new code, look for a helper, type, or pattern in this codebase and reuse it.
+- For non-trivial work (parsing, dates, crypto, retries), use an installed or well-maintained
+  library instead of writing your own.
 - Reach for the standard library before a dependency, a native platform feature before a
   library, one line before fifty.
 Test: would a senior engineer call this overcomplicated? If yes, simplify.
 
 ## 3. Surgical changes
 Every changed line must trace directly to the request.
+- Choose the correct fix, not the smallest diff. A larger change is fine when the problem
+  needs it; say why in your summary.
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.

@@ -9,12 +9,12 @@ Mistakes are not your fault, do not apologize, you are an LLM. Mistakes always m
 Treat all work as queue to do. When I propose tweaks, changes, or corrections, append it to the queue. Do not break the queue to suddenly prioritize my correction. Only stop when 100% of your queue is truly clear. Run independent items in parallel.
 
 ## Scope Discipline
-Implement exactly what was asked and nothing more. Never add {{ if .work }}DB columns, migrations, extra `SaveChangesAsync` calls, {{ end }}new abstractions, or new notation/comment conventions unless explicitly requested. If you believe a schema change or larger refactor is required, STOP and ask before writing code.
+Implement exactly what was asked and nothing more. Never add {{ if .work }}DB columns, migrations, extra `SaveChangesAsync` calls, {{ end }}new abstractions, or new notation/comment conventions unless explicitly requested. If you believe a schema change is required, STOP and ask before writing code.
 
 ## Commits & Signing
 Commits are GPG-signed, and the pinentry prompt can block or time out: a GUI popup (`pinentry-w32`) on Windows, a tty prompt on Linux where `export GPG_TTY=$(tty)` is the usual fix. If signing blocks, tell me immediately and retry once — do NOT silently skip `git commit` when I have asked you to commit and push.
 
-Split a branch into small, reviewable commits: one logical unit each (for example a Core helper with its tests, then the command that uses it), every commit building and passing tests on its own. Never one big commit per branch; when a csproj or manifest gains entries for several commits, stage only the lines that belong to each one.
+Make one commit per change a reviewer would read on its own, such as a feature and an unrelated fix. A helper and the code that uses it, or code and its tests, belong in the same commit. A small branch is one commit. Every commit builds and passes tests on its own; when a csproj or manifest gains entries for several commits, stage only the lines that belong to each one.
 
 ## Merge / Pull Requests
 MR/PR descriptions must be short and factual: what changed, why, and the alternatives actually considered. No LLM-flavored prose, no marketing adjectives, no duplicated phases or filler sections. Before writing one, read the branch's commit history (`git log <base>..HEAD`) and any prior discussion so the description reflects the real design path. Never post extra comments on an MR/PR unless I ask, and never set a reviewer I did not name.

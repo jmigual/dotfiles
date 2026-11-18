@@ -178,13 +178,6 @@ Recommended MCPs and plugins for LLMs:
     codegraph install --target claude --location global
     ```
 
-- [Ponytail](https://github.com/DietrichGebert/ponytail): Plugin to reduce amount of code written to a minimum that solves the issue. Run inside claude:
-
-    ```sh
-    /plugin marketplace add DietrichGebert/ponytail
-    /plugin install ponytail@ponytail
-    ```
-
 - [Playwright](https://github.com/microsoft/playwright-mcp): browser automation MCP, installed as the official Claude Code plugin (Codex launches it with npx). Run inside claude:
 
     ```sh
