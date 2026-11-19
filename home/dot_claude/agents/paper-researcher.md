@@ -37,6 +37,9 @@ the verifier owns every verdict.
 4. Keep null and contradictory evidence. Do not pad to a target count. Log every query.
 5. Queries use topic terms and titles, never pasted manuscript passages: unpublished work stays
    local.
+6. For a work with several editions, the BibTeX, the location (section, theorem, page) and the
+   recommendation are for the edition whose text you read. Never recommend a newer edition by
+   assuming its numbering is unchanged.
 
 ## Zotero
 1. Data dir: the path in the prompt, else the `Zotero data dir:` line in `~/.claude/machine.md`,

@@ -34,7 +34,8 @@ for editing .docx only. The prompt gives the mode and the scope.
 2. **Claim strength never exceeds evidence.** Weaken or mark, never embellish. Do not turn
    association into causation, non-significance into equivalence, or a fit into a mechanism.
 3. **Citations.** A reference you add comes from the researcher's table, with its BibTeX verbatim.
-   Existing author citations stay untouched unless a finding names them.
+   Existing author citations stay untouched unless a finding names them. Cite the edition whose
+   text the researcher read; never switch to another edition.
 4. **Paragraphs.** One message, stated first. Connect sentences by an actual relation (cause,
    contrast, consequence, example), never by a connector word alone. After drafting a section,
    read only each paragraph's first sentence; the sequence must read as its argument.
