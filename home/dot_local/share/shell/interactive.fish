@@ -15,14 +15,10 @@ switch (uname -s)
         end
 end
 
-set VSCODE_GUI false
-if command -vq code && code --version | string match -vq "*CLI*"
-    set VSCODE_GUI true
-end
-
-# Check for editor
-if $VSCODE_GUI
-	set -x VISUAL "code"
+# Check for editor. The VS Code GUI's `code` is a script; the standalone CLI (SSH, tunnels) is a
+# native binary. --wait makes git wait for the file to close.
+if command -vq code && string match -q '#!' -- (head -c 2 (command -v code) 2>/dev/null)
+	set -x VISUAL "code --wait"
 else if command -vq nvim
     set -x VISUAL "nvim"
 else if command -vq vim
@@ -31,6 +27,6 @@ end
 set -x EDITOR "$VISUAL"
 
 # VSCode shell integration
-if string match -q "$TERM_PROGRAM" "vscode" && $VSCODE_GUI
+if string match -q "$TERM_PROGRAM" "vscode"
     . (code --locate-shell-integration-path fish)
 end

@@ -18,14 +18,10 @@ case "$(uname -s)" in
     *)
 esac
 
-VSCODE_GUI=false
-if command -v code &> /dev/null && ! (code --version | grep "CLI" &> /dev/null); then
-	VSCODE_GUI=true
-fi
-
-# Check for editor
-if $VSCODE_GUI; then
-	export VISUAL="code"
+# Check for editor. The VS Code GUI's `code` is a script; the standalone CLI (SSH, tunnels) is a
+# native binary. --wait makes git wait for the file to close.
+if command -v code &> /dev/null && [ "$(head -c 2 "$(command -v code)" 2>/dev/null)" = '#!' ]; then
+	export VISUAL="code --wait"
 elif command -v nvim &> /dev/null; then
 	export VISUAL="nvim"
 elif command -v vim &> /dev/null; then

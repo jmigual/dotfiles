@@ -64,7 +64,8 @@
     packedGitWindowSize = 512m
 {{- end }}
 
-{{- if $hasVsCode }}
+{{- /* Elsewhere the shells set VISUAL to the VS Code GUI when it is installed. */}}
+{{- if and $hasVsCode (eq .chezmoi.os "windows") }}
     # Use VSCode as the default editor for Git.
     editor = "code --wait"
 {{- end }}
