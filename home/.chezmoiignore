@@ -12,6 +12,7 @@ windows_variables.ps1
 .config/clangd/clangd.yaml
 .config/fish/
 .config/nix/
+.config/systemd/user/user.slice.d/
 .fzf.bash
 .fzf.zsh
 .gnupg/
