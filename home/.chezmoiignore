@@ -23,6 +23,11 @@ windows_variables.ps1
 starship_install.sh
 {{ end }}
 
+# Bazzite only: it does not allow changing the login shell, so herdr gets its shell here.
+{{ if ne (dig "osRelease" "id" "" .chezmoi) "bazzite" }}
+.config/systemd/user/hc-.service.d/
+{{ end }}
+
 # Codex credentials, runtime data, and machine-local notes are never synchronized.
 .codex/auth.json
 .codex/machine.md
