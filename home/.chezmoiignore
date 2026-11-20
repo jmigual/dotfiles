@@ -23,9 +23,12 @@ windows_variables.ps1
 starship_install.sh
 {{ end }}
 
-# Bazzite only: it does not allow changing the login shell, so herdr gets its shell here.
+# Bazzite only: it does not allow changing the login shell, so herdr gets its shell here,
+# and its dev distrobox starts at login.
 {{ if ne (dig "osRelease" "id" "" .chezmoi) "bazzite" }}
 .config/systemd/user/hc-.service.d/
+.config/systemd/user/distrobox-dev.service
+.config/systemd/user/default.target.wants/distrobox-dev.service
 {{ end }}
 
 # Codex credentials, runtime data, and machine-local notes are never synchronized.

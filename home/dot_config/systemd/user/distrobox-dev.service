@@ -1,0 +1,11 @@
+[Unit]
+Description=Start the dev distrobox at login, so shells do not print its setup checklist
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecCondition=/usr/bin/podman container exists dev
+ExecStart=/usr/bin/distrobox-enter -n dev -- true
+
+[Install]
+WantedBy=default.target
