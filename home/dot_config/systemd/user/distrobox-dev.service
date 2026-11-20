@@ -6,6 +6,8 @@ Type=oneshot
 RemainAfterExit=yes
 ExecCondition=/usr/bin/podman container exists dev
 ExecStart=/usr/bin/distrobox-enter -n dev -- true
+# Idle weight gives the container's builds only CPU the desktop leaves free; nice inside it does not count across cgroups.
+ExecStartPost=/bin/sh -c '/usr/bin/systemctl --user set-property --runtime "libpod-$$(/usr/bin/podman inspect -f {{.Id}} dev).scope" CPUWeight=idle'
 
 [Install]
 WantedBy=default.target
