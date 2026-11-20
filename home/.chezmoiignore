@@ -31,6 +31,11 @@ starship_install.sh
 .config/systemd/user/default.target.wants/distrobox-dev.service
 {{ end }}
 
+# The VS Code wrapper runs the GUI installed in the dev distrobox.
+{{ if or (ne (dig "osRelease" "id" "" .chezmoi) "bazzite") (not (output "sh" "-c" "podman container exists dev && echo yes || true" | contains "yes")) }}
+.local/bin/code
+{{ end }}
+
 # Codex credentials, runtime data, and machine-local notes are never synchronized.
 .codex/auth.json
 .codex/machine.md

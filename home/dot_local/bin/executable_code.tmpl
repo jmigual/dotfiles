@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+# distrobox_binary
+# name: dev
+#
+# Host -> 'dev' container wrapper for VS Code.
+#
+# distrobox-enter runs the container command with --workdir=/run/host$PWD and the
+# container has its own /etc, /usr, /mnt, ... so path arguments handed to `code`
+# from the host land in the wrong filesystem namespace:
+#
+#   code .              -> /run/host/var/home/jmigual        (duplicate workspace)
+#   code /etc/os-release-> the *container's* /etc/os-release (wrong file)
+#   code /mnt/data/x    -> the *container's* /mnt            (missing)
+#
+# This wrapper rewrites path operands into the container's namespace first.
+
+set -u
+
+BOX='dev'
+BOX_CODE='{{ .chezmoi.homeDir }}/Documents/Distrobox/dev/.local/bin/code'
+HOST_CODE='{{ .chezmoi.homeDir }}/.local/bin/code'
+
+if [ -n "${CONTAINER_ID:-}" ]; then
+	if [ "${CONTAINER_ID}" = "${BOX}" ]; then
+		exec "${BOX_CODE}" "$@"
+	fi
+	exec distrobox-host-exec "${HOST_CODE}" "$@"
+fi
+
+# ---------------------------------------------------------------- host side --
+
+home_link="${HOME%/}"                    # /home/jmigual     - where the box mounts it
+home_real="$(realpath -m -- "${HOME}")"  # /var/home/jmigual - canonical on the host
+
+# Prefixes that are the very same directory on both sides; everything else only
+# exists in the container under /run/host.
+SHARED=(/tmp /run/media /var/mnt /run/host)
+
+to_box() {
+	local abs="$1" p
+	case "${abs}" in
+		"${home_real}"|"${home_real}"/*) printf '%s' "${home_link}${abs#"${home_real}"}"; return ;;
+		"${home_link}"|"${home_link}"/*) printf '%s' "${abs}"; return ;;
+	esac
+	for p in "${SHARED[@]}"; do
+		case "${abs}" in "${p}"|"${p}"/*) printf '%s' "${abs}"; return ;; esac
+	done
+	printf '/run/host%s' "${abs}"
+}
+
+# Options whose value is not a filesystem path.
+is_opaque_opt() {
+	case "$1" in
+		--install-extension|--uninstall-extension|--enable-proposed-api|--locale| \
+		--log|--category|--profile|--sync|--remote|--open-url|--folder-uri| \
+		--file-uri|--inspect-extensions|--inspect-brk-extensions) return 0 ;;
+	esac
+	return 1
+}
+
+args=()
+prev=''
+for a in "$@"; do
+	if [ "${a}" = '--' ] || [ "${a:0:1}" = '-' ]; then
+		args+=("${a}"); prev="${a}"; continue
+	fi
+	if is_opaque_opt "${prev}"; then
+		args+=("${a}"); prev=''; continue
+	fi
+	prev=''
+
+	# `-g file:LINE[:COL]` keeps its suffix out of the path.
+	base="${a}"; suffix=''
+	while [ ! -e "${base}" ] && [[ "${base}" == *:* ]] && [[ "${base##*:}" =~ ^[0-9]+$ ]]; do
+		suffix=":${base##*:}${suffix}"; base="${base%:*}"
+	done
+	[ -n "${base}" ] && [ -e "${base}" ] || { base="${a}"; suffix=''; }
+
+	if [ "${base:0:1}" = '/' ] || [ -e "${base}" ] || [ -d "$(dirname -- "${base}")" ]; then
+		args+=("$(to_box "$(realpath -m -- "${base}")")${suffix}")
+	else
+		args+=("${a}")
+	fi
+done
+
+exec /bin/distrobox-enter -n "${BOX}" -- "${BOX_CODE}" "${args[@]}"
