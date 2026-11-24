@@ -13,7 +13,7 @@ encryption = "gpg"
     exclude = ["scripts"]
 
 [gpg]
-    recipient = "B57766F5A401F867341B636942667CA965E20F39"
+    recipient = "EEB60A0C793F1E65655F62DC2559F2CEBECE4960"
 {{- if eq .chezmoi.os "windows" }}
 {{- /* Prefer Gpg4win: from Git Bash, lookPath finds Git's bundled gpg, which uses a different keyring. */}}
 {{- $gpg := "C:/Program Files/GnuPG/bin/gpg.exe" }}
