@@ -68,7 +68,9 @@ Pick the cheapest tier likely to finish reliably. xhigh is an escalation, never 
 - After merging: `git worktree remove <wt>`, `git branch -d worktree-<name>`.
 
 ## Rules
-- No agent's "done" counts until a different agent verified it.
+- No agent's "done" counts until a different agent verified it. Exception: a small follow-up (about
+  50 lines or less) on a change already reviewed. Check its diff yourself and run only the tests it
+  touches. Don't wait for a full suite before you update an MR description.
 - One agent per logical unit; parallelism comes from independent units, not thinner slices.
 - Shared files are not a dependency: sequence only on a needed result (decision, API, verdict).
   Parallel coders rebase before reporting; assign ADR/migration numbers up front.
