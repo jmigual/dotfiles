@@ -28,7 +28,7 @@ each machine, restart it after applying, and review new or changed hooks in `/ho
   `gpt-5.6-sol` and Sonnet roles `gpt-5.6-terra`, each at the effort the Claude agent declares;
   inherit roles keep the parent model. The reviewer requests a read-only sandbox.
   Claude tool allowlists become role instructions, not equivalent Codex tool ACLs.
-- The `ship` skill (invoke as `$ship`) and a Codex-specific `setup-serena` skill.
+- The `coa-ship` skill (invoke as `$coa-ship`) and a Codex-specific `setup-serena` skill.
 - Serena, Context7, Playwright, and CodeGraph MCP servers. Windows npm commands use
   `cmd`; other systems launch them directly. No executable path is hard-coded.
 - Serena lifecycle hooks and an RTK adapter that supplies

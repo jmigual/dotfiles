@@ -1,6 +1,9 @@
 # Targets chezmoi deletes on apply: files this repo used to manage, or that installers add.
 .config/fish/conf.d/fnm.fish
 .claude/skills/setup-serena/
+# Renamed to coa-ship; `ship` clashes with a Claude Code built-in skill.
+.claude/skills/ship/
+.codex/skills/ship/
 # `ctx7 setup` writes this; it repeats the Context7 MCP's own instructions.
 .claude/rules/context7.md
 # Older agents that coder, tester, reviewer and /orchestrate replace.

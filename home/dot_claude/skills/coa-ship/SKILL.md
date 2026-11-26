@@ -1,6 +1,6 @@
 ---
-name: ship
-description: Review, verify, commit, and open a draft MR/PR for the current worktree branch. Use when the user says "ship it", "/ship", or asks to finish and open an MR/PR for the current branch.
+name: coa-ship
+description: Review, verify, commit, and open a draft MR/PR for the current worktree branch. Use when the user says "ship it", "/coa-ship", or asks to finish and open an MR/PR for the current branch.
 ---
 
 Works on Windows and Linux, and on GitLab or GitHub. Detect, don't assume.

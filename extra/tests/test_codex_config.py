@@ -136,7 +136,7 @@ args = ["serve", "--mcp"]
         self.assertNotIn("@machine.md", instructions)
         self.assertNotIn("@coding-style.md", instructions)
         self.assertNotIn("@RTK.md", instructions)
-        self.assertIn('"$ship"', render(CODEX / "skills/ship/SKILL.md.tmpl"))
+        self.assertIn('"$coa-ship"', render(CODEX / "skills/coa-ship/SKILL.md.tmpl"))
 
     def test_work_sections_only_render_on_work_machines(self):
         for work, expected in ((False, self.assertNotIn), (True, self.assertIn)):
