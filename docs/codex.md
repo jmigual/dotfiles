@@ -5,7 +5,7 @@ It is portable across Windows, Linux, and macOS.
 
 ## Setup
 
-Install Codex, Node.js/npm, Serena (`serena-agent` via uv), RTK, and CodeGraph on
+Install Codex, Node.js/npm, Serena (`serena-agent` via mise), RTK, and CodeGraph on
 PATH before applying the configuration. Playwright's MCP is launched by npx.
 
 Apply only the Codex configuration with:

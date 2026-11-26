@@ -155,7 +155,7 @@ Recommended MCPs and plugins for LLMs:
 - [Serena](https://github.com/oraios/serena). MCP with semantic access to files. Claude Code runs its remind hook through a Node.js wrapper that turns blocked calls into reminders, so `node` must be on PATH. Install with:
 
     ```sh
-    uv tool install -p 3.13 serena-agent
+    mise use -g "pypi:serena-agent[python=3.13]"
     serena setup claude-code
     ```
 

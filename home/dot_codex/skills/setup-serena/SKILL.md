@@ -7,7 +7,7 @@ description: Configure or repair Serena's MCP server and lifecycle hooks for Cod
 
 Check that `serena` and `serena-hooks` resolve on PATH with `Get-Command` in
 PowerShell or `command -v` in POSIX shells. If missing, install the official
-`serena-agent` package with `uv tool install -p 3.13 serena-agent`.
+`serena-agent` package with `mise use -g "pypi:serena-agent[python=3.13]"`.
 
 The chezmoi source manages `~/.codex/config.toml` and `~/.codex/hooks.json`. Find it
 with `chezmoi source-path`, inspect its existing templates, and fix those before
